@@ -1,54 +1,46 @@
-import React, { useState, useEffect, useCallback } from "react";
-import { ArrowUpRight, Maximize2, X, ChevronLeft, ChevronRight, Heart, Sparkles } from "lucide-react";
+import React, { useState, useEffect } from "react";
+import {
+  ChevronLeft,
+  ChevronRight,
+  Heart,
+  Sparkles,
+  MousePointer,
+} from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import Eyebrow from "../common/Eyebrow";
 import { momentsList } from "../../constants/siteData";
 
+// Spring transition matching the Framer configuration:
+// { damping: 30, delay: 0, mass: 1, stiffness: 160, type: "spring" }
+const springTransition = {
+  type: "spring",
+  stiffness: 160,
+  damping: 30,
+  mass: 1,
+};
+
 export function MomentsSection() {
-  const [lightboxIndex, setLightboxIndex] = useState(null);
+  const [activeIndex, setActiveIndex] = useState(0);
 
-  const openLightbox = (index) => {
-    setLightboxIndex(index);
+  const handleNextCard = () => {
+    setActiveIndex((prev) => (prev + 1) % momentsList.length);
   };
 
-  const closeLightbox = () => {
-    setLightboxIndex(null);
+  const handlePrevCard = () => {
+    setActiveIndex(
+      (prev) => (prev - 1 + momentsList.length) % momentsList.length,
+    );
   };
-
-  const showNext = useCallback(() => {
-    if (lightboxIndex !== null) {
-      setLightboxIndex((prev) => (prev + 1) % momentsList.length);
-    }
-  }, [lightboxIndex]);
-
-  const showPrev = useCallback(() => {
-    if (lightboxIndex !== null) {
-      setLightboxIndex((prev) => (prev - 1 + momentsList.length) % momentsList.length);
-    }
-  }, [lightboxIndex]);
 
   useEffect(() => {
     const handleKeyDown = (e) => {
-      if (lightboxIndex === null) return;
-      if (e.key === "Escape") closeLightbox();
-      if (e.key === "ArrowRight") showNext();
-      if (e.key === "ArrowLeft") showPrev();
+      if (e.key === "ArrowRight") handleNextCard();
+      if (e.key === "ArrowLeft") handlePrevCard();
     };
 
-    if (lightboxIndex !== null) {
-      document.body.style.overflow = "hidden";
-      window.addEventListener("keydown", handleKeyDown);
-    } else {
-      document.body.style.overflow = "";
-    }
-
-    return () => {
-      window.removeEventListener("keydown", handleKeyDown);
-      document.body.style.overflow = "";
-    };
-  }, [lightboxIndex, showNext, showPrev]);
-
-  const currentMoment = lightboxIndex !== null ? momentsList[lightboxIndex] : null;
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
 
   return (
     <section
@@ -61,10 +53,10 @@ export function MomentsSection() {
         ❀
       </div>
 
-      <div className="max-w-[1180px] w-full px-5 md:px-8 mx-auto relative z-10">
+      <div className="max-w-[1240px] w-full px-5 md:px-8 mx-auto relative z-10">
         {/* Section Header */}
         <div
-          className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-20 items-start mb-14 sm:mb-16"
+          className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-20 items-start mb-10 sm:mb-14"
           data-aos="fade-up"
           data-aos-duration="900"
         >
@@ -79,96 +71,214 @@ export function MomentsSection() {
           <div className="text-[15px] sm:text-[16px] text-muted leading-relaxed space-y-4">
             <p>
               Behind every value of resilience, courage and service was a real
-              woman who brought laughter, warmth and unconditional love to everyone
-              around her.
+              woman who brought laughter, warmth and unconditional love to
+              everyone around her.
             </p>
             <p>
-              These authentic photographs celebrate Dropati Devi in her element —
-              rejoicing with family, sharing playful laughter with grandchildren,
-              celebrating sweet milestones, and radiating quiet grace and wisdom.
+              These authentic photographs celebrate Dropati Devi in her element
+              — rejoicing with family, sharing playful laughter with
+              grandchildren, celebrating sweet milestones, and radiating quiet
+              grace and wisdom.
             </p>
           </div>
         </div>
 
-        {/* Moments Gallery Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7 sm:gap-8">
-          {momentsList.map((moment, index) => (
-            <article
-              key={moment.id}
-              onClick={() => openLightbox(index)}
-              data-aos="fade-up"
-              data-aos-delay={index * 110}
-              data-aos-duration="850"
-              className="group relative bg-white border border-line rounded-lg overflow-hidden flex flex-col shadow-sm hover:shadow-2xl hover:-translate-y-1.5 transition-all duration-500 cursor-pointer"
-              data-testid={`moment-card-${moment.id}`}
-            >
-              {/* Image Container */}
-              <div className="relative h-[280px] sm:h-[320px] w-full overflow-hidden bg-[#241712]">
-                <img
-                  src={moment.image}
-                  alt={moment.alt}
-                  className={`w-full h-full object-cover ${moment.objectPosition} group-hover:scale-106 transition-transform duration-700 ease-out`}
-                  loading="lazy"
+        {/* Accordion Controls Bar */}
+        <div
+          className="flex items-center justify-between gap-4 mb-6 pb-3 border-b border-line/60"
+          data-aos="fade-up"
+          data-aos-duration="700"
+        >
+          <div className="flex items-center gap-2 text-xs text-muted font-medium"></div>
+
+          <div className="flex items-center gap-2">
+            {/* Dot Indicator Pills */}
+            <div className="hidden sm:flex items-center gap-1.5 mr-2">
+              {momentsList.map((m, idx) => (
+                <button
+                  key={m.id}
+                  type="button"
+                  onClick={() => setActiveIndex(idx)}
+                  className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
+                    idx === activeIndex
+                      ? "w-7 bg-terracotta"
+                      : "w-2 bg-line hover:bg-muted/60"
+                  }`}
+                  aria-label={`Go to slide ${m.number}`}
                 />
+              ))}
+            </div>
 
-                {/* Gradient overlay on hover */}
-                <div className="absolute inset-0 bg-gradient-to-t from-ink/90 via-ink/30 to-transparent opacity-40 group-hover:opacity-80 transition-opacity duration-500 pointer-events-none" />
+            {/* Prev / Next Arrow Controls */}
+            <button
+              type="button"
+              onClick={handlePrevCard}
+              className="p-2 rounded-full bg-white border border-line text-ink hover:text-terracotta hover:border-terracotta/40 shadow-sm transition-all duration-200 cursor-pointer"
+              aria-label="Previous card"
+            >
+              <ChevronLeft size={16} />
+            </button>
+            <button
+              type="button"
+              onClick={handleNextCard}
+              className="p-2 rounded-full bg-white border border-line text-ink hover:text-terracotta hover:border-terracotta/40 shadow-sm transition-all duration-200 cursor-pointer"
+              aria-label="Next card"
+            >
+              <ChevronRight size={16} />
+            </button>
+          </div>
+        </div>
 
-                {/* Tag Badge */}
-                <div className="absolute top-4 left-4 z-10">
-                  <span className="inline-flex items-center gap-1.5 bg-ink/75 backdrop-blur-md text-bone font-mono text-[11px] px-3 py-1 rounded-full font-medium border border-white/10 shadow-sm">
-                    <Sparkles size={12} className="text-gold" />
-                    {moment.tag}
-                  </span>
-                </div>
+        {/* Expanding Cards Accordion Container */}
+        {/* On desktop: horizontal flex row with expanding cards */}
+        {/* On mobile: vertical flex column with expanding cards */}
+        <div
+          className="flex flex-col md:flex-row gap-3.5 md:gap-3 w-full md:h-[500px] lg:h-[540px] select-none"
+          data-aos="fade-up"
+          data-aos-duration="850"
+        >
+          {momentsList.map((moment, index) => {
+            const isActive = index === activeIndex;
 
-                {/* Zoom/Expand Icon Badge */}
-                <div className="absolute top-4 right-4 z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <span className="w-9 h-9 rounded-full bg-white/90 backdrop-blur-md text-ink flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
-                    <Maximize2 size={16} />
-                  </span>
-                </div>
+            return (
+              <motion.article
+                key={moment.id}
+                layout
+                transition={springTransition}
+                onMouseEnter={() => setActiveIndex(index)}
+                onClick={() => setActiveIndex(index)}
+                className={`group relative overflow-hidden rounded-[22px] sm:rounded-[26px] cursor-pointer border transition-all duration-500 ${
+                  isActive
+                    ? "md:flex-[3.8] lg:flex-[4.2] h-[440px] md:h-full border-gold/70 shadow-[0_22px_45px_rgba(44,34,30,0.35)]"
+                    : "md:flex-[0.7] lg:flex-[0.6] h-[72px] md:h-full border-line/80 hover:border-gold/40 shadow-sm hover:shadow-md bg-[#241712]"
+                }`}
+                data-testid={`moment-card-${moment.id}`}
+              >
+                {/* Background Image with Pan / Zoom */}
+                <div className="absolute inset-0 w-full h-full overflow-hidden bg-[#241712]">
+                  <img
+                    src={moment.image}
+                    alt={moment.alt}
+                    className={`w-full h-full object-cover ${moment.objectPosition} transition-all duration-700 ease-out ${
+                      isActive
+                        ? "scale-105 brightness-100"
+                        : "scale-100 opacity-60 group-hover:opacity-85 brightness-[0.7] group-hover:brightness-[0.85]"
+                    }`}
+                    loading="lazy"
+                  />
 
-                {/* Hover Quote Preview */}
-                <div className="absolute bottom-4 left-4 right-4 z-10 translate-y-2 opacity-0 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-400">
-                  <p className="font-serif italic text-sm text-[#f6eee4] line-clamp-2 drop-shadow-md">
-                    "{moment.quote}"
-                  </p>
-                </div>
-              </div>
-
-              {/* Card Information */}
-              <div className="p-6 sm:p-7 flex flex-col flex-1 justify-between gap-4">
-                <div>
-                  <div className="flex items-center justify-between text-xs text-muted/70 font-mono font-medium mb-2.5">
-                    <span className="uppercase tracking-wider">{moment.number} • {moment.categoryLabel}</span>
-                    <span className="flex items-center gap-1 text-gold">
-                      <Heart size={13} className="fill-gold/40" />
-                    </span>
-                  </div>
-                  <h3 className="font-serif text-xl sm:text-2xl text-ink group-hover:text-terracotta font-normal transition-colors duration-300 mb-2">
-                    {moment.title}
-                  </h3>
-                  <p className="text-sm text-muted leading-relaxed line-clamp-3">
-                    {moment.description}
-                  </p>
-                </div>
-
-                <div className="pt-3 border-t border-line/60 flex items-center justify-between text-xs font-semibold uppercase tracking-wider text-terracotta group-hover:text-terracotta-dark">
-                  <span>View photo & story</span>
-                  <ArrowUpRight
-                    size={16}
-                    className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300"
+                  {/* Dynamic Gradient Overlay */}
+                  <div
+                    className={`absolute inset-0 transition-opacity duration-500 pointer-events-none ${
+                      isActive
+                        ? "bg-gradient-to-t from-ink/95 via-ink/40 to-black/25 opacity-90"
+                        : "bg-gradient-to-t from-ink/90 via-ink/70 to-ink/60 opacity-80 group-hover:opacity-60"
+                    }`}
                   />
                 </div>
-              </div>
-            </article>
-          ))}
+
+                {/* ACTIVE CARD CONTENT */}
+                <AnimatePresence>
+                  {isActive && (
+                    <motion.div
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      transition={{ duration: 0.25 }}
+                      className="relative z-10 w-full h-full p-5 sm:p-7 flex flex-col justify-between"
+                    >
+                      {/* Top Header Row */}
+                      <div className="flex items-center justify-between gap-3">
+                        <div className="flex items-center gap-2">
+                          <span className="inline-flex items-center gap-1.5 bg-black/55 backdrop-blur-md text-bone font-mono text-[11px] sm:text-xs px-3.5 py-1.5 rounded-full font-medium border border-white/15 shadow-sm">
+                            <Sparkles size={12} className="text-gold" />
+                            {moment.number} • {moment.tag}
+                          </span>
+                        </div>
+                      </div>
+
+                      {/* Bottom Story & Information */}
+                      <div className="max-w-2xl pt-4">
+                        <div className="flex items-center gap-2 text-xs text-gold/90 font-mono font-medium mb-1.5 uppercase tracking-wider">
+                          <span>{moment.categoryLabel}</span>
+                          <span className="inline-block w-1 h-1 rounded-full bg-gold/60" />
+                          <Heart size={12} className="fill-gold/40 text-gold" />
+                        </div>
+
+                        <h3 className="font-serif text-2xl sm:text-3xl lg:text-[34px] text-white font-normal leading-tight mb-2 drop-shadow-md">
+                          {moment.title}
+                        </h3>
+
+                        <p className="font-serif italic text-sm sm:text-base text-[#f7ecd9] mb-2.5 drop-shadow-sm line-clamp-2">
+                          "{moment.quote}"
+                        </p>
+
+                        <p className="text-xs sm:text-[13.5px] text-bone/90 leading-relaxed line-clamp-2 sm:line-clamp-3 font-sans">
+                          {moment.description}
+                        </p>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+
+                {/* INACTIVE CARD CONTENT (DESKTOP) */}
+                <div
+                  className={`hidden md:flex absolute inset-0 z-10 flex-col justify-between items-center py-6 px-2 transition-opacity duration-300 ${
+                    isActive ? "opacity-0 pointer-events-none" : "opacity-100"
+                  }`}
+                >
+                  {/* Top: Card Number */}
+                  <span className="font-mono text-sm font-bold text-white/80 group-hover:text-gold transition-colors">
+                    {moment.number}
+                  </span>
+
+                  {/* Middle: Rotated Vertical Title */}
+                  <div className="flex-1 flex items-center justify-center my-4 overflow-hidden">
+                    <span
+                      style={{
+                        writingMode: "vertical-rl",
+                        transform: "rotate(180deg)",
+                      }}
+                      className="font-sans text-[11px] lg:text-xs tracking-[0.2em] uppercase font-semibold text-white/75 group-hover:text-white transition-colors whitespace-nowrap line-clamp-1"
+                    >
+                      {moment.title}
+                    </span>
+                  </div>
+
+                  {/* Bottom: Heart Indicator */}
+                  <div className="w-8 h-8 rounded-full bg-black/40 backdrop-blur-sm border border-white/10 flex items-center justify-center text-gold/80 group-hover:text-gold group-hover:scale-110 transition-all">
+                    <Heart size={13} className="fill-gold/30" />
+                  </div>
+                </div>
+
+                {/* INACTIVE CARD CONTENT (MOBILE) */}
+                <div
+                  className={`md:hidden absolute inset-0 z-10 flex items-center justify-between px-5 py-3 transition-opacity duration-300 ${
+                    isActive ? "opacity-0 pointer-events-none" : "opacity-100"
+                  }`}
+                >
+                  <div className="flex items-center gap-3">
+                    <span className="font-mono text-xs font-bold text-gold px-2 py-0.5 bg-black/40 rounded-full border border-white/10">
+                      {moment.number}
+                    </span>
+                    <span className="font-serif text-base text-white font-medium line-clamp-1">
+                      {moment.title}
+                    </span>
+                  </div>
+
+                  <span className="text-xs text-white/70 font-mono flex items-center gap-1">
+                    <span>Explore</span>
+                    <ChevronRight size={14} />
+                  </span>
+                </div>
+              </motion.article>
+            );
+          })}
         </div>
 
         {/* Bottom Banner Note */}
         <div
-          className="mt-16 sm:mt-20 p-7 sm:p-9 bg-white/70 backdrop-blur-sm border border-line rounded-lg text-center flex flex-col items-center justify-center"
+          className="mt-14 sm:mt-18 p-7 sm:p-9 bg-white/70 backdrop-blur-sm border border-line rounded-lg text-center flex flex-col items-center justify-center"
           data-aos="fade-up"
           data-aos-duration="800"
         >
@@ -182,120 +292,6 @@ export function MomentsSection() {
           </span>
         </div>
       </div>
-
-      {/* Interactive Lightbox Modal */}
-      <AnimatePresence>
-        {lightboxIndex !== null && currentMoment && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-50 flex flex-col justify-between bg-black/95 backdrop-blur-md p-4 sm:p-7 select-none"
-            role="dialog"
-            aria-modal="true"
-            aria-label={currentMoment.title}
-            data-testid="moment-lightbox"
-          >
-            {/* Lightbox Header */}
-            <div className="flex items-center justify-between text-white z-20 pb-2">
-              <div className="flex items-center gap-3">
-                <span className="font-mono text-xs uppercase tracking-widest text-gold px-2.5 py-1 bg-white/10 rounded-full">
-                  {currentMoment.number} / 06
-                </span>
-                <span className="hidden sm:inline-block text-xs uppercase tracking-wider text-[#eeddd0]/80 font-sans">
-                  {currentMoment.categoryLabel}
-                </span>
-              </div>
-
-              <div className="flex items-center gap-2">
-                <button
-                  onClick={closeLightbox}
-                  className="p-2.5 rounded-full bg-white/10 hover:bg-white/20 text-white transition-all duration-200 hover:rotate-90 cursor-pointer"
-                  aria-label="Close photo view"
-                  data-testid="close-lightbox-button"
-                >
-                  <X size={20} />
-                </button>
-              </div>
-            </div>
-
-            {/* Lightbox Center Content with Nav Arrows */}
-            <div className="relative flex-1 flex items-center justify-center my-auto min-h-0 py-2">
-              {/* Previous Button */}
-              <button
-                onClick={showPrev}
-                className="absolute left-2 sm:left-6 z-20 p-3 rounded-full bg-black/60 hover:bg-white/20 text-white backdrop-blur-md transition-all duration-200 hover:scale-110 cursor-pointer border border-white/10"
-                aria-label="Previous image"
-                data-testid="prev-moment-button"
-              >
-                <ChevronLeft size={24} />
-              </button>
-
-              {/* Main Image View */}
-              <div className="relative max-h-[68vh] sm:max-h-[72vh] max-w-4xl flex items-center justify-center p-2">
-                <AnimatePresence mode="wait">
-                  <motion.img
-                    key={currentMoment.id}
-                    src={currentMoment.image}
-                    alt={currentMoment.alt}
-                    initial={{ opacity: 0, scale: 0.94 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.94 }}
-                    transition={{ duration: 0.35, ease: "easeOut" }}
-                    className="max-h-[64vh] sm:max-h-[70vh] w-auto max-w-full object-contain rounded-md shadow-2xl border border-white/15"
-                  />
-                </AnimatePresence>
-              </div>
-
-              {/* Next Button */}
-              <button
-                onClick={showNext}
-                className="absolute right-2 sm:right-6 z-20 p-3 rounded-full bg-black/60 hover:bg-white/20 text-white backdrop-blur-md transition-all duration-200 hover:scale-110 cursor-pointer border border-white/10"
-                aria-label="Next image"
-                data-testid="next-moment-button"
-              >
-                <ChevronRight size={24} />
-              </button>
-            </div>
-
-            {/* Lightbox Footer & Information */}
-            <div className="z-20 max-w-3xl mx-auto w-full text-center text-white pt-2">
-              <h3 className="font-serif text-xl sm:text-2xl font-normal text-white mb-1.5">
-                {currentMoment.title}
-              </h3>
-              <p className="font-serif italic text-gold text-sm sm:text-base mb-2">
-                "{currentMoment.quote}"
-              </p>
-              <p className="text-xs sm:text-sm text-[#eeddd0] leading-relaxed max-w-2xl mx-auto mb-4 hidden sm:block">
-                {currentMoment.description}
-              </p>
-
-              {/* Thumbnail Strip */}
-              <div className="flex items-center justify-center gap-2 sm:gap-3 overflow-x-auto py-1">
-                {momentsList.map((m, idx) => (
-                  <button
-                    key={m.id}
-                    onClick={() => setLightboxIndex(idx)}
-                    className={`relative w-12 h-12 sm:w-14 sm:h-14 rounded overflow-hidden transition-all duration-300 cursor-pointer border-2 flex-shrink-0 ${
-                      idx === lightboxIndex
-                        ? "border-gold scale-110 shadow-lg shadow-gold/30"
-                        : "border-white/20 opacity-50 hover:opacity-100"
-                    }`}
-                    aria-label={`View photo ${m.number}: ${m.title}`}
-                  >
-                    <img
-                      src={m.image}
-                      alt={m.title}
-                      className={`w-full h-full object-cover ${m.objectPosition}`}
-                    />
-                  </button>
-                ))}
-              </div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </section>
   );
 }

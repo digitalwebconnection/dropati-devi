@@ -1,26 +1,34 @@
 import React from "react";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, Sparkles, CheckCircle2 } from "lucide-react";
 import Eyebrow from "../common/Eyebrow";
+import ScrollStack, { ScrollStackItem } from "../common/ScrollStack";
 import { programmesList } from "../../constants/siteData";
+
+const programmeHighlights = {
+  "01": ["Vocational Sewing & Crafts", "Financial Independence"],
+  "02": ["Educational Guidance", "Scholarships & Access"],
+  "03": ["Digital Skills & Tools", "Micro-Business Coaching"],
+  "04": ["Compassionate Mentoring", "Confidence & Wellbeing"],
+  "05": ["Family Resource Networks", "Community Solidarity"],
+};
 
 export function ProgrammesSection({ onOpenInterest }) {
   return (
-    <section className="py-20 lg:py-32 bg-bone" id="programmes" data-testid="programmes-section">
-      <div className="max-w-[1180px] w-full px-5 md:px-8 mx-auto">
-        <div
-          className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-20 items-start mb-16 sm:mb-20"
-          data-aos="fade-up"
-          data-aos-duration="900"
-        >
-          <div>
-            <Eyebrow text="Our programmes" />
-            <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-normal text-ink tracking-tight my-3">
-              TURNING COMPASSION
-              <br />
-              INTO <i className="text-gold italic font-serif">OPPORTUNITY</i>
-            </h2>
-          </div>
-          <div className="text-[15px] sm:text-[16px] text-muted leading-relaxed space-y-4">
+    <section
+      className="py-20 lg:py-28 bg-bone relative"
+      id="programmes"
+      data-testid="programmes-section"
+    >
+      {/* Section Header */}
+      <div className="max-w-[1200px] w-full px-4 sm:px-6 lg:px-8 mx-auto mb-14 sm:mb-20">
+        <div className="flex flex-col items-center text-center max-w-3xl mx-auto">
+          <Eyebrow text="Our programmes" />
+          <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-normal text-ink tracking-tight mt-3 mb-4 sm:mb-5">
+            TURNING COMPASSION
+            <br />
+            INTO <i className="text-gold italic font-serif">OPPORTUNITY</i>
+          </h2>
+          <div className="text-[15px] sm:text-[16px] text-muted leading-relaxed space-y-3 max-w-2xl">
             <p>
               Inspired by Dropati Jethani's life and values, we are developing
               initiatives that address the practical challenges women and girls
@@ -28,53 +36,118 @@ export function ProgrammesSection({ onOpenInterest }) {
             </p>
             <p>
               From learning new skills to exploring employment, from educational
-              guidance to community support, our aim is to help create opportunities
-              that lead to meaningful, lasting change.
+              guidance to community support, our aim is to help create
+              opportunities that lead to meaningful, lasting change.
             </p>
-            <p>
-              Explore the areas we intend to focus on as the foundation develops its
-              programmes and partnerships.
+            <p className="text-xs sm:text-sm text-muted/80">
+              Explore the areas we intend to focus on as the foundation develops
+              its programmes and partnerships.
             </p>
           </div>
-        </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {programmesList.map((prog, index) => (
-            <article
-              className="group bg-white border border-line rounded overflow-hidden flex flex-col shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
-              key={prog.title}
-              data-aos="fade-up"
-              data-aos-delay={index * 120}
-              data-aos-duration="850"
-              data-testid={`programme-card-${prog.number}`}
+          {/* Gentle scroll indicator */}
+          <div className="mt-8 flex items-center gap-2 text-xs uppercase tracking-widest text-muted/70 font-medium">
+            <span>Scroll through our initiatives</span>
+            <span className="text-terracotta animate-bounce">↓</span>
+          </div>
+        </div>
+      </div>
+
+      {/* Full-Section Stacking Card Deck */}
+      <ScrollStack
+        useWindowScroll={true}
+        stackPosition="100px"
+        itemDistance={130}
+        itemStackDistance={24}
+        itemScale={0.038}
+        baseScale={0.86}
+        dimAmount={0.2}
+        tiltAmount={1.5}
+        rotationAmount={0.8}
+        holdDistance={220}
+        smoothScroll={false}
+      >
+        {programmesList.map((prog) => {
+          const highlights = programmeHighlights[prog.number] || [
+            "Practical Empowerment",
+            "Long-Term Growth",
+          ];
+
+          return (
+            <ScrollStackItem
+              key={prog.number}
+              itemClassName="w-full h-[520px] sm:h-[460px] md:h-[420px] !bg-[#1c1410] !border !border-white/15 hover:!border-gold/60 !rounded-3xl shadow-[0_24px_55px_-12px_rgba(28,20,16,0.65)] group transition-all duration-300 overflow-hidden select-none flex flex-col md:flex-row"
             >
-              <div className="relative h-[220px] sm:h-[240px] w-full overflow-hidden bg-sand">
+              {/* Left Side: Photo with Badge & Gradient */}
+              <div className="w-full md:w-[42%] lg:w-[40%] h-[200px] sm:h-[220px] md:h-full relative overflow-hidden flex-shrink-0 bg-sand/20 border-b md:border-b-0 md:border-r border-white/10">
                 <img
                   src={prog.image}
                   alt={prog.title}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                  className="w-full h-full object-cover group-hover:scale-106 transition-transform duration-700"
                 />
-                <span className="absolute top-4 right-4 bg-ink/75 backdrop-blur-sm text-bone font-mono text-xs px-2.5 py-1 rounded font-semibold">
+                <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent md:hidden" />
+                <span className="absolute top-4 left-4 bg-ink/90 backdrop-blur-md text-gold font-mono text-xs sm:text-sm px-3.5 py-1 rounded-lg font-bold border border-white/10 shadow-lg">
                   {prog.number}
                 </span>
-              </div>
-              <div className="p-7 flex flex-col flex-1 justify-between gap-5">
-                <div>
-                  <h3 className="font-serif text-xl sm:text-2xl text-ink font-normal mb-3">{prog.title}</h3>
-                  <p className="text-sm text-muted leading-relaxed">{prog.text}</p>
+                <div className="absolute bottom-4 left-4 right-4 hidden md:block">
+                  <span className="inline-block bg-black/65 backdrop-blur-md text-bone/90 text-[11px] font-mono px-3 py-1 rounded-full border border-white/10">
+                    Focus Area {prog.number} of 05
+                  </span>
                 </div>
-                <button
-                  className="inline-flex items-center gap-2 text-terracotta hover:text-terracotta-dark font-sans font-semibold text-xs uppercase tracking-wider transition-all duration-300 group-hover:gap-3 cursor-pointer self-start"
-                  onClick={onOpenInterest}
-                  data-testid={`programme-interest-${prog.number}`}
-                >
-                  {prog.buttonLabel || `Explore ${prog.shortTitle}`} <ArrowUpRight size={16} />
-                </button>
               </div>
-            </article>
-          ))}
-        </div>
-      </div>
+
+              {/* Right Side: Title, Description, Highlights & CTA */}
+              <div className="flex-1 h-full p-6 sm:p-7 md:p-8 lg:p-9 flex flex-col justify-between text-bone overflow-hidden">
+                <div>
+                  <div className="flex items-center gap-2 mb-2">
+                    <Sparkles size={14} className="text-gold" />
+                    <span className="text-xs uppercase tracking-widest text-gold font-semibold font-mono">
+                      Initiative {prog.number}
+                    </span>
+                  </div>
+
+                  <h3 className="font-serif text-2xl sm:text-3xl lg:text-[32px] text-bone group-hover:text-gold transition-colors font-normal tracking-tight mb-2.5 sm:mb-3 leading-snug">
+                    {prog.title}
+                  </h3>
+
+                  <p className="text-sm sm:text-[15px] text-bone/80 leading-relaxed font-sans line-clamp-2">
+                    {prog.text}
+                  </p>
+
+                  {/* Highlights Badges */}
+                  <div className="mt-4 pt-3.5 border-t border-white/10 flex flex-wrap gap-2">
+                    {highlights.map((h, i) => (
+                      <div
+                        key={i}
+                        className="inline-flex items-center gap-1.5 bg-white/5 border border-white/10 px-3 py-1 rounded-full text-xs text-bone/75"
+                      >
+                        <CheckCircle2 size={13} className="text-gold" />
+                        <span>{h}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Footer Bar: Button & Tag */}
+                <div className="mt-4 pt-4 border-t border-white/10 flex items-center justify-between">
+                  <button
+                    type="button"
+                    onClick={onOpenInterest}
+                    className="inline-flex items-center gap-2.5 bg-gold hover:bg-gold-light text-ink font-semibold px-6 py-2.5 sm:py-3 rounded-full text-xs uppercase tracking-wider shadow-lg hover:shadow-gold/25 transition-all duration-300 cursor-pointer group-hover:gap-3"
+                    data-testid={`programme-interest-${prog.number}`}
+                  >
+                    {prog.buttonLabel || `Explore ${prog.shortTitle}`}{" "}
+                    <ArrowUpRight size={16} />
+                  </button>
+                  <span className="text-xs text-bone/40 font-mono hidden sm:inline">
+                    Dropati Devi Foundation
+                  </span>
+                </div>
+              </div>
+            </ScrollStackItem>
+          );
+        })}
+      </ScrollStack>
     </section>
   );
 }

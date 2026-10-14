@@ -1,5 +1,5 @@
 export const siteImages = {
-  hero: "/images/dropati_devi_wide.jpg",
+  hero: "/images/Elderly Woman Applauding Gujarati Schoolchildren.png",
   story: "/images/moments/moment-6-grace.jpg",
   wellbeing:
     "https://images.unsplash.com/photo-1544027993-37dbfe43562a?auto=format&fit=crop&w=800&q=85",
@@ -194,26 +194,44 @@ export const valuesList = [
   {
     title: "Courage",
     text: "Facing difficult circumstances without giving up.",
+    image:
+      "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=1000&q=85",
+    alt: "Courage - Young student raising hand with courage and curiosity in school",
   },
   {
     title: "Compassion",
     text: "Treating every person with kindness and respect.",
+    image:
+      "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=1000&q=85",
+    alt: "Compassion - Smiling child supported by foundation community care",
   },
   {
     title: "Independence",
-    text: "Encouraging women to develop their abilities and make their own choices.",
+    text: "Encouraging children and youth to develop abilities and shape their future.",
+    image:
+      "https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=1000&q=85",
+    alt: "Independence - Young student empowered through literacy and learning",
   },
   {
     title: "Service",
-    text: "Helping others with sincerity and without judgement.",
+    text: "Helping others with sincerity, dedication and without judgement.",
+    image:
+      "https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1000&q=85",
+    alt: "Service - Classroom dedicated to serving and uplifting children",
   },
   {
     title: "Family and Community",
     text: "Recognising the strength that comes from supporting one another.",
+    image:
+      "https://images.unsplash.com/photo-1529390079861-591de354faf5?auto=format&fit=crop&w=1000&q=85",
+    alt: "Family and Community - Group of school children sharing joy and togetherness",
   },
   {
     title: "Integrity",
     text: "Acting responsibly, communicating honestly and using resources transparently.",
+    image:
+      "https://images.unsplash.com/photo-1588072432836-e10032774350?auto=format&fit=crop&w=1000&q=85",
+    alt: "Integrity - Dedicated young students learning with honesty and hope",
   },
 ];
 
@@ -235,9 +253,14 @@ export const involvedOptions = [
   },
 ];
 
+export const WEB3FORMS_ACCESS_KEY = "589bb5ac-3410-4ce4-ba42-98e79cd40c80";
+
 export const contactDetails = {
-  email: "hello@dropatidevifoundation.org",
-  phone: "+91 98765 43210",
+  email: "dropatidevifoundation1945@gmail.com",
+  phone: "+91 95373 92180",
+  secondaryPhone: "+91 77420 10886",
+  phones: ["+91 95373 92180", "+91 77420 10886"],
+  web3FormsKey: WEB3FORMS_ACCESS_KEY,
   copyright: "© 2026 Dropati Devi Foundation",
   footerTagline: "A Legacy of Strength.\nA Future of Possibilities.",
   subTagline:

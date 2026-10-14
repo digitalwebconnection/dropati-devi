@@ -15,15 +15,10 @@ export function Footer() {
           <BrandMark className="text-ink" testId="footer-home-link" />
         </div>
 
-        <div
-          data-aos="fade-up"
-          data-aos-delay="100"
-          data-aos-duration="800"
-        >
+        <div data-aos="fade-up" data-aos-delay="100" data-aos-duration="800">
           <p className="font-serif text-base text-ink leading-snug">
             A legacy of strength.
-            <br />
-            A future of possibilities.
+            <br />A future of possibilities.
           </p>
         </div>
 
@@ -42,12 +37,17 @@ export function Footer() {
           >
             <strong>{contactDetails.email}</strong>
           </a>
-          <a
-            href={`tel:${contactDetails.phone.replace(/\s+/g, "")}`}
-            className="text-ink hover:text-terracotta transition-colors duration-300 font-sans"
-          >
-            <strong>{contactDetails.phone}</strong>
-          </a>
+          <div className="flex flex-col gap-1.5 mt-0.5">
+            {contactDetails.phones.map((phone) => (
+              <a
+                key={phone}
+                href={`tel:${phone.replace(/\s+/g, "")}`}
+                className="text-ink hover:text-terracotta transition-colors duration-300 font-sans"
+              >
+                <strong>{phone}</strong>
+              </a>
+            ))}
+          </div>
         </div>
       </div>
 
@@ -58,7 +58,9 @@ export function Footer() {
         data-aos-duration="800"
       >
         <span>{contactDetails.copyright}</span>
-        <span className="text-center sm:text-left max-w-md">{contactDetails.subTagline}</span>
+        <span className="text-center sm:text-left max-w-md">
+          {contactDetails.subTagline}
+        </span>
         <a
           href="#top"
           className="hover:text-terracotta transition-colors uppercase tracking-wider text-ink font-semibold"

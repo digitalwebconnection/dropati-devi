@@ -1,0 +1,70 @@
+.scroll-stack {
+  position: relative;
+  width: 100%;
+}
+
+.scroll-stack--window {
+  width: 100%;
+}
+
+.scroll-stack--contained {
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(197, 160, 89, 0.4) rgba(255, 255, 255, 0.05);
+}
+
+.scroll-stack--contained::-webkit-scrollbar {
+  width: 6px;
+}
+
+.scroll-stack--contained::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 9999px;
+}
+
+.scroll-stack--contained::-webkit-scrollbar-thumb {
+  background: rgba(197, 160, 89, 0.4);
+  border-radius: 9999px;
+}
+
+.scroll-stack--contained::-webkit-scrollbar-thumb:hover {
+  background: rgba(197, 160, 89, 0.7);
+}
+
+.scroll-stack__inner {
+  position: relative;
+  max-width: 1200px;
+  margin-inline: auto;
+  padding-inline: clamp(1rem, 3%, 2rem);
+}
+
+.scroll-stack__slot {
+  position: sticky;
+}
+
+.scroll-stack-card {
+  position: relative;
+  box-sizing: border-box;
+  width: 100%;
+  border-radius: 28px;
+  background: #1c1511;
+  color: #fafafa;
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.12),
+    0 -14px 40px -16px rgba(0, 0, 0, 0.55),
+    0 24px 50px -20px rgba(0, 0, 0, 0.65);
+  transform-origin: 50% 0;
+  will-change: transform;
+}
+
+.scroll-stack-card__shade {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: #000;
+  opacity: var(--scroll-stack-dim, 0);
+  pointer-events: none;
+  transition: opacity 0.15s ease;
+}

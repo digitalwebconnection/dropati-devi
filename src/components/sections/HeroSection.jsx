@@ -1,6 +1,7 @@
 import React from "react";
 import { ArrowUpRight, ArrowDownRight } from "lucide-react";
 import Eyebrow from "../common/Eyebrow";
+import CubeButton from "../common/CubeButton";
 import { siteImages } from "../../constants/siteData";
 
 export function HeroSection() {
@@ -13,9 +14,9 @@ export function HeroSection() {
       {/* Background with subtle ambient zoom */}
       <div
         className="absolute inset-0 bg-center bg-cover scale-100 transition-transform duration-[12000ms] ease-out hover:scale-105 pointer-events-none"
-        style={{ backgroundImage: `url(${siteImages.hero})` }}
+        style={{ backgroundImage: `url("${encodeURI(siteImages.hero)}")` }}
       />
-      <div className="absolute inset-0 bg-gradient-to-r from-[#1d120e]/90 via-[#2b1c16]/70 to-[#231612]/35 pointer-events-none" />
+      <div className="absolute inset-0 bg-black/40" />
 
       <div className="relative z-10 max-w-[1180px] w-full px-5 md:px-8 mx-auto pt-10 md:pt-16">
         <div data-aos="fade-down" data-aos-duration="800">
@@ -36,7 +37,7 @@ export function HeroSection() {
           THEIR FUTURE.
         </h1>
 
-        <div
+        {/* <div
           data-aos="fade-up"
           data-aos-duration="900"
           data-aos-delay="300"
@@ -56,7 +57,7 @@ export function HeroSection() {
             Today, we aspire to carry those values forward by creating
             opportunities for women and girls across India.
           </p>
-        </div>
+        </div> */}
 
         <div
           data-aos="fade-up"
@@ -64,20 +65,24 @@ export function HeroSection() {
           data-aos-delay="450"
           className="flex items-center gap-6 sm:gap-7 mt-9 flex-wrap"
         >
-          <a
-            className="inline-flex items-center justify-center gap-3 bg-white text-terracotta-dark hover:bg-bone hover:text-terracotta font-sans font-semibold text-[11px] uppercase tracking-wider px-6 py-4 rounded-sm shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5"
+          <CubeButton
             href="#purpose"
-            data-testid="hero-mission-button"
-          >
-            Explore Our Mission <ArrowUpRight size={17} />
-          </a>
-          <a
-            className="inline-flex items-center justify-center gap-3 hover:bg-terracotta-dark text-white hover:bg-bone font-sans font-semibold text-[11px] uppercase tracking-wider px-6 py-4 rounded-sm shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5"
+            frontText="Explore Our Mission"
+            topText="Discover Purpose"
+            frontIcon={<ArrowUpRight size={17} />}
+            topIcon={<ArrowUpRight size={17} />}
+            styleVariant="primary"
+            dataTestId="hero-mission-button"
+          />
+          <CubeButton
             href="#story"
-            data-testid="hero-story-button"
-          >
-            Read Her Story <ArrowDownRight size={17} />
-          </a>
+            frontText="Read Her Story"
+            topText="Her Living Legacy"
+            frontIcon={<ArrowDownRight size={17} />}
+            topIcon={<ArrowDownRight size={17} />}
+            styleVariant="secondary"
+            dataTestId="hero-story-button"
+          />
         </div>
       </div>
     </section>
