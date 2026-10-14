@@ -18,6 +18,11 @@ export function HeroSection() {
       tag: "Community Aid & Care",
     },
     {
+      src: "/images/Joyful Snack Celebration Under the Pavilion.png",
+      alt: "Joyful Snack Celebration Under the Pavilion",
+      tag: "Community Joy & Celebration",
+    },
+    {
       src: "/images/dropati_devi_wide.jpg",
       alt: "Dropati Devi - Her Living Legacy",
       tag: "Living Legacy & Heritage",
@@ -156,9 +161,9 @@ export function HeroSection() {
             dataTestId="hero-story-button"
           />
         </div>
-      </div>
 
-     
+       
+      </div>
     </section>
   );
 }

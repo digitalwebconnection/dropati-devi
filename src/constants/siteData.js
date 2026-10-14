@@ -11,7 +11,11 @@ export const siteImages = {
       alt: "Caring Hands, Community Aid Distribution",
       tag: "Community Aid & Care",
     },
-   
+    {
+      src: "/images/Joyful Snack Celebration Under the Pavilion.png",
+      alt: "Joyful Snack Celebration Under the Pavilion",
+      tag: "Community Joy & Celebration",
+    },
   ],
   story: "/images/moments/moment-6-grace.jpg",
   wellbeing:
