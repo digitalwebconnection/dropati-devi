@@ -4,86 +4,85 @@ import { ArrowUpRight } from "lucide-react";
 export function PurposeCard({ pillar, index }) {
   const [isTouched, setIsTouched] = useState(false);
 
-  // Card themes matching the user's before & after designs
+  // Card themes strictly tuned to Blue #01236A and Yellow #FFD900
   const themes = [
-    // 01 Learn (Deep Indigo / Electric Violet)
+    // 01 Learn (Royal Blue & Navy with Vivid Yellow Highlights)
     {
-      outerBg: "bg-[#06081e]",
-      outerBorder: "border-[#202756]",
-      outerHoverBorder: "group-hover:border-[#3c4a9c]",
-      outerShadow: "shadow-[0_16px_40px_rgba(4,6,26,0.35)]",
+      outerBg: "bg-[#001747]",
+      outerBorder: "border-[#01236A]",
+      outerHoverBorder: "group-hover:border-[#FFD900]",
+      outerShadow: "shadow-[0_16px_40px_rgba(1,35,106,0.35)]",
       gradient:
-        "radial-gradient(circle at 65% 25%, #4338ca 0%, #2e268f 35%, #151348 70%, #06081e 100%)",
-      tabColor: "#080c2c",
-      numColor: "text-white",
-      arrowColor: "text-white",
+        "radial-gradient(circle at 65% 25%, #01236A 0%, #001747 45%, #001133 80%, #000c24 100%)",
+      tabColor: "#001133",
+      numColor: "text-[#FFD900]",
+      arrowColor: "text-[#FFD900]",
       titleColor: "text-white",
-      textColor: "text-slate-300",
+      textColor: "text-blue-100/90",
       image: "/images/cards/card_learn.jpg",
-      glowColor: "rgba(99, 102, 241, 0.45)",
+      glowColor: "rgba(255, 217, 0, 0.45)",
     },
-    // 02 Earn (Sunset Ember into Off-White Slate)
+    // 02 Earn (Deep Navy & Pure Blue with Golden Accents)
     {
-      outerBg: "bg-[#dbe2ec]",
-      outerBorder: "border-[#c4ccd8]",
-      outerHoverBorder: "group-hover:border-[#a8b5c8]",
-      outerShadow: "shadow-[0_16px_40px_rgba(0,0,0,0.06)]",
+      outerBg: "bg-[#01236A]",
+      outerBorder: "border-[#01236A]",
+      outerHoverBorder: "group-hover:border-[#FFD900]",
+      outerShadow: "shadow-[0_16px_40px_rgba(1,35,106,0.35)]",
       gradient:
-        "radial-gradient(circle at 35% 20%, #ff4d00 0%, #d82b08 30%, #4a0d05 70%, #120908 100%)",
-      tabColor: "#edf0f5",
-      numColor: "text-[#181a20]",
-      arrowColor: "text-[#181a20]",
-      titleColor: "text-[#181a20]",
-      textColor: "text-[#64748b]",
+        "radial-gradient(circle at 45% 20%, #001747 0%, #01236A 40%, #001133 75%, #000c24 100%)",
+      tabColor: "#001747",
+      numColor: "text-[#FFD900]",
+      arrowColor: "text-[#FFD900]",
+      titleColor: "text-white",
+      textColor: "text-blue-100/90",
       image: "/images/cards/card_earn.jpg",
-      glowColor: "rgba(249, 115, 22, 0.45)",
+      glowColor: "rgba(255, 217, 0, 0.45)",
     },
-    // 03 Thrive (Celestial Cyan Ice into Deep Graphite)
+    // 03 Thrive (Midnight Blue with Bright Yellow Aura)
     {
-      outerBg: "bg-[#0b1016]",
-      outerBorder: "border-[#1e2733]",
-      outerHoverBorder: "group-hover:border-[#384b63]",
-      outerShadow: "shadow-[0_16px_40px_rgba(0,0,0,0.45)]",
+      outerBg: "bg-[#001747]",
+      outerBorder: "border-[#01236A]",
+      outerHoverBorder: "group-hover:border-[#FFD900]",
+      outerShadow: "shadow-[0_16px_40px_rgba(1,35,106,0.35)]",
       gradient:
-        "radial-gradient(circle at 65% 22%, #7dd3fc 0%, #38bdf8 25%, #0369a1 45%, #082f49 70%, #070d13 100%)",
-      tabColor: "#0e141b",
-      numColor: "text-white",
-      arrowColor: "text-white",
+        "radial-gradient(circle at 65% 22%, #01236A 0%, #001747 45%, #001133 80%, #000a1f 100%)",
+      tabColor: "#001133",
+      numColor: "text-[#FFD900]",
+      arrowColor: "text-[#FFD900]",
       titleColor: "text-white",
-      textColor: "text-slate-300",
+      textColor: "text-blue-100/90",
       image: "/images/cards/card_thrive.jpg",
-      glowColor: "rgba(56, 189, 248, 0.45)",
+      glowColor: "rgba(255, 217, 0, 0.45)",
     },
-    // 04 Belong (Imperial Gold / Terracotta Noir)
+    // 04 Belong (Solid Navy Blue with Luminous Golden Core)
     {
-      outerBg: "bg-[#140a08]",
-      outerBorder: "border-[#3d2019]",
-      outerHoverBorder: "group-hover:border-[#6d3425]",
-      outerShadow: "shadow-[0_16px_40px_rgba(0,0,0,0.45)]",
+      outerBg: "bg-[#01236A]",
+      outerBorder: "border-[#01236A]",
+      outerHoverBorder: "group-hover:border-[#FFD900]",
+      outerShadow: "shadow-[0_16px_40px_rgba(1,35,106,0.35)]",
       gradient:
-        "radial-gradient(circle at 50% 20%, #fbbf24 0%, #d97706 25%, #9a3b26 50%, #42160d 75%, #140a08 100%)",
-      tabColor: "#170c09",
-      numColor: "text-white",
-      arrowColor: "text-[#e5a93b]",
+        "radial-gradient(circle at 50% 20%, #001747 0%, #01236A 45%, #001133 80%, #000c24 100%)",
+      tabColor: "#001747",
+      numColor: "text-[#FFD900]",
+      arrowColor: "text-[#FFD900]",
       titleColor: "text-white",
-      textColor: "text-[#d5c3b6]",
+      textColor: "text-blue-100/90",
       image: "/images/cards/card_belong.jpg",
-      imageFilter: "hue-rotate(280deg) saturate(1.3)",
-      glowColor: "rgba(229, 169, 59, 0.45)",
+      glowColor: "rgba(255, 217, 0, 0.45)",
     },
   ];
 
   const theme = themes[index % themes.length];
 
-  // Resting state: top at ~96px (Image 1)
-  // Hover / Touch state: top slides down to ~180px (Image 2)
+  // Resting state: top at ~96px
+  // Hover / Touch state: top slides down to ~180px
   const activeClass = isTouched
     ? "top-[180px]"
     : "top-[96px] group-hover:top-[180px]";
 
   const activeImageClass = isTouched
     ? "opacity-100 scale-100 translate-y-0"
-    : "opacity-0 scale-75 -translate-y-3 pointer-events-none group-hover:opacity-100 group-hover:scale-100 group-hover:translate-y-0";
+    : "opacity-85 scale-90 translate-y-1 group-hover:opacity-100 group-hover:scale-100 group-hover:translate-y-0";
 
   return (
     <article
@@ -106,28 +105,27 @@ export function PurposeCard({ pillar, index }) {
 
         {/* SVG Noise / Stippled Film Grain Overlay */}
         <div
-          className="absolute inset-0 pointer-events-none opacity-30 mix-blend-overlay"
+          className="absolute inset-0 pointer-events-none opacity-25 mix-blend-overlay"
           style={{
             backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.6'/%3E%3C/svg%3E")`,
           }}
         />
 
-        {/* 3D Glass Artwork Viewport in the Upper Chamber - Increased Size */}
+        {/* 3D Glass Artwork Viewport in the Upper Chamber */}
         <div className="absolute top-1 left-0 right-0 h-[180px] flex items-center justify-center pointer-events-none overflow-hidden">
           {/* Subtle Ambient Radial Glow */}
           <div
             className={`absolute w-44 h-44 rounded-full blur-2xl transition-opacity duration-500 ${
-              isTouched ? "opacity-75" : "opacity-0 group-hover:opacity-75"
+              isTouched ? "opacity-75" : "opacity-35 group-hover:opacity-75"
             }`}
             style={{ backgroundColor: theme.glowColor }}
           />
 
-          {/* 3D Glass Artwork (Enlarged) */}
+          {/* 3D Glass Artwork */}
           <img
             src={theme.image}
             alt={`${pillar.title} 3D element`}
             style={{
-              filter: theme.imageFilter || undefined,
               maskImage:
                 "radial-gradient(circle at center, black 65%, transparent 100%)",
               WebkitMaskImage:

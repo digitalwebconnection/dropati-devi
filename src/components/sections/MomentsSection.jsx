@@ -101,8 +101,8 @@ export function MomentsSection() {
                   onClick={() => setActiveIndex(idx)}
                   className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
                     idx === activeIndex
-                      ? "w-7 bg-terracotta"
-                      : "w-2 bg-line hover:bg-muted/60"
+                      ? "w-7 bg-[#FFD900]"
+                      : "w-2 bg-[#01236A]/20 hover:bg-[#01236A]/50"
                   }`}
                   aria-label={`Go to slide ${m.number}`}
                 />
@@ -113,7 +113,7 @@ export function MomentsSection() {
             <button
               type="button"
               onClick={handlePrevCard}
-              className="p-2 rounded-full bg-white border border-line text-ink hover:text-terracotta hover:border-terracotta/40 shadow-sm transition-all duration-200 cursor-pointer"
+              className="p-2 rounded-full bg-white border border-[#01236A]/20 text-[#01236A] hover:bg-[#FFD900] hover:text-[#01236A] hover:border-[#FFD900] shadow-sm transition-all duration-200 cursor-pointer"
               aria-label="Previous card"
             >
               <ChevronLeft size={16} />
@@ -121,7 +121,7 @@ export function MomentsSection() {
             <button
               type="button"
               onClick={handleNextCard}
-              className="p-2 rounded-full bg-white border border-line text-ink hover:text-terracotta hover:border-terracotta/40 shadow-sm transition-all duration-200 cursor-pointer"
+              className="p-2 rounded-full bg-white border border-[#01236A]/20 text-[#01236A] hover:bg-[#FFD900] hover:text-[#01236A] hover:border-[#FFD900] shadow-sm transition-all duration-200 cursor-pointer"
               aria-label="Next card"
             >
               <ChevronRight size={16} />
@@ -149,13 +149,13 @@ export function MomentsSection() {
                 onClick={() => setActiveIndex(index)}
                 className={`group relative overflow-hidden rounded-[22px] sm:rounded-[26px] cursor-pointer border transition-all duration-500 ${
                   isActive
-                    ? "md:flex-[3.8] lg:flex-[4.2] h-[440px] md:h-full border-gold/70 shadow-[0_22px_45px_rgba(44,34,30,0.35)]"
-                    : "md:flex-[0.7] lg:flex-[0.6] h-[72px] md:h-full border-line/80 hover:border-gold/40 shadow-sm hover:shadow-md bg-[#241712]"
+                    ? "md:flex-[3.8] lg:flex-[4.2] h-[440px] md:h-full border-[#FFD900] shadow-[0_22px_45px_rgba(1,35,106,0.35)]"
+                    : "md:flex-[0.7] lg:flex-[0.6] h-[72px] md:h-full border-[#01236A]/20 hover:border-[#FFD900] shadow-sm hover:shadow-md bg-[#001747]"
                 }`}
                 data-testid={`moment-card-${moment.id}`}
               >
                 {/* Background Image with Pan / Zoom */}
-                <div className="absolute inset-0 w-full h-full overflow-hidden bg-[#241712]">
+                <div className="absolute inset-0 w-full h-full overflow-hidden bg-[#001747]">
                   <img
                     src={moment.image}
                     alt={moment.alt}
@@ -171,8 +171,8 @@ export function MomentsSection() {
                   <div
                     className={`absolute inset-0 transition-opacity duration-500 pointer-events-none ${
                       isActive
-                        ? "bg-gradient-to-t from-ink/95 via-ink/40 to-black/25 opacity-90"
-                        : "bg-gradient-to-t from-ink/90 via-ink/70 to-ink/60 opacity-80 group-hover:opacity-60"
+                        ? "bg-gradient-to-t from-[#01236A]/95 via-[#01236A]/45 to-transparent opacity-90"
+                        : "bg-gradient-to-t from-[#01236A]/90 via-[#01236A]/70 to-[#01236A]/60 opacity-80 group-hover:opacity-60"
                     }`}
                   />
                 </div>
@@ -190,8 +190,8 @@ export function MomentsSection() {
                       {/* Top Header Row */}
                       <div className="flex items-center justify-between gap-3">
                         <div className="flex items-center gap-2">
-                          <span className="inline-flex items-center gap-1.5 bg-black/55 backdrop-blur-md text-bone font-mono text-[11px] sm:text-xs px-3.5 py-1.5 rounded-full font-medium border border-white/15 shadow-sm">
-                            <Sparkles size={12} className="text-gold" />
+                          <span className="inline-flex items-center gap-1.5 bg-[#001747]/85 backdrop-blur-md text-white font-mono text-[11px] sm:text-xs px-3.5 py-1.5 rounded-full font-medium border border-[#FFD900]/30 shadow-sm">
+                            <Sparkles size={12} className="text-[#FFD900]" />
                             {moment.number} • {moment.tag}
                           </span>
                         </div>
@@ -199,21 +199,21 @@ export function MomentsSection() {
 
                       {/* Bottom Story & Information */}
                       <div className="max-w-2xl pt-4">
-                        <div className="flex items-center gap-2 text-xs text-gold/90 font-mono font-medium mb-1.5 uppercase tracking-wider">
+                        <div className="flex items-center gap-2 text-xs text-[#FFD900] font-mono font-bold mb-1.5 uppercase tracking-wider">
                           <span>{moment.categoryLabel}</span>
-                          <span className="inline-block w-1 h-1 rounded-full bg-gold/60" />
-                          <Heart size={12} className="fill-gold/40 text-gold" />
+                          <span className="inline-block w-1 h-1 rounded-full bg-[#FFD900]/60" />
+                          <Heart size={12} className="fill-[#FFD900]/40 text-[#FFD900]" />
                         </div>
 
                         <h3 className="font-serif text-2xl sm:text-3xl lg:text-[34px] text-white font-normal leading-tight mb-2 drop-shadow-md">
                           {moment.title}
                         </h3>
 
-                        <p className="font-serif italic text-sm sm:text-base text-[#f7ecd9] mb-2.5 drop-shadow-sm line-clamp-2">
+                        <p className="font-serif italic text-sm sm:text-base text-white/95 mb-2.5 drop-shadow-sm line-clamp-2">
                           "{moment.quote}"
                         </p>
 
-                        <p className="text-xs sm:text-[13.5px] text-bone/90 leading-relaxed line-clamp-2 sm:line-clamp-3 font-sans">
+                        <p className="text-xs sm:text-[13.5px] text-white/85 leading-relaxed line-clamp-2 sm:line-clamp-3 font-sans">
                           {moment.description}
                         </p>
                       </div>
@@ -228,7 +228,7 @@ export function MomentsSection() {
                   }`}
                 >
                   {/* Top: Card Number */}
-                  <span className="font-mono text-sm font-bold text-white/80 group-hover:text-gold transition-colors">
+                  <span className="font-mono text-sm font-bold text-white/80 group-hover:text-[#FFD900] transition-colors">
                     {moment.number}
                   </span>
 
@@ -246,8 +246,8 @@ export function MomentsSection() {
                   </div>
 
                   {/* Bottom: Heart Indicator */}
-                  <div className="w-8 h-8 rounded-full bg-black/40 backdrop-blur-sm border border-white/10 flex items-center justify-center text-gold/80 group-hover:text-gold group-hover:scale-110 transition-all">
-                    <Heart size={13} className="fill-gold/30" />
+                  <div className="w-8 h-8 rounded-full bg-[#001747]/80 backdrop-blur-sm border border-white/10 flex items-center justify-center text-[#FFD900] group-hover:text-[#FFD900] group-hover:scale-110 transition-all">
+                    <Heart size={13} className="fill-[#FFD900]/30" />
                   </div>
                 </div>
 
@@ -258,7 +258,7 @@ export function MomentsSection() {
                   }`}
                 >
                   <div className="flex items-center gap-3">
-                    <span className="font-mono text-xs font-bold text-gold px-2 py-0.5 bg-black/40 rounded-full border border-white/10">
+                    <span className="font-mono text-xs font-bold text-[#FFD900] px-2 py-0.5 bg-[#001747]/80 rounded-full border border-[#FFD900]/30">
                       {moment.number}
                     </span>
                     <span className="font-serif text-base text-white font-medium line-clamp-1">
@@ -282,7 +282,7 @@ export function MomentsSection() {
           data-aos="fade-up"
           data-aos-duration="800"
         >
-          <span className="text-gold text-2xl mb-2 font-serif">❦</span>
+          <span className="text-[#FFD900] text-2xl mb-2 font-serif">❦</span>
           <p className="font-serif text-lg sm:text-xl text-ink font-normal italic max-w-2xl mx-auto leading-relaxed">
             "Her journey reminds us that true strength is woven with kindness,
             laughter, and the quiet devotion to lifting others up."

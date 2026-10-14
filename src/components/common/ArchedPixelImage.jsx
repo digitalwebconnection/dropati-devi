@@ -152,7 +152,7 @@ export function PixelImage({
   const currentSrc = images[activeIndex] || "";
 
   return (
-    <div className={cn("relative overflow-hidden group bg-[#16110d] w-full h-full", className)}>
+    <div className={cn("relative overflow-hidden group bg-[#001747] w-full h-full", className)}>
       <img
         src={currentSrc}
         className={cn(
@@ -182,7 +182,7 @@ export function PixelImage({
                   "w-full h-full transition-opacity duration-700 ease-out select-none",
                   isActive
                     ? "opacity-0 pointer-events-none"
-                    : "opacity-100 bg-[#16110d]"
+                    : "opacity-100 bg-[#001747]"
                 )}
               />
             );
@@ -200,9 +200,9 @@ export function ArchedHeroImage({
   images,
   alt = "Hero Showcase",
   className = "",
-  glowColors = "from-gold/25 via-terracotta/15 to-amber-200/25",
-  primaryDotColor = "fill-gold/40",
-  secondaryDotColor = "fill-terracotta/35",
+  glowColors = "from-[#FFD900]/30 via-[#01236A]/25 to-[#FFD900]/20",
+  primaryDotColor = "fill-[#FFD900]/50",
+  secondaryDotColor = "fill-[#01236A]/40",
   customGrid = { rows: 6, cols: 6 },
   roundedClass = "rounded-2xl sm:rounded-3xl",
   imageHeightClass = "h-[420px] sm:h-[500px] lg:h-[560px] xl:h-[600px]",
@@ -233,7 +233,7 @@ export function ArchedHeroImage({
       {/* 4. Main Image Container - Clean, simple, perfect rounded shape */}
       <div
         className={cn(
-          "relative w-full overflow-hidden shadow-2xl shadow-ink/20 border border-gold/30 bg-[#16110d] group",
+          "relative w-full overflow-hidden shadow-2xl shadow-[#01236A]/25 border-2 border-[#FFD900]/40 bg-[#001747] group",
           roundedClass
         )}
       >

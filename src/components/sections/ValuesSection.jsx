@@ -64,13 +64,13 @@ export function ValuesSection() {
                 <article
                   className={`relative bg-white border rounded-[16px] p-7 sm:p-8 flex flex-col justify-between overflow-hidden min-h-[225px] transition-all duration-500 ease-out ${
                     isCardActive
-                      ? "border-gold/60 -translate-y-2 shadow-[0_24px_50px_rgba(25,16,12,0.28)] ring-1 ring-gold/40"
-                      : "border-line shadow-sm hover:border-gold/60 hover:-translate-y-2 hover:shadow-[0_24px_50px_rgba(25,16,12,0.28)] hover:ring-1 hover:ring-gold/40"
+                      ? "border-[#FFD900] -translate-y-2 shadow-[0_24px_50px_rgba(1,35,106,0.22)] ring-1 ring-[#FFD900]/50"
+                      : "border-[#e2e8f0] shadow-sm hover:border-[#FFD900] hover:-translate-y-2 hover:shadow-[0_24px_50px_rgba(1,35,106,0.22)] hover:ring-1 hover:ring-[#FFD900]/50"
                   }`}
                 >
-                  {/* Top Animated Gold Line Indicator */}
+                  {/* Top Animated Yellow Line Indicator */}
                   <div
-                    className={`absolute top-0 left-0 h-[3px] bg-gradient-to-r from-gold via-amber-300 to-gold transition-all duration-500 z-30 ${
+                    className={`absolute top-0 left-0 h-[3px] bg-[#FFD900] transition-all duration-500 z-30 ${
                       isCardActive
                         ? "w-full opacity-100"
                         : "w-0 opacity-0 group-hover:w-full group-hover:opacity-100"
@@ -95,18 +95,18 @@ export function ValuesSection() {
                       }`}
                       loading="lazy"
                     />
-                    {/* Rich dark gradient scrim for crystal-clear text readability */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-ink/95 via-ink/80 to-ink/65" />
-                    {/* Warm amber/brand tint */}
-                    <div className="absolute inset-0 bg-[#2d120a]/30 mix-blend-multiply" />
+                    {/* Rich Royal Blue gradient scrim for crystal-clear text readability */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#01236A]/95 via-[#01236A]/85 to-[#01236A]/65" />
+                    {/* Brand Blue tint */}
+                    <div className="absolute inset-0 bg-[#01236A]/35 mix-blend-multiply" />
                   </div>
 
                   {/* Corner Badge with Arrow */}
                   <div
                     className={`absolute top-0 right-0 w-10 h-10 flex items-center justify-center rounded-bl-[28px] rounded-tr-[16px] z-20 pointer-events-none shadow-sm transition-all duration-300 ${
                       isCardActive
-                        ? "bg-gradient-to-br from-gold to-amber-600 text-ink shadow-md"
-                        : "bg-gradient-to-br from-terracotta to-terracotta-dark text-white group-hover:bg-gradient-to-br group-hover:from-gold group-hover:to-amber-600 group-hover:text-ink"
+                        ? "bg-[#FFD900] text-[#01236A] shadow-md font-bold"
+                        : "bg-[#01236A] text-[#FFD900] group-hover:bg-[#FFD900] group-hover:text-[#01236A] font-bold"
                     }`}
                   >
                     <span
@@ -126,8 +126,8 @@ export function ValuesSection() {
                       <span
                         className={`font-mono text-xs font-bold tracking-widest block mb-4 transition-colors duration-300 ${
                           isCardActive
-                            ? "text-gold"
-                            : "text-muted/60 group-hover:text-gold"
+                            ? "text-[#FFD900]"
+                            : "text-[#01236A]/60 group-hover:text-[#FFD900]"
                         }`}
                       >
                         0{index + 1}
@@ -136,7 +136,7 @@ export function ValuesSection() {
                         className={`font-serif text-2xl font-normal mb-3 transition-colors duration-300 tracking-tight ${
                           isCardActive
                             ? "text-white drop-shadow-sm"
-                            : "text-ink group-hover:text-white group-hover:drop-shadow-sm"
+                            : "text-[#01236A] group-hover:text-white group-hover:drop-shadow-sm"
                         }`}
                       >
                         {val.title}
@@ -144,8 +144,8 @@ export function ValuesSection() {
                       <p
                         className={`text-sm sm:text-[15px] leading-relaxed transition-colors duration-300 ${
                           isCardActive
-                            ? "text-[#f5ebe1] drop-shadow-sm"
-                            : "text-muted group-hover:text-[#f5ebe1] group-hover:drop-shadow-sm"
+                            ? "text-white/95 drop-shadow-sm"
+                            : "text-[#475569] group-hover:text-white/95 group-hover:drop-shadow-sm"
                         }`}
                       >
                         {val.text}

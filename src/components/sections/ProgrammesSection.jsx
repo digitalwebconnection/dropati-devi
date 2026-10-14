@@ -46,9 +46,9 @@ export function ProgrammesSection({ onOpenInterest }) {
           </div>
 
           {/* Gentle scroll indicator */}
-          <div className="mt-8 flex items-center gap-2 text-xs uppercase tracking-widest text-muted/70 font-medium">
+          <div className="mt-8 flex items-center gap-2 text-xs uppercase tracking-widest text-[#01236A]/70 font-semibold">
             <span>Scroll through our initiatives</span>
-            <span className="text-terracotta animate-bounce">↓</span>
+            <span className="text-[#01236A] animate-bounce font-bold">↓</span>
           </div>
         </div>
       </div>
@@ -76,41 +76,41 @@ export function ProgrammesSection({ onOpenInterest }) {
           return (
             <ScrollStackItem
               key={prog.number}
-              itemClassName="w-full h-[520px] sm:h-[460px] md:h-[420px] !bg-[#1c1410] !border !border-white/15 hover:!border-gold/60 !rounded-3xl shadow-[0_24px_55px_-12px_rgba(28,20,16,0.65)] group transition-all duration-300 overflow-hidden select-none flex flex-col md:flex-row"
+              itemClassName="w-full h-[520px] sm:h-[460px] md:h-[420px] !bg-[#01236A] !border !border-[#FFD900]/30 hover:!border-[#FFD900] !rounded-3xl shadow-[0_24px_55px_-12px_rgba(1,35,106,0.65)] group transition-all duration-300 overflow-hidden select-none flex flex-col md:flex-row"
             >
               {/* Left Side: Photo with Badge & Gradient */}
-              <div className="w-full md:w-[42%] lg:w-[40%] h-[200px] sm:h-[220px] md:h-full relative overflow-hidden flex-shrink-0 bg-sand/20 border-b md:border-b-0 md:border-r border-white/10">
+              <div className="w-full md:w-[42%] lg:w-[40%] h-[200px] sm:h-[220px] md:h-full relative overflow-hidden flex-shrink-0 bg-[#001747] border-b md:border-b-0 md:border-r border-white/10">
                 <img
                   src={prog.image}
                   alt={prog.title}
                   className="w-full h-full object-cover group-hover:scale-106 transition-transform duration-700"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent md:hidden" />
-                <span className="absolute top-4 left-4 bg-ink/90 backdrop-blur-md text-gold font-mono text-xs sm:text-sm px-3.5 py-1 rounded-lg font-bold border border-white/10 shadow-lg">
+                <div className="absolute inset-0 bg-gradient-to-t from-[#01236A]/85 via-transparent to-transparent md:hidden" />
+                <span className="absolute top-4 left-4 bg-[#001747]/95 backdrop-blur-md text-[#FFD900] font-mono text-xs sm:text-sm px-3.5 py-1 rounded-lg font-bold border border-[#FFD900]/30 shadow-lg">
                   {prog.number}
                 </span>
                 <div className="absolute bottom-4 left-4 right-4 hidden md:block">
-                  <span className="inline-block bg-black/65 backdrop-blur-md text-bone/90 text-[11px] font-mono px-3 py-1 rounded-full border border-white/10">
+                  <span className="inline-block bg-[#001747]/85 backdrop-blur-md text-white text-[11px] font-mono px-3 py-1 rounded-full border border-white/10">
                     Focus Area {prog.number} of 05
                   </span>
                 </div>
               </div>
 
               {/* Right Side: Title, Description, Highlights & CTA */}
-              <div className="flex-1 h-full p-6 sm:p-7 md:p-8 lg:p-9 flex flex-col justify-between text-bone overflow-hidden">
+              <div className="flex-1 h-full p-6 sm:p-7 md:p-8 lg:p-9 flex flex-col justify-between text-white overflow-hidden">
                 <div>
                   <div className="flex items-center gap-2 mb-2">
-                    <Sparkles size={14} className="text-gold" />
-                    <span className="text-xs uppercase tracking-widest text-gold font-semibold font-mono">
+                    <Sparkles size={14} className="text-[#FFD900]" />
+                    <span className="text-xs uppercase tracking-widest text-[#FFD900] font-bold font-mono">
                       Initiative {prog.number}
                     </span>
                   </div>
 
-                  <h3 className="font-serif text-2xl sm:text-3xl lg:text-[32px] text-bone group-hover:text-gold transition-colors font-normal tracking-tight mb-2.5 sm:mb-3 leading-snug">
+                  <h3 className="font-serif text-2xl sm:text-3xl lg:text-[32px] text-white group-hover:text-[#FFD900] transition-colors font-normal tracking-tight mb-2.5 sm:mb-3 leading-snug">
                     {prog.title}
                   </h3>
 
-                  <p className="text-sm sm:text-[15px] text-bone/80 leading-relaxed font-sans line-clamp-2">
+                  <p className="text-sm sm:text-[15px] text-blue-100/90 leading-relaxed font-sans line-clamp-2">
                     {prog.text}
                   </p>
 
@@ -119,9 +119,9 @@ export function ProgrammesSection({ onOpenInterest }) {
                     {highlights.map((h, i) => (
                       <div
                         key={i}
-                        className="inline-flex items-center gap-1.5 bg-white/5 border border-white/10 px-3 py-1 rounded-full text-xs text-bone/75"
+                        className="inline-flex items-center gap-1.5 bg-white/10 border border-white/15 px-3 py-1 rounded-full text-xs text-white"
                       >
-                        <CheckCircle2 size={13} className="text-gold" />
+                        <CheckCircle2 size={13} className="text-[#FFD900]" />
                         <span>{h}</span>
                       </div>
                     ))}
@@ -133,13 +133,13 @@ export function ProgrammesSection({ onOpenInterest }) {
                   <button
                     type="button"
                     onClick={onOpenInterest}
-                    className="inline-flex items-center gap-2.5 bg-gold hover:bg-gold-light text-ink font-semibold px-6 py-2.5 sm:py-3 rounded-full text-xs uppercase tracking-wider shadow-lg hover:shadow-gold/25 transition-all duration-300 cursor-pointer group-hover:gap-3"
+                    className="inline-flex items-center gap-2.5 bg-[#FFD900] hover:bg-white text-[#01236A] font-bold px-6 py-2.5 sm:py-3 rounded-full text-xs uppercase tracking-wider shadow-lg hover:shadow-[#FFD900]/30 transition-all duration-300 cursor-pointer group-hover:gap-3"
                     data-testid={`programme-interest-${prog.number}`}
                   >
                     {prog.buttonLabel || `Explore ${prog.shortTitle}`}{" "}
                     <ArrowUpRight size={16} />
                   </button>
-                  <span className="text-xs text-bone/40 font-mono hidden sm:inline">
+                  <span className="text-xs text-white/50 font-mono hidden sm:inline">
                     Dropati Devi Foundation
                   </span>
                 </div>

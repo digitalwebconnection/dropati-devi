@@ -132,12 +132,12 @@ export function InterestModal({ isOpen, onClose }) {
                 transition={{ duration: 0.4, ease: "easeOut" }}
                 className="text-center py-6 flex flex-col items-center justify-center"
               >
-                <div className="w-14 h-14 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center mb-4 shadow-sm">
+                <div className="w-14 h-14 rounded-full bg-[#FFD900]/20 text-[#01236A] flex items-center justify-center mb-4 shadow-sm border border-[#FFD900]">
                   <Check size={26} strokeWidth={2.5} />
                 </div>
                 <h2
                   id="interest-title"
-                  className="font-serif text-2xl sm:text-3xl font-normal text-ink mb-2"
+                  className="font-serif text-2xl sm:text-3xl font-normal text-[#01236A] mb-2"
                 >
                   Thank you for reaching out
                   {formData.name ? `, ${formData.name}` : ""}.
@@ -145,7 +145,7 @@ export function InterestModal({ isOpen, onClose }) {
                 <p className="text-sm text-muted leading-relaxed max-w-md mb-2">
                   Your enquiry has been received and delivered directly to our
                   team at{" "}
-                  <strong className="text-ink">
+                  <strong className="text-[#01236A]">
                     dropatidevifoundation1945@gmail.com
                   </strong>
                   .
@@ -156,7 +156,7 @@ export function InterestModal({ isOpen, onClose }) {
                 <motion.button
                   whileHover={{ scale: 1.03 }}
                   whileTap={{ scale: 0.98 }}
-                  className="inline-flex items-center justify-center gap-3 bg-terracotta hover:bg-terracotta-dark text-white font-sans font-semibold text-xs uppercase tracking-wider px-6 py-3 rounded-sm shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer"
+                  className="inline-flex items-center justify-center gap-3 bg-[#01236A] hover:bg-[#001747] text-[#FFD900] font-sans font-bold text-xs uppercase tracking-wider px-6 py-3 rounded-sm shadow-md hover:shadow-xl border border-[#FFD900]/40 transition-all duration-300 cursor-pointer"
                   onClick={onClose}
                   data-testid="close-success-button"
                 >
@@ -168,10 +168,10 @@ export function InterestModal({ isOpen, onClose }) {
                 <Eyebrow text="Start a conversation" />
                 <h2
                   id="interest-title"
-                  className="font-serif text-2xl sm:text-3xl font-normal text-ink tracking-tight mt-2 mb-1.5"
+                  className="font-serif text-2xl sm:text-3xl font-normal text-[#01236A] tracking-tight mt-2 mb-1.5"
                 >
                   Tell us what you're{" "}
-                  <i className="text-terracotta italic font-serif">
+                  <i className="text-[#01236A] italic font-serif underline decoration-[#FFD900] decoration-2">
                     looking for.
                   </i>
                 </h2>
@@ -194,8 +194,8 @@ export function InterestModal({ isOpen, onClose }) {
                 >
                   {/* Row 1: Name and Email side by side */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-                    <label className="block text-ink text-[11px] font-semibold tracking-wider uppercase">
-                      Your name <span className="text-terracotta">*</span>
+                    <label className="block text-[#01236A] text-[11px] font-bold tracking-wider uppercase">
+                      Your name <span className="text-[#01236A]">*</span>
                       <input
                         required
                         placeholder="Your name"
@@ -203,13 +203,13 @@ export function InterestModal({ isOpen, onClose }) {
                         onChange={(e) =>
                           setFormData({ ...formData, name: e.target.value })
                         }
-                        className="mt-1 w-full px-3 py-2.5 border border-line rounded-sm bg-white text-ink text-sm outline-none focus:border-terracotta focus:ring-1 focus:ring-terracotta transition-colors normal-case font-normal"
+                        className="mt-1 w-full px-3 py-2.5 border border-line rounded-sm bg-white text-[#01236A] text-sm outline-none focus:border-[#01236A] focus:ring-1 focus:ring-[#01236A] transition-colors normal-case font-normal"
                         data-testid="interest-name-input"
                       />
                     </label>
 
-                    <label className="block text-ink text-[11px] font-semibold tracking-wider uppercase">
-                      Email address <span className="text-terracotta">*</span>
+                    <label className="block text-[#01236A] text-[11px] font-bold tracking-wider uppercase">
+                      Email address <span className="text-[#01236A]">*</span>
                       <input
                         required
                         type="email"
@@ -218,7 +218,7 @@ export function InterestModal({ isOpen, onClose }) {
                         onChange={(e) =>
                           setFormData({ ...formData, email: e.target.value })
                         }
-                        className="mt-1 w-full px-3 py-2.5 border border-line rounded-sm bg-white text-ink text-sm outline-none focus:border-terracotta focus:ring-1 focus:ring-terracotta transition-colors normal-case font-normal"
+                        className="mt-1 w-full px-3 py-2.5 border border-line rounded-sm bg-white text-[#01236A] text-sm outline-none focus:border-[#01236A] focus:ring-1 focus:ring-[#01236A] transition-colors normal-case font-normal"
                         data-testid="interest-email-input"
                       />
                     </label>
@@ -226,7 +226,7 @@ export function InterestModal({ isOpen, onClose }) {
 
                   {/* Row 2: Phone and Interest Type side by side */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-                    <label className="block text-ink text-[11px] font-semibold tracking-wider uppercase">
+                    <label className="block text-[#01236A] text-[11px] font-bold tracking-wider uppercase">
                       Phone number{" "}
                       <span className="text-muted/60 font-normal lowercase">
                         (optional)
@@ -238,12 +238,12 @@ export function InterestModal({ isOpen, onClose }) {
                         onChange={(e) =>
                           setFormData({ ...formData, phone: e.target.value })
                         }
-                        className="mt-1 w-full px-3 py-2.5 border border-line rounded-sm bg-white text-ink text-sm outline-none focus:border-terracotta focus:ring-1 focus:ring-terracotta transition-colors normal-case font-normal"
+                        className="mt-1 w-full px-3 py-2.5 border border-line rounded-sm bg-white text-[#01236A] text-sm outline-none focus:border-[#01236A] focus:ring-1 focus:ring-[#01236A] transition-colors normal-case font-normal"
                         data-testid="interest-phone-input"
                       />
                     </label>
 
-                    <label className="block text-ink text-[11px] font-semibold tracking-wider uppercase">
+                    <label className="block text-[#01236A] text-[11px] font-bold tracking-wider uppercase">
                       What brings you here?
                       <select
                         value={formData.interestType}
@@ -253,7 +253,7 @@ export function InterestModal({ isOpen, onClose }) {
                             interestType: e.target.value,
                           })
                         }
-                        className="mt-1 w-full px-3 py-2.5 border border-line rounded-sm bg-white text-ink text-sm outline-none focus:border-terracotta focus:ring-1 focus:ring-terracotta transition-colors normal-case font-normal cursor-pointer"
+                        className="mt-1 w-full px-3 py-2.5 border border-line rounded-sm bg-white text-[#01236A] text-sm outline-none focus:border-[#01236A] focus:ring-1 focus:ring-[#01236A] transition-colors normal-case font-normal cursor-pointer"
                         data-testid="interest-type-select"
                       >
                         <option>I'm looking for support</option>
@@ -266,7 +266,7 @@ export function InterestModal({ isOpen, onClose }) {
                   </div>
 
                   {/* Row 3: Message */}
-                  <label className="block text-ink text-[11px] font-semibold tracking-wider uppercase">
+                  <label className="block text-[#01236A] text-[11px] font-bold tracking-wider uppercase">
                     Tell us a little more
                     <textarea
                       rows="2"
@@ -275,7 +275,7 @@ export function InterestModal({ isOpen, onClose }) {
                       onChange={(e) =>
                         setFormData({ ...formData, message: e.target.value })
                       }
-                      className="mt-1 w-full px-3 py-2 border border-line rounded-sm bg-white text-ink text-sm outline-none focus:border-terracotta focus:ring-1 focus:ring-terracotta transition-colors normal-case font-normal resize-none min-h-[58px]"
+                      className="mt-1 w-full px-3 py-2 border border-line rounded-sm bg-white text-[#01236A] text-sm outline-none focus:border-[#01236A] focus:ring-1 focus:ring-[#01236A] transition-colors normal-case font-normal resize-none min-h-[58px]"
                       data-testid="interest-message-input"
                     />
                   </label>
@@ -285,13 +285,13 @@ export function InterestModal({ isOpen, onClose }) {
                     whileHover={{ scale: isSubmitting ? 1 : 1.01 }}
                     whileTap={{ scale: isSubmitting ? 1 : 0.99 }}
                     disabled={isSubmitting}
-                    className="mt-2 w-full py-3.5 bg-terracotta hover:bg-terracotta-dark disabled:opacity-75 disabled:cursor-not-allowed text-white font-sans font-semibold text-xs uppercase tracking-wider rounded-sm shadow-md hover:shadow-xl transition-all duration-300 inline-flex items-center justify-center gap-2 cursor-pointer"
+                    className="mt-2 w-full py-3.5 bg-[#01236A] hover:bg-[#001747] disabled:opacity-75 disabled:cursor-not-allowed text-[#FFD900] font-sans font-bold text-xs uppercase tracking-wider rounded-sm shadow-md hover:shadow-xl transition-all duration-300 inline-flex items-center justify-center gap-2 cursor-pointer border border-[#FFD900]/40"
                     type="submit"
                     data-testid="interest-submit-button"
                   >
                     {isSubmitting ? (
                       <>
-                        <Loader2 size={16} className="animate-spin" />
+                        <Loader2 size={16} className="animate-spin text-[#FFD900]" />
                         <span>Sending your interest...</span>
                       </>
                     ) : (

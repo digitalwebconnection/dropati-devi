@@ -16,12 +16,7 @@ const storyImages = [
     subtitle: "Silent Courage & Enduring Grace",
     alt: "Dropati Devi in quiet contemplation",
   },
-  {
-    src: "/images/dropati_devi_hero.jpg",
-    title: "A Life of Resilience",
-    subtitle: "The Warmth that Inspired Our Foundation",
-    alt: "Dropati Devi smiling warmly",
-  },
+
   {
     src: "/images/moments/moment-4-sweet-moments.jpg",
     title: "Sweet Milestones",
@@ -60,19 +55,19 @@ export function StorySection() {
               currentIndex={activePhotoIndex}
               onIndexChange={setActivePhotoIndex}
               customGrid={{ rows: 6, cols: 6 }}
-              glowColors="from-gold/25 via-terracotta/15 to-amber-200/25"
-              primaryDotColor="fill-gold/40"
-              secondaryDotColor="fill-terracotta/35"
+              glowColors="from-[#FFD900]/30 via-[#01236A]/25 to-[#FFD900]/20"
+              primaryDotColor="fill-[#FFD900]/60"
+              secondaryDotColor="fill-[#01236A]/40"
               roundedClass="rounded-2xl sm:rounded-xl"
               imageHeightClass="h-[420px] sm:h-[500px] lg:h-[560px] xl:h-[600px]"
             >
               {/* Authentic caption badge pinned to the bottom of the image frame */}
-              <div className="absolute bottom-4 left-4 right-4 sm:bottom-5 sm:left-5 sm:right-5 bg-ink/90 backdrop-blur-md px-4 py-3 rounded-xl text-bone text-xs flex items-center justify-between border border-white/10 shadow-2xl pointer-events-auto">
+              <div className="absolute bottom-4 left-4 right-4 sm:bottom-5 sm:left-5 sm:right-5 bg-[#01236A]/95 backdrop-blur-md px-4 py-3 rounded-xl text-white text-xs flex items-center justify-between border border-white/10 shadow-2xl pointer-events-auto">
                 <div className="pr-2">
-                  <p className="font-serif text-sm sm:text-[15px] text-gold font-normal leading-snug transition-all duration-500">
+                  <p className="font-serif text-sm sm:text-[15px] text-[#FFD900] font-normal leading-snug transition-all duration-500">
                     {currentPhoto.title}
                   </p>
-                  <p className="text-[11px] sm:text-xs text-bone/70 transition-all duration-500">
+                  <p className="text-[11px] sm:text-xs text-white/80 transition-all duration-500">
                     {currentPhoto.subtitle}
                   </p>
                 </div>
@@ -89,7 +84,7 @@ export function StorySection() {
                         onClick={() => setActivePhotoIndex(idx)}
                         className={`h-1.5 rounded-full transition-all duration-500 cursor-pointer ${
                           idx === activePhotoIndex
-                            ? "bg-gold w-4"
+                            ? "bg-[#FFD900] w-4"
                             : "bg-white/30 hover:bg-white/60 w-1.5"
                         }`}
                         aria-label={`Show photo ${idx + 1}`}
@@ -98,7 +93,7 @@ export function StorySection() {
                   </div>
                   <a
                     href="#moments"
-                    className="text-[11px] uppercase tracking-wider font-semibold text-gold hover:text-white transition-colors flex items-center gap-1.5 bg-white/10 hover:bg-white/20 px-3 py-1.5 rounded-lg border border-white/5"
+                    className="text-[11px] uppercase tracking-wider font-bold text-[#FFD900] hover:text-white transition-colors flex items-center gap-1.5 bg-white/10 hover:bg-white/20 px-3 py-1.5 rounded-lg border border-white/5"
                   >
                     Moments <ArrowDownRight size={14} />
                   </a>
@@ -114,8 +109,8 @@ export function StorySection() {
             data-aos-delay="150"
           >
             <Eyebrow text="The woman behind the mission" />
-            <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-normal text-ink tracking-tight my-2">
-              A WOMAN WHO <i className="text-gold italic font-serif">NEVER</i>{" "}
+            <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-normal text-[#01236A] tracking-tight my-2">
+              A WOMAN WHO <i className="text-[#FFD900] italic font-serif">NEVER</i>{" "}
               GAVE UP
             </h2>
             <p className="text-[15px] sm:text-[16px] text-muted leading-relaxed">
@@ -146,7 +141,7 @@ export function StorySection() {
               data-aos-delay="300"
             >
               <a
-                className="inline-flex items-center gap-2 text-terracotta-dark hover:text-terracotta font-medium underline underline-offset-8 transition-colors"
+                className="inline-flex items-center gap-2 text-[#01236A] hover:text-[#01236A]/80 font-bold underline underline-offset-8 transition-colors"
                 href="#moments"
                 data-testid="discover-life-link"
               >

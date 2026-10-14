@@ -1,5 +1,18 @@
 export const siteImages = {
   hero: "/images/Elderly Woman Applauding Gujarati Schoolchildren.png",
+  heroSlides: [
+    {
+      src: "/images/Elderly Woman Applauding Gujarati Schoolchildren.png",
+      alt: "Elderly Woman Applauding Gujarati Schoolchildren",
+      tag: "Education & Nurturing",
+    },
+    {
+      src: "/Caring Hands, Community Aid Distribution.png",
+      alt: "Caring Hands, Community Aid Distribution",
+      tag: "Community Aid & Care",
+    },
+   
+  ],
   story: "/images/moments/moment-6-grace.jpg",
   wellbeing:
     "https://images.unsplash.com/photo-1544027993-37dbfe43562a?auto=format&fit=crop&w=800&q=85",

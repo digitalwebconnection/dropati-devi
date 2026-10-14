@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 export function CubeButton({
   frontText,
@@ -10,30 +10,55 @@ export function CubeButton({
   className = "",
   styleVariant = "primary", // "navbar" | "primary" | "secondary"
   dataTestId,
+  autoHover = false,
+  autoHoverDelay = 0,
 }) {
-  // Styles for each variant
+  const [isFlipped, setIsFlipped] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
+
+  // Auto flip every 3 seconds if autoHover is enabled
+  useEffect(() => {
+    if (!autoHover) return;
+
+    let revertTimeout;
+    const interval = setInterval(() => {
+      if (!isHovered) {
+        setIsFlipped(true);
+        revertTimeout = setTimeout(() => {
+          setIsFlipped(false);
+        }, 1300); // Display top face for 1.3 seconds
+      }
+    }, 3000 + autoHoverDelay);
+
+    return () => {
+      clearInterval(interval);
+      if (revertTimeout) clearTimeout(revertTimeout);
+    };
+  }, [autoHover, autoHoverDelay, isHovered]);
+
+  // Styles strictly using Blue #01236A and Yellow #FFD900
   const variantStyles = {
     navbar: {
-      front: "bg-white text-ink shadow-md",
-      top: "bg-terracotta text-white shadow-lg",
-      frontBorder: "inset 0 0 0 2px rgba(229, 169, 59, 0.4)",
-      topBorder: "inset 0 0 0 2px rgba(255, 255, 255, 0.9)",
+      front: "bg-white text-[#01236A] shadow-md",
+      top: "bg-[#FFD900] text-[#01236A] font-bold shadow-lg",
+      frontBorder: "inset 0 0 0 2px #01236A",
+      topBorder: "inset 0 0 0 2px #FFD900",
       dimensions: "w-[210px] h-[44px]",
       halfHeight: "22px",
     },
     primary: {
-      front: "bg-white text-terracotta-dark shadow-md",
-      top: "bg-terracotta text-white shadow-xl",
-      frontBorder: "inset 0 0 0 3px #ffffff",
-      topBorder: "inset 0 0 0 3px #ffffff",
+      front: "bg-[#FFD900] text-[#01236A] font-bold shadow-lg",
+      top: "bg-[#01236A] text-[#FFD900] font-bold shadow-xl",
+      frontBorder: "inset 0 0 0 2px #FFD900",
+      topBorder: "inset 0 0 0 2px #FFD900",
       dimensions: "w-[215px] h-[48px]",
       halfHeight: "24px",
     },
     secondary: {
-      front: "bg-[#271914] text-white border border-white/25 shadow-md",
-      top: "bg-gold text-ink font-bold shadow-xl",
-      frontBorder: "inset 0 0 0 2px rgba(255, 255, 255, 0.2)",
-      topBorder: "inset 0 0 0 3px #ffffff",
+      front: "bg-[#01236A] text-white font-semibold shadow-md",
+      top: "bg-[#FFD900] text-[#01236A] font-bold shadow-xl",
+      frontBorder: "inset 0 0 0 2px #FFD900",
+      topBorder: "inset 0 0 0 2px #FFD900",
       dimensions: "w-[195px] h-[48px]",
       halfHeight: "24px",
     },
@@ -43,7 +68,9 @@ export function CubeButton({
 
   const content = (
     <div
-      className="cube-element relative w-full h-full transition-transform duration-700 ease-[cubic-bezier(.17,.67,.14,.93)] group-hover:[transform:rotateX(-90deg)]"
+      className={`cube-element relative w-full h-full transition-transform duration-700 ease-[cubic-bezier(.17,.67,.14,.93)] ${
+        isFlipped ? "[transform:rotateX(-90deg)]" : ""
+      } group-hover:[transform:rotateX(-90deg)]`}
       style={{
         transformStyle: "preserve-3d",
         transformOrigin: "50% 50%",
@@ -51,7 +78,7 @@ export function CubeButton({
     >
       {/* Front Face (Default State) */}
       <span
-        className={`cube-side absolute inset-0 flex items-center justify-center gap-2.5 px-4 font-sans font-semibold text-[11px] uppercase tracking-wider rounded-sm select-none transition-colors duration-300 ${currentVariant.front}`}
+        className={`cube-side absolute inset-0 flex items-center justify-center gap-2.5 px-4 font-sans font-bold text-[11px] uppercase tracking-wider rounded-sm select-none transition-colors duration-300 ${currentVariant.front}`}
         style={{
           boxShadow: currentVariant.frontBorder,
           transform: `translate3d(0, 0, ${currentVariant.halfHeight})`,
@@ -64,7 +91,7 @@ export function CubeButton({
 
       {/* Top Face (Revealed on 3D Flip Hover) */}
       <span
-        className={`cube-side absolute inset-0 flex items-center justify-center gap-2.5 px-4 font-sans font-semibold text-[11px] uppercase tracking-wider rounded-sm select-none transition-colors duration-300 ${currentVariant.top}`}
+        className={`cube-side absolute inset-0 flex items-center justify-center gap-2.5 px-4 font-sans font-bold text-[11px] uppercase tracking-wider rounded-sm select-none transition-colors duration-300 ${currentVariant.top}`}
         style={{
           boxShadow: currentVariant.topBorder,
           transform: `rotateX(90deg) translate3d(0, 0, ${currentVariant.halfHeight})`,

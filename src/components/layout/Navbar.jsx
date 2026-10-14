@@ -56,11 +56,11 @@ export function Navbar({ onOpenInterest }) {
             key={link.href}
             href={link.href}
             onClick={closeMenu}
-            className="relative py-1 text-ink/80 hover:text-terracotta transition-colors duration-300 group inline-block"
+            className="relative py-1 text-[#01236A]/85 hover:text-[#01236A] transition-colors duration-300 group inline-block font-sans font-bold"
             data-testid={link.testId}
           >
             {link.label}
-            <span className="hidden md:block absolute bottom-0 left-0 w-0 h-[2px] bg-terracotta transition-all duration-300 group-hover:w-full" />
+            <span className="hidden md:block absolute bottom-0 left-0 w-0 h-[2px] bg-[#FFD900] transition-all duration-300 group-hover:w-full" />
           </a>
         ))}
         <CubeButton
@@ -76,7 +76,7 @@ export function Navbar({ onOpenInterest }) {
 
       {/* Mobile Menu Toggle Button */}
       <button
-        className="md:hidden bg-transparent border-0 text-ink hover:text-terracotta p-2 cursor-pointer transition-transform duration-200 hover:scale-110"
+        className="md:hidden bg-transparent border-0 text-[#01236A] hover:text-[#FFD900] p-2 cursor-pointer transition-transform duration-200 hover:scale-110"
         onClick={() => setMenuOpen(!menuOpen)}
         aria-label="Toggle menu"
         data-testid="mobile-menu-button"
