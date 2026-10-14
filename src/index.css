@@ -5,14 +5,16 @@
 @tailwind utilities;
 
 :root {
-  --ink: #2c221e;
-  --muted: #75665e;
-  --terracotta: #9a3b26;
-  --terracotta-dark: #712c20;
-  --gold: #e5a93b;
-  --bone: #fdfbf7;
-  --sand: #f4efe6;
-  --line: #dfd5c9;
+  --blue: #01236A;
+  --yellow: #FFD900;
+  --ink: #01236A;
+  --muted: #475569;
+  --terracotta: #01236A;
+  --terracotta-dark: #001747;
+  --gold: #FFD900;
+  --bone: #ffffff;
+  --sand: #f8fafc;
+  --line: #e2e8f0;
 }
 
 * {
@@ -26,8 +28,8 @@ html {
 body {
   margin: 0;
   padding: 0;
-  color: var(--ink);
-  background: var(--bone);
+  color: #01236A;
+  background: #ffffff;
   font-family: 'Plus Jakarta Sans', sans-serif;
   overflow-x: clip;
   -webkit-font-smoothing: antialiased;
