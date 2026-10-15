@@ -133,3 +133,6 @@ dist-ssr/
 # OS generated files
 .DS_Store
 Thumbs.db
+
+# Design and raw archive assets (not shipped in build)
+design-assets/

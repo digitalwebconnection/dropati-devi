@@ -1,30 +1,29 @@
 import React, { useState } from "react";
 import { ArrowDownRight } from "lucide-react";
-import Eyebrow from "../common/Eyebrow";
-import ArchedHeroImage from "../common/ArchedPixelImage";
+import { Eyebrow, ArchedHeroImage } from "@/components/common";
 
 const storyImages = [
   {
-    src: "/images/moments/moment-6-grace.jpg",
+    src: "/images/moments/moment-6-grace.webp",
     title: "Dropati Jethani",
     subtitle: "1945 — The Heart of Our Mission",
     alt: "Dropati Jethani - The woman behind the mission",
   },
   {
-    src: "/images/moments/moment-2-wisdom.jpg",
+    src: "/images/moments/moment-2-wisdom.webp",
     title: "Quiet Strength & Wisdom",
     subtitle: "Silent Courage & Enduring Grace",
     alt: "Dropati Devi in quiet contemplation",
   },
 
   {
-    src: "/images/moments/moment-4-sweet-moments.jpg",
+    src: "/images/moments/moment-4-sweet-moments.webp",
     title: "Sweet Milestones",
     subtitle: "Celebrating Life & Family",
     alt: "Dropati Devi celebrating her birthday",
   },
   {
-    src: "/images/moments/moment-1-celebration.jpg",
+    src: "/images/moments/moment-1-celebration.webp",
     title: "Joy & Togetherness",
     subtitle: "Surrounded by Love and Laughter",
     alt: "Dropati Devi with family celebrating",
@@ -110,8 +109,8 @@ export function StorySection() {
           >
             <Eyebrow text="The woman behind the mission" />
             <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-normal text-[#01236A] tracking-tight my-2">
-              A WOMAN WHO <i className="text-[#FFD900] italic font-serif">NEVER</i>{" "}
-              GAVE UP
+              A WOMAN WHO <i className="text-[#FFD900] italic font-serif">NEVER</i> GAVE
+              UP
             </h2>
             <p className="text-[15px] sm:text-[16px] text-muted leading-relaxed">
               Dropati Jethani's life was a story of resilience, sacrifice and
@@ -119,21 +118,21 @@ export function StorySection() {
             </p>
             <p className="text-[15px] sm:text-[16px] text-muted leading-relaxed">
               Born in Pakistan in 1945, she came to India with her family during
-              Partition. Married at a young age, she faced financial hardship
-              and the responsibilities of raising a family. She began sewing
-              clothes to help her husband earn a living, working tirelessly to
-              give her children a better future.
+              Partition. Married at a young age, she faced financial hardship and the
+              responsibilities of raising a family. She began sewing clothes to help her
+              husband earn a living, working tirelessly to give her children a better
+              future.
             </p>
             <p className="text-[15px] sm:text-[16px] text-muted leading-relaxed">
-              But her greatest legacy went beyond what she built for her family.
-              She was a woman people turned to for comfort, guidance and help.
-              She gave without expecting anything in return and faced life's
-              challenges with courage, patience and faith.
+              But her greatest legacy went beyond what she built for her family. She was a
+              woman people turned to for comfort, guidance and help. She gave without
+              expecting anything in return and faced life's challenges with courage,
+              patience and faith.
             </p>
             <p className="text-[15px] sm:text-[16px] text-muted leading-relaxed">
-              Her journey reminds us that strength is not always loud.
-              Sometimes, it is found in the hands that work, the heart that
-              gives and the spirit that refuses to give up.
+              Her journey reminds us that strength is not always loud. Sometimes, it is
+              found in the hands that work, the heart that gives and the spirit that
+              refuses to give up.
             </p>
             <div
               className="flex items-center gap-6 pt-2 flex-wrap"

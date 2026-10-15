@@ -1,14 +1,11 @@
 import React from "react";
 import { ArrowUpRight } from "lucide-react";
-import Eyebrow from "../common/Eyebrow";
-import { involvedOptions } from "../../constants/siteData";
+import { Eyebrow } from "@/components/common";
+import { involvedOptions } from "@/constants";
 
 export function InvolvedSection({ onOpenInterest }) {
   return (
-    <section
-      className="py-20 lg:py-32 bg-[#eaf1fc]"
-      data-testid="involved-section"
-    >
+    <section className="py-20 lg:py-32 bg-[#eaf1fc]" data-testid="involved-section">
       <div className="max-w-[1180px] w-full px-5 md:px-8 mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
         <div
           className="flex flex-col space-y-4"
@@ -22,18 +19,15 @@ export function InvolvedSection({ onOpenInterest }) {
             <i className="text-[#FFD900] italic font-serif">HER LEGACY</i>
           </h2>
           <div className="text-[15px] sm:text-[16px] text-muted leading-relaxed space-y-4">
+            <p>Change begins when people come together with a shared purpose.</p>
             <p>
-              Change begins when people come together with a shared purpose.
+              Whether you have time to volunteer, skills to share, an organisation
+              interested in partnering or simply a desire to spread her story, there is a
+              place for you in this journey.
             </p>
             <p>
-              Whether you have time to volunteer, skills to share, an
-              organisation interested in partnering or simply a desire to spread
-              her story, there is a place for you in this journey.
-            </p>
-            <p>
-              Together, we can work towards a future where more women and girls
-              have the opportunity to build a life filled with confidence,
-              dignity and possibility.
+              Together, we can work towards a future where more women and girls have the
+              opportunity to build a life filled with confidence, dignity and possibility.
             </p>
           </div>
         </div>

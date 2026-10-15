@@ -1,17 +1,15 @@
-@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap");
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --blue: #01236A;
-  --yellow: #FFD900;
-  --ink: #01236A;
+  --blue: #01236a;
+  --yellow: #ffd900;
+  --ink: #01236a;
   --muted: #475569;
-  --terracotta: #01236A;
+  --terracotta: #01236a;
   --terracotta-dark: #001747;
-  --gold: #FFD900;
+  --gold: #ffd900;
   --bone: #ffffff;
   --sand: #f8fafc;
   --line: #e2e8f0;
@@ -28,14 +26,248 @@ html {
 body {
   margin: 0;
   padding: 0;
-  color: #01236A;
+  color: #01236a;
   background: #ffffff;
-  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-family: "Plus Jakarta Sans", sans-serif;
   overflow-x: clip;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-button, a {
+button,
+a {
   -webkit-tap-highlight-color: transparent;
+}
+
+/* Custom Scroll Expand Interactive Component Styles */
+@layer components {
+  .scroll-expand {
+    position: relative;
+    width: 100%;
+  }
+
+  .scroll-expand--scroller {
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    overscroll-behavior: contain;
+  }
+
+  .scroll-expand--scroller::-webkit-scrollbar {
+    display: none;
+  }
+
+  .scroll-expand__track {
+    position: relative;
+    width: 100%;
+  }
+
+  .scroll-expand__stage {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    background-color: #ffffff;
+  }
+
+  .scroll-expand__frame {
+    position: absolute;
+    inset: 0;
+    clip-path: inset(22% 24% 22% 24% round 24px);
+    will-change: clip-path;
+    transition: box-shadow 0.3s ease;
+  }
+
+  .scroll-expand__media {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    will-change: transform;
+    transform-origin: center;
+    user-select: none;
+    -webkit-user-drag: none;
+  }
+
+  .scroll-expand__scrim {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: radial-gradient(
+      circle at center,
+      rgba(1, 35, 106, 0.78) 0%,
+      rgba(0, 23, 71, 0.95) 100%
+    );
+    opacity: 0;
+    will-change: opacity;
+  }
+
+  .scroll-expand__overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    will-change: opacity, transform;
+    z-index: 25;
+  }
+
+  .scroll-expand__header-wrapper {
+    position: absolute;
+    top: 2.5rem;
+    left: 0;
+    right: 0;
+    z-index: 20;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0 1.5rem;
+    pointer-events: none;
+    will-change: opacity, transform;
+  }
+
+  @media (min-width: 640px) {
+    .scroll-expand__header-wrapper {
+      top: 3.5rem;
+    }
+  }
+
+  .scroll-expand__hint {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 2rem;
+    z-index: 20;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 0.8125rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #01236a;
+    pointer-events: none;
+    will-change: opacity, transform;
+  }
+
+  /* Custom scrollbar utility */
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 9999px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: rgba(255, 217, 0, 0.4);
+    border-radius: 9999px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 217, 0, 0.7);
+  }
+
+  /* Custom Scroll Stack Component Styles */
+  .scroll-stack {
+    position: relative;
+    width: 100%;
+  }
+
+  .scroll-stack--window {
+    width: 100%;
+  }
+
+  .scroll-stack--contained {
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 217, 0, 0.4) rgba(255, 255, 255, 0.05);
+  }
+
+  .scroll-stack--contained::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .scroll-stack--contained::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 9999px;
+  }
+
+  .scroll-stack--contained::-webkit-scrollbar-thumb {
+    background: rgba(255, 217, 0, 0.4);
+    border-radius: 9999px;
+  }
+
+  .scroll-stack--contained::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 217, 0, 0.7);
+  }
+
+  .scroll-stack__inner {
+    position: relative;
+    max-width: 1200px;
+    margin-inline: auto;
+    padding-inline: clamp(1rem, 3%, 2rem);
+  }
+
+  .scroll-stack__slot {
+    position: sticky;
+  }
+
+  .scroll-stack-card {
+    position: relative;
+    box-sizing: border-box;
+    width: 100%;
+    border-radius: 28px;
+    background: #01236a;
+    color: #ffffff;
+    box-shadow:
+      0 0 0 1px rgba(255, 217, 0, 0.25),
+      0 -14px 40px -16px rgba(1, 35, 106, 0.55),
+      0 24px 50px -20px rgba(1, 35, 106, 0.65);
+    transform-origin: 50% 0;
+    will-change: transform;
+  }
+
+  .scroll-stack-card__shade {
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: #000;
+    opacity: var(--scroll-stack-dim, 0);
+    pointer-events: none;
+    transition: opacity 0.15s ease;
+  }
+}
+
+/* Accessibility: Respect system reduced-motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto !important;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001s !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001s !important;
+  }
+
+  .scroll-stack-card,
+  .scroll-expand__media,
+  .scroll-expand__frame {
+    transform: none !important;
+    clip-path: none !important;
+    transition: none !important;
+  }
 }

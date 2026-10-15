@@ -1,8 +1,7 @@
 import React from "react";
 import { ArrowUpRight, Sparkles, CheckCircle2 } from "lucide-react";
-import Eyebrow from "../common/Eyebrow";
-import ScrollStack, { ScrollStackItem } from "../common/ScrollStack";
-import { programmesList } from "../../constants/siteData";
+import { Eyebrow, ScrollStack, ScrollStackItem } from "@/components/common";
+import { programmesList } from "@/constants";
 
 const programmeHighlights = {
   "01": ["Vocational Sewing & Crafts", "Financial Independence"],
@@ -15,40 +14,33 @@ const programmeHighlights = {
 export function ProgrammesSection({ onOpenInterest }) {
   return (
     <section
-      className="py-20 lg:py-28 bg-bone relative"
+      className="py-8 lg:py-14 bg-bone relative"
       id="programmes"
       data-testid="programmes-section"
     >
       {/* Section Header */}
-      <div className="max-w-[1200px] w-full px-4 sm:px-6 lg:px-8 mx-auto mb-14 sm:mb-20">
-        <div className="flex flex-col items-center text-center max-w-3xl mx-auto">
+      <div className="max-w-7xl w-full px-4 sm:px-6 lg:px-8 mx-auto mb-14 sm:mb-20">
+        <div className="flex flex-col items-center text-center max-w-7xl mx-auto">
           <Eyebrow text="Our programmes" />
           <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-normal text-ink tracking-tight mt-3 mb-4 sm:mb-5">
             TURNING COMPASSION
             <br />
             INTO <i className="text-gold italic font-serif">OPPORTUNITY</i>
           </h2>
-          <div className="text-[15px] sm:text-[16px] text-muted leading-relaxed space-y-3 max-w-2xl">
+          <div className="text-[15px] sm:text-[16px] text-muted leading-relaxed space-y-3 max-w-7xl">
             <p>
-              Inspired by Dropati Jethani's life and values, we are developing
-              initiatives that address the practical challenges women and girls
-              face.
+              Inspired by Dropati Jethani's life and values, we are developing initiatives
+              that address the practical challenges women and girls face.
             </p>
             <p>
-              From learning new skills to exploring employment, from educational
-              guidance to community support, our aim is to help create
-              opportunities that lead to meaningful, lasting change.
+              From learning new skills to exploring employment, from educational guidance
+              to community support, our aim is to help create opportunities that lead to
+              meaningful, lasting change.
             </p>
             <p className="text-xs sm:text-sm text-muted/80">
-              Explore the areas we intend to focus on as the foundation develops
-              its programmes and partnerships.
+              Explore the areas we intend to focus on as the foundation develops its
+              programmes and partnerships.
             </p>
-          </div>
-
-          {/* Gentle scroll indicator */}
-          <div className="mt-8 flex items-center gap-2 text-xs uppercase tracking-widest text-[#01236A]/70 font-semibold">
-            <span>Scroll through our initiatives</span>
-            <span className="text-[#01236A] animate-bounce font-bold">↓</span>
           </div>
         </div>
       </div>

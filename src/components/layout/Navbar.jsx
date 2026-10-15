@@ -1,28 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { ArrowUpRight, Menu, X } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
-import BrandMark from "../common/BrandMark";
-import CubeButton from "../common/CubeButton";
-import { navLinks } from "../../constants/siteData";
+import { motion } from "framer-motion";
+import { BrandMark, CubeButton } from "@/components/common";
+import { navLinks } from "@/constants";
+import { useScrollPosition, useKeydown } from "@/hooks";
 
 export function Navbar({ onOpenInterest }) {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 20) {
-        setScrolled(true);
-      } else {
-        setScrolled(false);
-      }
-    };
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    handleScroll();
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  const { scrolled } = useScrollPosition(20);
 
   const closeMenu = () => setMenuOpen(false);
+  useKeydown("Escape", closeMenu, menuOpen);
 
   const handleInterestClick = () => {
     closeMenu();
@@ -79,6 +67,7 @@ export function Navbar({ onOpenInterest }) {
         className="md:hidden bg-transparent border-0 text-[#01236A] hover:text-[#FFD900] p-2 cursor-pointer transition-transform duration-200 hover:scale-110"
         onClick={() => setMenuOpen(!menuOpen)}
         aria-label="Toggle menu"
+        aria-expanded={menuOpen}
         data-testid="mobile-menu-button"
       >
         {menuOpen ? <X size={24} /> : <Menu size={24} />}

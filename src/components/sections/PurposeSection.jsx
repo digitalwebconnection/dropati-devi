@@ -1,7 +1,5 @@
-import React from "react";
-import Eyebrow from "../common/Eyebrow";
-import { purposePillars } from "../../constants/siteData";
-import PurposeCard from "./PurposeCard";
+import { Eyebrow, PurposeCard } from "@/components/common";
+import { purposePillars } from "@/constants";
 
 export function PurposeSection() {
   return (
@@ -27,17 +25,17 @@ export function PurposeSection() {
           </div>
           <div className="text-[15px] sm:text-[16px] text-muted leading-relaxed space-y-4">
             <p>
-              We believe that a woman's circumstances should never define the
-              limits of her future.
+              We believe that a woman's circumstances should never define the limits of
+              her future.
             </p>
             <p>
-              Through our proposed initiatives, we aim to help women and girls
-              access learning opportunities, develop practical skills, explore
-              livelihoods and find the support they need to move forward.
+              Through our proposed initiatives, we aim to help women and girls access
+              learning opportunities, develop practical skills, explore livelihoods and
+              find the support they need to move forward.
             </p>
             <p>
-              Our goal is simple: to help create a future where women can make
-              informed choices, build confidence and shape their own lives.
+              Our goal is simple: to help create a future where women can make informed
+              choices, build confidence and shape their own lives.
             </p>
           </div>
         </div>
@@ -45,11 +43,7 @@ export function PurposeSection() {
         {/* Cards Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-6 lg:gap-6">
           {purposePillars.map((pillar, index) => (
-            <PurposeCard
-              key={pillar.title}
-              pillar={pillar}
-              index={index}
-            />
+            <PurposeCard key={pillar.title} pillar={pillar} index={index} />
           ))}
         </div>
       </div>

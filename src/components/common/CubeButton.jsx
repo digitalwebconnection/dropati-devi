@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { cn } from "@/utils";
 
 export function CubeButton({
   frontText,
@@ -108,7 +109,11 @@ export function CubeButton({
     </div>
   );
 
-  const wrapperClasses = `group inline-block ${currentVariant.dimensions} [perspective:1000px] cursor-pointer ${className}`;
+  const wrapperClasses = cn(
+    "group inline-block [perspective:1000px] cursor-pointer",
+    currentVariant.dimensions,
+    className
+  );
 
   if (href) {
     return (

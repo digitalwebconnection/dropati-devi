@@ -1,8 +1,7 @@
 import React from "react";
 import { ArrowUpRight, HeartHandshake } from "lucide-react";
-import Eyebrow from "../common/Eyebrow";
-import ScrollExpand from "../common/ScrollExpand";
-import { siteImages } from "../../constants/siteData";
+import { Eyebrow, ScrollExpand } from "@/components/common";
+import { siteImages } from "@/constants";
 
 export function HelpSection({ onOpenInterest }) {
   const helpImage =
@@ -22,11 +21,7 @@ export function HelpSection({ onOpenInterest }) {
   );
 
   return (
-    <section
-      className="relative w-full bg-bone"
-      id="help"
-      data-testid="help-section"
-    >
+    <section className="relative w-full bg-bone" id="help" data-testid="help-section">
       <ScrollExpand
         src={helpImage}
         alt="Dropati Devi Foundation - Get Help"
@@ -71,13 +66,13 @@ export function HelpSection({ onOpenInterest }) {
             <div className="lg:col-span-7 flex flex-col justify-center text-white/95 space-y-4 lg:pl-2">
               <div className="text-[14px] sm:text-[15px] lg:text-[16px] leading-relaxed space-y-3 text-white/90">
                 <p>
-                  If you are looking for learning opportunities, skills
-                  development, guidance or relevant community resources, we
-                  invite you to connect with us.
+                  If you are looking for learning opportunities, skills development,
+                  guidance or relevant community resources, we invite you to connect with
+                  us.
                 </p>
                 <p className="text-white/80">
-                  Tell us a little about what you are looking for. Our team will
-                  review your enquiry and respond when possible.
+                  Tell us a little about what you are looking for. Our team will review
+                  your enquiry and respond when possible.
                 </p>
               </div>
 
@@ -97,9 +92,9 @@ export function HelpSection({ onOpenInterest }) {
               </div>
 
               <small className="block text-[11px] sm:text-xs text-white/70 leading-relaxed max-w-xl pt-2.5 border-t border-white/15">
-                Please note: Enquiries do not guarantee assistance or enrolment
-                in a programme. Availability will depend on the foundation's
-                operational readiness and the services offered at the time.
+                Please note: Enquiries do not guarantee assistance or enrolment in a
+                programme. Availability will depend on the foundation's operational
+                readiness and the services offered at the time.
               </small>
             </div>
           </div>

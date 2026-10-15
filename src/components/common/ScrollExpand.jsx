@@ -1,5 +1,4 @@
 import React, { useCallback, useEffect, useRef } from "react";
-import "./ScrollExpand.css";
 
 const clamp = (v, a, b) => (v < a ? a : v > b ? b : v);
 const smoothstep = (edge0, edge1, x) => {
@@ -159,7 +158,7 @@ export function ScrollExpand({
       previewBoxRef.current.style.borderColor = `rgba(197, 160, 89, ${goldAlpha})`;
       const shadowBlur = 30 + 30 * e;
       const shadowSpread = -10 + 5 * e;
-      const shadowAlpha = 0.30 + 0.15 * e;
+      const shadowAlpha = 0.3 + 0.15 * e;
       previewBoxRef.current.style.boxShadow = `0 20px ${shadowBlur}px ${shadowSpread}px rgba(18, 14, 12, ${shadowAlpha})`;
     }
 
@@ -180,7 +179,7 @@ export function ScrollExpand({
 
     // Overlay content fades in as frame nears expanded state
     if (overlayRef.current) {
-      const inn = smoothstep(0.50, 0.92, p);
+      const inn = smoothstep(0.5, 0.92, p);
       overlayRef.current.style.opacity = `${inn}`;
       overlayRef.current.style.transform = `translate3d(0, ${16 * (1 - inn)}px, 0)`;
       overlayRef.current.style.pointerEvents = inn > 0.6 ? "auto" : "none";
@@ -216,12 +215,12 @@ export function ScrollExpand({
       if (!initW || !initH) {
         if (stageW >= 1024) {
           // Desktop: wide landscape ratio (~16:9)
-          initW = Math.round(Math.min(640, stageW * 0.50));
+          initW = Math.round(Math.min(640, stageW * 0.5));
           initH = Math.round(Math.min(360, stageH * 0.44, initW * 0.58));
         } else if (stageW >= 640) {
           // Tablet
           initW = Math.round(Math.min(540, stageW * 0.72));
-          initH = Math.round(Math.min(330, stageH * 0.40, initW * 0.60));
+          initH = Math.round(Math.min(330, stageH * 0.4, initW * 0.6));
         } else {
           // Mobile
           initW = Math.round(stageW * 0.88);
@@ -240,7 +239,10 @@ export function ScrollExpand({
 
       // Add clean, generous spacing between header title and landscape image
       const headerGap = stageW < 640 ? 28 : 46;
-      const topInset = Math.max(headerBottom + headerGap, Math.round((stageH - initH) * 0.40));
+      const topInset = Math.max(
+        headerBottom + headerGap,
+        Math.round((stageH - initH) * 0.4)
+      );
       const bottomInset = Math.max(30, stageH - (topInset + initH));
       const leftInset = Math.round((stageW - initW) / 2);
       const rightInset = stageW - (leftInset + initW);
@@ -266,18 +268,18 @@ export function ScrollExpand({
       }
 
       // Calculate Expanded Insets
-      const finalEndTop = c.endTopInset != null 
-        ? c.endTopInset 
-        : Math.max(stageW < 640 ? 36 : 68, Math.round((stageH - expH) / 2));
-      const finalEndBottom = c.endBottomInset != null 
-        ? c.endBottomInset 
-        : Math.max(28, stageH - (finalEndTop + expH));
-      const finalEndLeft = c.endLeftInset != null 
-        ? c.endLeftInset 
-        : Math.round((stageW - expW) / 2);
-      const finalEndRight = c.endRightInset != null 
-        ? c.endRightInset 
-        : stageW - (finalEndLeft + expW);
+      const finalEndTop =
+        c.endTopInset != null
+          ? c.endTopInset
+          : Math.max(stageW < 640 ? 36 : 68, Math.round((stageH - expH) / 2));
+      const finalEndBottom =
+        c.endBottomInset != null
+          ? c.endBottomInset
+          : Math.max(28, stageH - (finalEndTop + expH));
+      const finalEndLeft =
+        c.endLeftInset != null ? c.endLeftInset : Math.round((stageW - expW) / 2);
+      const finalEndRight =
+        c.endRightInset != null ? c.endRightInset : stageW - (finalEndLeft + expW);
 
       geometryRef.current = {
         stageW,

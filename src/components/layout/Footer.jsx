@@ -1,6 +1,6 @@
 import React from "react";
-import BrandMark from "../common/BrandMark";
-import { contactDetails } from "../../constants/siteData";
+import { BrandMark } from "@/components/common";
+import { contactDetails } from "@/constants";
 
 export function Footer() {
   return (

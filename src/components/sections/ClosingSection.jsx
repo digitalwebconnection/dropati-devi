@@ -1,6 +1,6 @@
 import React from "react";
 import { ArrowUpRight } from "lucide-react";
-import Eyebrow from "../common/Eyebrow";
+import { Eyebrow } from "@/components/common";
 
 export function ClosingSection({ onOpenInterest }) {
   return (
@@ -37,33 +37,25 @@ export function ClosingSection({ onOpenInterest }) {
           <span className="absolute inset-0 text-[#FFD900] text-4xl blur-sm opacity-50">
             ✳
           </span>
-          <span className="relative text-[#FFD900] text-4xl block opacity-90">
-            ✳
-          </span>
+          <span className="relative text-[#FFD900] text-4xl block opacity-90">✳</span>
         </div>
 
         <div data-aos="zoom-in" data-aos-duration="900">
-          <Eyebrow
-            text="A legacy of strength"
-            light={true}
-            className="justify-center"
-          />
+          <Eyebrow text="A legacy of strength" light={true} className="justify-center" />
           <h2 className="font-serif text-3xl sm:text-5xl lg:text-6xl font-normal text-white tracking-tight my-6">
             ONE WOMAN'S STRENGTH
             <br />
-            CAN INSPIRE{" "}
-            <i className="text-[#FFD900] italic font-serif">GENERATIONS.</i>
+            CAN INSPIRE <i className="text-[#FFD900] italic font-serif">GENERATIONS.</i>
           </h2>
           <div className="text-[15px] sm:text-[17px] text-white/95 leading-relaxed space-y-4 max-w-2xl mx-auto mb-10">
             <p>
-              Dropati Jethani spent her life caring for others, overcoming
-              hardship and helping her family move forward. Her story inspires
-              the work we hope to do for women and girls who deserve the same
-              chance to build a brighter future.
+              Dropati Jethani spent her life caring for others, overcoming hardship and
+              helping her family move forward. Her story inspires the work we hope to do
+              for women and girls who deserve the same chance to build a brighter future.
             </p>
             <p>
-              Her journey does not end with her story. It continues through
-              every opportunity we help create.
+              Her journey does not end with her story. It continues through every
+              opportunity we help create.
             </p>
           </div>
           <button

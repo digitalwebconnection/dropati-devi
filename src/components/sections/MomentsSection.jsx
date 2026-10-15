@@ -1,14 +1,9 @@
-import React, { useState, useEffect } from "react";
-import {
-  ChevronLeft,
-  ChevronRight,
-  Heart,
-  Sparkles,
-  MousePointer,
-} from "lucide-react";
+import React, { useState } from "react";
+import { ChevronLeft, ChevronRight, Heart, Sparkles } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import Eyebrow from "../common/Eyebrow";
-import { momentsList } from "../../constants/siteData";
+import { Eyebrow } from "@/components/common";
+import { momentsList } from "@/constants";
+import { useKeydown } from "@/hooks";
 
 // Spring transition matching the Framer configuration:
 // { damping: 30, delay: 0, mass: 1, stiffness: 160, type: "spring" }
@@ -27,24 +22,17 @@ export function MomentsSection() {
   };
 
   const handlePrevCard = () => {
-    setActiveIndex(
-      (prev) => (prev - 1 + momentsList.length) % momentsList.length,
-    );
+    setActiveIndex((prev) => (prev - 1 + momentsList.length) % momentsList.length);
   };
 
-  useEffect(() => {
-    const handleKeyDown = (e) => {
-      if (e.key === "ArrowRight") handleNextCard();
-      if (e.key === "ArrowLeft") handlePrevCard();
-    };
-
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, []);
+  useKeydown(["ArrowRight", "ArrowLeft"], (e) => {
+    if (e.key === "ArrowRight") handleNextCard();
+    if (e.key === "ArrowLeft") handlePrevCard();
+  });
 
   return (
     <section
-      className="py-20 lg:py-32 bg-sand border-y border-line relative overflow-hidden"
+      className="pt-20 lg:pt-32 pb-0 bg-sand border-y border-line relative overflow-hidden"
       id="moments"
       data-testid="moments-section"
     >
@@ -70,15 +58,13 @@ export function MomentsSection() {
           </div>
           <div className="text-[15px] sm:text-[16px] text-muted leading-relaxed space-y-4">
             <p>
-              Behind every value of resilience, courage and service was a real
-              woman who brought laughter, warmth and unconditional love to
-              everyone around her.
+              Behind every value of resilience, courage and service was a real woman who
+              brought laughter, warmth and unconditional love to everyone around her.
             </p>
             <p>
-              These authentic photographs celebrate Dropati Devi in her element
-              — rejoicing with family, sharing playful laughter with
-              grandchildren, celebrating sweet milestones, and radiating quiet
-              grace and wisdom.
+              These authentic photographs celebrate Dropati Devi in her element —
+              rejoicing with family, sharing playful laughter with grandchildren,
+              celebrating sweet milestones, and radiating quiet grace and wisdom.
             </p>
           </div>
         </div>
@@ -275,21 +261,69 @@ export function MomentsSection() {
             );
           })}
         </div>
+      </div>
 
-        {/* Bottom Banner Note */}
+      {/* Full-Width Quote Banner Section */}
+      <div
+        className="w-full mt-16 sm:mt-24 relative overflow-hidden bg-gradient-to-br from-[#01236A] via-[#001b54] to-[#001133] py-16 sm:py-12 px-5 md:px-8 text-center text-white border-t border-[#FFD900]/30 shadow-2xl"
+        data-aos="fade-up"
+        data-aos-duration="850"
+      >
+        {/* Subtle Ambient Radial Lighting */}
         <div
-          className="mt-14 sm:mt-18 p-7 sm:p-9 bg-white/70 backdrop-blur-sm border border-line rounded-lg text-center flex flex-col items-center justify-center"
-          data-aos="fade-up"
-          data-aos-duration="800"
-        >
-          <span className="text-[#FFD900] text-2xl mb-2 font-serif">❦</span>
-          <p className="font-serif text-lg sm:text-xl text-ink font-normal italic max-w-2xl mx-auto leading-relaxed">
-            "Her journey reminds us that true strength is woven with kindness,
-            laughter, and the quiet devotion to lifting others up."
-          </p>
-          <span className="font-sans text-xs uppercase tracking-widest text-muted/80 mt-3 font-semibold">
-            Dropati Jethani (1945) • A Legacy of Compassion
-          </span>
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background:
+              "radial-gradient(ellipse 70% 60% at 50% 50%, rgba(255, 217, 0, 0.12) 0%, rgba(1, 35, 106, 0.4) 50%, transparent 80%)",
+          }}
+        />
+
+        {/* Delicate golden accent line on top */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-72 sm:w-96 h-[2px] bg-gradient-to-r from-transparent via-[#FFD900]/80 to-transparent pointer-events-none" />
+
+        {/* Background decorative quote watermark */}
+        <div className="absolute -top-6 left-6 md:left-16 text-[#FFD900]/[0.06] text-9xl sm:text-[160px] font-serif pointer-events-none select-none leading-none">
+          “
+        </div>
+        <div className="absolute -bottom-16 right-6 md:right-16 text-[#FFD900]/[0.06] text-9xl sm:text-[160px] font-serif pointer-events-none select-none leading-none">
+          ”
+        </div>
+
+        <div className="relative z-10 flex flex-col items-center justify-center max-w-5xl mx-auto">
+          {/* Stylized Quote Text */}
+          <blockquote className="relative my-2 max-w-4xl">
+            <p className="font-serif text-xl sm:text-2xl md:text-3xl lg:text-[34px] text-white/95 font-normal leading-relaxed sm:leading-[1.4] tracking-wide">
+              “Her journey reminds us that{" "}
+              <span className="text-[#FFD900] italic font-serif font-medium">
+                true strength
+              </span>{" "}
+              is woven with{" "}
+              <span className="text-white font-medium underline decoration-[#FFD900]/40 underline-offset-4">
+                kindness
+              </span>
+              ,{" "}
+              <span className="text-[#FFD900] italic font-serif font-medium">
+                laughter
+              </span>
+              , and the quiet devotion to{" "}
+              <span className="text-[#FFD900] font-medium">lifting others up</span>
+              .”
+            </p>
+          </blockquote>
+
+          {/* Author Attribution Divider */}
+          <div className="pt-6 border-t border-white/15 w-full max-w-md mx-auto flex items-center justify-center gap-4">
+            <div className="h-[1px] flex-1 bg-gradient-to-r from-transparent to-[#FFD900]/40" />
+            <div className="flex flex-col items-center">
+              <span className="font-serif text-sm sm:text-base font-semibold text-white tracking-wide">
+                Dropati Jethani (1945)
+              </span>
+              <span className="font-sans text-[11px] uppercase tracking-widest text-[#FFD900]/90 font-medium mt-0.5">
+                A Legacy of Compassion
+              </span>
+            </div>
+            <div className="h-[1px] flex-1 bg-gradient-to-l from-transparent to-[#FFD900]/40" />
+          </div>
         </div>
       </div>
     </section>

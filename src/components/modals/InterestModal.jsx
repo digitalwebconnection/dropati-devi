@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { ArrowUpRight, X, Check, Loader2, AlertCircle } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import Eyebrow from "../common/Eyebrow";
-import { WEB3FORMS_ACCESS_KEY } from "../../constants/siteData";
+import { Eyebrow } from "@/components/common";
+import { submitInterestEnquiry } from "@/services";
+import { useBodyScrollLock, useKeydown } from "@/hooks";
 
 export function InterestModal({ isOpen, onClose }) {
   const [submitted, setSubmitted] = useState(false);
@@ -14,7 +15,11 @@ export function InterestModal({ isOpen, onClose }) {
     phone: "",
     interestType: "I'm looking for support",
     message: "",
+    botcheck: false,
   });
+
+  useBodyScrollLock(isOpen);
+  useKeydown("Escape", onClose, isOpen);
 
   useEffect(() => {
     if (isOpen) {
@@ -27,61 +32,39 @@ export function InterestModal({ isOpen, onClose }) {
         phone: "",
         interestType: "I'm looking for support",
         message: "",
+        botcheck: false,
       });
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
     }
-
-    const handleKeyDown = (e) => {
-      if (e.key === "Escape" && isOpen) {
-        onClose();
-      }
-    };
-    window.addEventListener("keydown", handleKeyDown);
-    return () => {
-      window.removeEventListener("keydown", handleKeyDown);
-      document.body.style.overflow = "";
-    };
-  }, [isOpen, onClose]);
+  }, [isOpen]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+
+    const trimmedName = formData.name.trim();
+    const trimmedEmail = formData.email.trim();
+
+    if (!trimmedName || !trimmedEmail) {
+      setError("Please provide your name and a valid email address.");
+      return;
+    }
+
     setIsSubmitting(true);
     setError(null);
 
     try {
-      const response = await fetch("https://api.web3forms.com/submit", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-        body: JSON.stringify({
-          access_key: WEB3FORMS_ACCESS_KEY,
-          subject: `New Interest Enquiry: ${formData.interestType} - ${formData.name}`,
-          from_name: "Dropati Devi Foundation Website",
-          name: formData.name,
-          email: formData.email,
-          phone: formData.phone || "Not provided",
-          interest_type: formData.interestType,
-          message: formData.message || "No additional message provided.",
-          botcheck: "",
-        }),
+      await submitInterestEnquiry({
+        ...formData,
+        name: trimmedName,
+        email: trimmedEmail,
+        phone: formData.phone.trim(),
+        message: formData.message.trim(),
       });
-
-      const result = await response.json();
-      if (result.success) {
-        setSubmitted(true);
-      } else {
-        setError(
-          result.message || "Failed to submit enquiry. Please try again.",
-        );
-      }
+      setSubmitted(true);
     } catch (err) {
-      console.error("Web3Forms submission error:", err);
+      console.error("Submission error:", err);
       setError(
-        "Network error. Please try again or reach out directly to dropatidevifoundation1945@gmail.com.",
+        err.message ||
+          "Network error. Please try again or reach out directly to dropatidevifoundation1945@gmail.com."
       );
     } finally {
       setIsSubmitting(false);
@@ -143,8 +126,7 @@ export function InterestModal({ isOpen, onClose }) {
                   {formData.name ? `, ${formData.name}` : ""}.
                 </h2>
                 <p className="text-sm text-muted leading-relaxed max-w-md mb-2">
-                  Your enquiry has been received and delivered directly to our
-                  team at{" "}
+                  Your enquiry has been received and delivered directly to our team at{" "}
                   <strong className="text-[#01236A]">
                     dropatidevifoundation1945@gmail.com
                   </strong>
@@ -176,8 +158,8 @@ export function InterestModal({ isOpen, onClose }) {
                   </i>
                 </h2>
                 <p className="text-xs sm:text-[13px] text-muted leading-relaxed mb-4">
-                  Tell us a little about what you are looking for. Our team will
-                  review your enquiry and respond when possible.
+                  Tell us a little about what you are looking for. Our team will review
+                  your enquiry and respond when possible.
                 </p>
 
                 {error && (
@@ -192,6 +174,21 @@ export function InterestModal({ isOpen, onClose }) {
                   data-testid="interest-form"
                   className="space-y-3.5"
                 >
+                  {/* Anti-bot honeypot field (hidden from assistive tech & genuine human users) */}
+                  <input
+                    type="checkbox"
+                    name="botcheck"
+                    className="hidden"
+                    style={{ display: "none" }}
+                    tabIndex={-1}
+                    autoComplete="off"
+                    aria-hidden="true"
+                    checked={formData.botcheck || false}
+                    onChange={(e) =>
+                      setFormData({ ...formData, botcheck: e.target.checked })
+                    }
+                  />
+
                   {/* Row 1: Name and Email side by side */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
                     <label className="block text-[#01236A] text-[11px] font-bold tracking-wider uppercase">

@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useId, useState, useCallback, useRef } from "react";
+import React, { useEffect, useId, useState, useCallback, useRef, useMemo } from "react";
 
 // Helper for conditional classNames
 function cn(...classes) {
@@ -58,16 +58,21 @@ export function PixelImage({
   onIndexChange,
 }) {
   const { rows, cols } = customGrid;
-  const images = srcs && srcs.length > 0 ? srcs : src ? [src] : [];
+  const images = useMemo(
+    () => (srcs && srcs.length > 0 ? srcs : src ? [src] : []),
+    [srcs, src]
+  );
   const [internalIndex, setInternalIndex] = useState(0);
   const activeIndex = controlledIndex !== undefined ? controlledIndex : internalIndex;
 
   const [activePixels, setActivePixels] = useState(() => new Set());
   const activeIndexRef = useRef(activeIndex);
-  activeIndexRef.current = activeIndex;
-
   const onIndexChangeRef = useRef(onIndexChange);
-  onIndexChangeRef.current = onIndexChange;
+
+  useEffect(() => {
+    activeIndexRef.current = activeIndex;
+    onIndexChangeRef.current = onIndexChange;
+  });
 
   // Preload images into browser memory
   useEffect(() => {
@@ -81,7 +86,10 @@ export function PixelImage({
   // When controlled index changes from outside, reset revealed pixels to reveal the newly chosen image
   const prevControlledIndexRef = useRef(controlledIndex);
   useEffect(() => {
-    if (controlledIndex !== undefined && controlledIndex !== prevControlledIndexRef.current) {
+    if (
+      controlledIndex !== undefined &&
+      controlledIndex !== prevControlledIndexRef.current
+    ) {
       prevControlledIndexRef.current = controlledIndex;
       setActivePixels(new Set());
     }
@@ -152,7 +160,12 @@ export function PixelImage({
   const currentSrc = images[activeIndex] || "";
 
   return (
-    <div className={cn("relative overflow-hidden group bg-[#001747] w-full h-full", className)}>
+    <div
+      className={cn(
+        "relative overflow-hidden group bg-[#001747] w-full h-full",
+        className
+      )}
+    >
       <img
         src={currentSrc}
         className={cn(
@@ -180,9 +193,7 @@ export function PixelImage({
                 onMouseEnter={() => handleMouseEnter(r, c)}
                 className={cn(
                   "w-full h-full transition-opacity duration-700 ease-out select-none",
-                  isActive
-                    ? "opacity-0 pointer-events-none"
-                    : "opacity-100 bg-[#001747]"
+                  isActive ? "opacity-0 pointer-events-none" : "opacity-100 bg-[#001747]"
                 )}
               />
             );
@@ -251,7 +262,9 @@ export function ArchedHeroImage({
         <div className="absolute inset-0 bg-gradient-to-t from-ink/80 via-ink/15 to-transparent pointer-events-none z-20" />
 
         {/* Optional overlay children (e.g. caption badges, indicators) */}
-        {children && <div className="absolute inset-0 z-30 pointer-events-none">{children}</div>}
+        {children && (
+          <div className="absolute inset-0 z-30 pointer-events-none">{children}</div>
+        )}
       </div>
     </div>
   );

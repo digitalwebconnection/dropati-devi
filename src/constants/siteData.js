@@ -1,23 +1,28 @@
 export const siteImages = {
-  hero: "/images/Elderly Woman Applauding Gujarati Schoolchildren.png",
+  hero: "/images/hero/hero-1-schoolchildren.webp",
   heroSlides: [
     {
-      src: "/images/Elderly Woman Applauding Gujarati Schoolchildren.png",
+      src: "/images/hero/hero-1-schoolchildren.webp",
       alt: "Elderly Woman Applauding Gujarati Schoolchildren",
       tag: "Education & Nurturing",
     },
     {
-      src: "/Caring Hands, Community Aid Distribution.png",
+      src: "/images/hero/hero-2-community-aid.webp",
       alt: "Caring Hands, Community Aid Distribution",
       tag: "Community Aid & Care",
     },
     {
-      src: "/images/Joyful Snack Celebration Under the Pavilion.png",
+      src: "/images/hero/hero-3-celebration.webp",
       alt: "Joyful Snack Celebration Under the Pavilion",
       tag: "Community Joy & Celebration",
     },
+    {
+      src: "/images/hero/hero-4-legacy.webp",
+      alt: "Dropati Devi - Her Living Legacy",
+      tag: "Living Legacy & Heritage",
+    },
   ],
-  story: "/images/moments/moment-6-grace.jpg",
+  story: "/images/moments/moment-6-grace.webp",
   wellbeing:
     "https://images.unsplash.com/photo-1544027993-37dbfe43562a?auto=format&fit=crop&w=800&q=85",
   skills:
@@ -46,12 +51,12 @@ export const momentsList = [
     category: "Celebration",
     categoryLabel: "Celebration & Family",
     tag: "Family Togetherness",
-    image: "/images/moments/moment-1-celebration.jpg",
-    originalFile: "WhatsApp Image 2026-10-12 at 1.21.26 PM (1).jpeg",
+    image: "/images/moments/moment-1-celebration.webp",
     alt: "Dropati Devi surrounded by joyful family singing and dancing",
     description:
       "Dropati Devi smiling brightly at the center of her family, surrounded by loved ones celebrating with hands raised in joyous rhythm, laughter, and song.",
-    quote: "Her presence was the light that brought the whole family together in laughter.",
+    quote:
+      "Her presence was the light that brought the whole family together in laughter.",
     orientation: "landscape",
     objectPosition: "object-center",
   },
@@ -62,8 +67,7 @@ export const momentsList = [
     category: "Wisdom",
     categoryLabel: "Wisdom & Grace",
     tag: "Dignity & Reflection",
-    image: "/images/moments/moment-2-wisdom.jpg",
-    originalFile: "WhatsApp Image 2026-10-12 at 1.21.26 PM (2).jpeg",
+    image: "/images/moments/moment-2-wisdom.webp",
     alt: "Dropati Devi seated peacefully in thoughtful contemplation",
     description:
       "A peaceful, contemplative moment capturing her calm dignity, profound patience, and the silent strength that weathered life's hardest storms.",
@@ -78,8 +82,7 @@ export const momentsList = [
     category: "Joy",
     categoryLabel: "Joyful Spirit",
     tag: "Humour & Warmth",
-    image: "/images/moments/moment-3-playful.jpg",
-    originalFile: "WhatsApp Image 2026-10-12 at 1.21.26 PM (3).jpeg",
+    image: "/images/moments/moment-3-playful.webp",
     alt: "Dropati Devi in a playful, affectionate selfie with a cat filter",
     description:
       "A spontaneous, heartwarming selfie showing her youthful warmth, delightful humor, and the loving bond she shared with the younger generation.",
@@ -94,8 +97,7 @@ export const momentsList = [
     category: "Celebration",
     categoryLabel: "Celebration & Family",
     tag: "Birthday Memories",
-    image: "/images/moments/moment-4-sweet-moments.jpg",
-    originalFile: "WhatsApp Image 2026-10-12 at 1.21.26 PM (4).jpeg",
+    image: "/images/moments/moment-4-sweet-moments.webp",
     alt: "Dropati Devi enjoying her birthday cake with family",
     description:
       "Cherishing birthday cake with family, celebrating life's precious milestones surrounded by the deep affection of her children and grandchildren.",
@@ -110,8 +112,7 @@ export const momentsList = [
     category: "Celebration",
     categoryLabel: "Celebration & Family",
     tag: "Songs & Togetherness",
-    image: "/images/moments/moment-5-harmony.jpg",
-    originalFile: "WhatsApp Image 2026-10-12 at 1.21.26 PM (5).jpeg",
+    image: "/images/moments/moment-5-harmony.webp",
     alt: "Dropati Devi clapping in rhythm surrounded by singing family",
     description:
       "Clapping hands and singing along in joyous unison, surrounded by loved ones celebrating traditions, unity, and shared happiness.",
@@ -126,8 +127,7 @@ export const momentsList = [
     category: "Wisdom",
     categoryLabel: "Wisdom & Grace",
     tag: "Pillar of Love",
-    image: "/images/moments/moment-6-grace.jpg",
-    originalFile: "WhatsApp Image 2026-10-12 at 1.21.26 PM.jpeg",
+    image: "/images/moments/moment-6-grace.webp",
     alt: "Dropati Devi seated gracefully at her celebration table",
     description:
       "Dropati Devi seated with quiet poise at the center of the family gathering — the steadfast foundation whose hard work nurtured generations.",

@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from "react";
-import Eyebrow from "../common/Eyebrow";
-import { valuesList } from "../../constants/siteData";
+import { RotateCw, Sparkles, ArrowRight } from "lucide-react";
+import { Eyebrow } from "@/components/common";
+import { valuesList } from "@/constants";
 
 export function ValuesSection() {
   const [hoveredIndex, setHoveredIndex] = useState(null);
+  const [flippedIndex, setFlippedIndex] = useState(null);
+  const [autoIndex, setAutoIndex] = useState(null);
+  const [isGridHovered, setIsGridHovered] = useState(false);
 
   // Preload all 6 value images on mount for instantaneous hover response
   useEffect(() => {
@@ -14,6 +18,33 @@ export function ValuesSection() {
       }
     });
   }, []);
+
+  // Auto-hover / flip a card every 8 seconds (flips to content for 5s, then flips back)
+  useEffect(() => {
+    let revertTimer;
+    let nextIdx = 0;
+
+    const interval = setInterval(() => {
+      // Don't auto-hover if user is manually interacting with cards
+      if (isGridHovered || hoveredIndex !== null || flippedIndex !== null) {
+        return;
+      }
+
+      setAutoIndex(nextIdx);
+
+      // Revert card back to image after 5 seconds of viewing
+      revertTimer = setTimeout(() => {
+        setAutoIndex(null);
+      }, 5000);
+
+      nextIdx = (nextIdx + 1) % valuesList.length;
+    }, 8000);
+
+    return () => {
+      clearInterval(interval);
+      if (revertTimer) clearTimeout(revertTimer);
+    };
+  }, [isGridHovered, hoveredIndex, flippedIndex]);
 
   return (
     <section
@@ -36,18 +67,26 @@ export function ValuesSection() {
             </h2>
           </div>
           <p className="text-[15px] sm:text-[16px] text-muted leading-relaxed">
-            The life of Dropati Jethani taught us that the way we treat people
-            matters as much as what we achieve.
+            The life of Dropati Jethani taught us that the way we treat people matters as
+            much as what we achieve.
           </p>
         </div>
 
-        {/* Values Cards Grid with Image Hover Reveal */}
+        {/* 3D Flip Values Cards Grid with 8s Auto-Hover Cycle */}
         <div
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8"
-          onMouseLeave={() => setHoveredIndex(null)}
+          onMouseEnter={() => {
+            setIsGridHovered(true);
+            setAutoIndex(null);
+          }}
+          onMouseLeave={() => {
+            setIsGridHovered(false);
+            setHoveredIndex(null);
+          }}
         >
           {valuesList.map((val, index) => {
-            const isCardActive = hoveredIndex === index;
+            const isFlipped =
+              hoveredIndex === index || flippedIndex === index || autoIndex === index;
 
             return (
               <div
@@ -56,103 +95,138 @@ export function ValuesSection() {
                 data-aos-delay={index * 80}
                 data-aos-duration="800"
                 data-testid={`value-${index + 1}`}
-                onMouseEnter={() => setHoveredIndex(index)}
+                role="button"
+                tabIndex={0}
+                aria-expanded={isFlipped}
+                onMouseEnter={() => {
+                  setAutoIndex(null);
+                  setHoveredIndex(index);
+                }}
                 onMouseLeave={() => setHoveredIndex(null)}
-                className="group relative cursor-pointer select-none"
+                onClick={() => setFlippedIndex((prev) => (prev === index ? null : index))}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    setFlippedIndex((prev) => (prev === index ? null : index));
+                  }
+                }}
+                className="group relative cursor-pointer select-none h-[320px] sm:h-[340px] w-full"
+                style={{
+                  perspective: "1000px",
+                  WebkitPerspective: "1000px",
+                }}
               >
-                {/* Inner Card Container */}
-                <article
-                  className={`relative bg-white border rounded-[16px] p-7 sm:p-8 flex flex-col justify-between overflow-hidden min-h-[225px] transition-all duration-500 ease-out ${
-                    isCardActive
-                      ? "border-[#FFD900] -translate-y-2 shadow-[0_24px_50px_rgba(1,35,106,0.22)] ring-1 ring-[#FFD900]/50"
-                      : "border-[#e2e8f0] shadow-sm hover:border-[#FFD900] hover:-translate-y-2 hover:shadow-[0_24px_50px_rgba(1,35,106,0.22)] hover:ring-1 hover:ring-[#FFD900]/50"
-                  }`}
+                {/* 3D Flipper Container */}
+                <div
+                  className="relative w-full h-full rounded-[20px] shadow-md group-hover:shadow-2xl transition-all duration-700"
+                  style={{
+                    transform: isFlipped ? "rotateY(180deg)" : "rotateY(0deg)",
+                    transformStyle: "preserve-3d",
+                    WebkitTransformStyle: "preserve-3d",
+                    transition: "transform 0.7s cubic-bezier(0.4, 0, 0.2, 1)",
+                  }}
                 >
-                  {/* Top Animated Yellow Line Indicator */}
+                  {/* FRONT FACE: Photo First */}
                   <div
-                    className={`absolute top-0 left-0 h-[3px] bg-[#FFD900] transition-all duration-500 z-30 ${
-                      isCardActive
-                        ? "w-full opacity-100"
-                        : "w-0 opacity-0 group-hover:w-full group-hover:opacity-100"
-                    }`}
-                  />
-
-                  {/* Full Card Background Image revealed on Hover without any cut */}
-                  <div
-                    className={`absolute inset-0 z-0 overflow-hidden pointer-events-none transition-opacity duration-500 ease-out ${
-                      isCardActive
-                        ? "opacity-100"
-                        : "opacity-0 group-hover:opacity-100"
-                    }`}
+                    className="absolute inset-0 w-full h-full rounded-[20px] overflow-hidden border border-line/70 bg-black flex flex-col justify-between p-6 sm:p-7 text-white"
+                    style={{
+                      backfaceVisibility: "hidden",
+                      WebkitBackfaceVisibility: "hidden",
+                      transform: "rotateY(0deg)",
+                    }}
                   >
+                    {/* Full Cover Image */}
                     <img
                       src={val.image}
                       alt={val.alt || val.title}
-                      className={`w-full h-full object-cover object-center transition-transform duration-700 ease-out transform ${
-                        isCardActive
-                          ? "scale-105"
-                          : "scale-100 group-hover:scale-105"
-                      }`}
+                      className="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
                       loading="lazy"
                     />
-                    {/* Rich Royal Blue gradient scrim for crystal-clear text readability */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#01236A]/95 via-[#01236A]/85 to-[#01236A]/65" />
-                    {/* Brand Blue tint */}
-                    <div className="absolute inset-0 bg-[#01236A]/35 mix-blend-multiply" />
-                  </div>
 
-                  {/* Corner Badge with Arrow */}
-                  <div
-                    className={`absolute top-0 right-0 w-10 h-10 flex items-center justify-center rounded-bl-[28px] rounded-tr-[16px] z-20 pointer-events-none shadow-sm transition-all duration-300 ${
-                      isCardActive
-                        ? "bg-[#FFD900] text-[#01236A] shadow-md font-bold"
-                        : "bg-[#01236A] text-[#FFD900] group-hover:bg-[#FFD900] group-hover:text-[#01236A] font-bold"
-                    }`}
-                  >
-                    <span
-                      className={`font-mono text-sm -mt-1 -mr-1 transition-transform duration-300 select-none font-bold ${
-                        isCardActive
-                          ? "translate-x-0.5 -translate-y-0.5"
-                          : "group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-                      }`}
-                    >
-                      →
-                    </span>
-                  </div>
+                    {/* Gradient Overlays for High-Contrast Legibility */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/35 to-black/30 pointer-events-none" />
+                    <div className="absolute inset-0 bg-[#01236A]/20 mix-blend-multiply pointer-events-none" />
 
-                  {/* Card Content with High-Contrast Typography Transitions */}
-                  <div className="relative z-10 flex flex-col justify-between h-full pointer-events-none pr-8">
-                    <div>
-                      <span
-                        className={`font-mono text-xs font-bold tracking-widest block mb-4 transition-colors duration-300 ${
-                          isCardActive
-                            ? "text-[#FFD900]"
-                            : "text-[#01236A]/60 group-hover:text-[#FFD900]"
-                        }`}
-                      >
+                    {/* Top Row: Number Badge & Flip Hint */}
+                    <div className="relative z-10 flex items-center justify-between w-full">
+                      <span className="font-mono text-xs font-bold text-[#FFD900] bg-black/55 backdrop-blur-md px-3 py-1 rounded-full border border-[#FFD900]/30 shadow-sm">
                         0{index + 1}
                       </span>
-                      <h3
-                        className={`font-serif text-2xl font-normal mb-3 transition-colors duration-300 tracking-tight ${
-                          isCardActive
-                            ? "text-white drop-shadow-sm"
-                            : "text-[#01236A] group-hover:text-white group-hover:drop-shadow-sm"
-                        }`}
-                      >
+                    </div>
+
+                    {/* Bottom Row: Value Title and Callout */}
+                    <div className="relative z-10">
+                      <span className="text-[11px] font-sans uppercase tracking-widest text-[#FFD900] font-semibold block mb-1">
+                        Core Value
+                      </span>
+                      <h3 className="font-serif text-2xl sm:text-[26px] text-white font-normal tracking-tight mb-2 drop-shadow-md">
                         {val.title}
                       </h3>
-                      <p
-                        className={`text-sm sm:text-[15px] leading-relaxed transition-colors duration-300 ${
-                          isCardActive
-                            ? "text-white/95 drop-shadow-sm"
-                            : "text-[#475569] group-hover:text-white/95 group-hover:drop-shadow-sm"
-                        }`}
-                      >
+                      <div className="flex items-center gap-1.5 text-xs text-white/90 font-sans font-medium tracking-wide">
+                        <span className="underline decoration-[#FFD900]/70 underline-offset-4">
+                          Hover to explore
+                        </span>
+                        <ArrowRight size={13} className="text-[#FFD900]" />
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* BACK FACE: Content Revealed on Flip */}
+                  <div
+                    className="absolute inset-0 w-full h-full rounded-[20px] overflow-hidden p-7 sm:p-8 flex flex-col justify-between text-white border-2 border-[#FFD900]/50 shadow-2xl bg-gradient-to-br from-[#01236A] via-[#001747] to-[#001133]"
+                    style={{
+                      backfaceVisibility: "hidden",
+                      WebkitBackfaceVisibility: "hidden",
+                      transform: "rotateY(180deg)",
+                    }}
+                  >
+                    {/* Subtle Radial Amber Lighting */}
+                    <div
+                      className="absolute inset-0 pointer-events-none"
+                      style={{
+                        background:
+                          "radial-gradient(circle at 85% 15%, rgba(255, 217, 0, 0.16) 0%, transparent 60%)",
+                      }}
+                    />
+
+                    {/* Top Golden Accent Line */}
+                    <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-transparent via-[#FFD900] to-transparent pointer-events-none" />
+
+                    {/* Decorative Watermark Number */}
+                    <div className="absolute -bottom-6 -right-3 text-white/[0.05] text-8xl font-serif font-bold pointer-events-none select-none">
+                      0{index + 1}
+                    </div>
+
+                    {/* Top Row on Back */}
+                    <div className="relative z-10 flex items-center justify-between w-full">
+                      <span className="font-mono text-xs font-bold tracking-widest text-[#FFD900] bg-[#FFD900]/15 px-3 py-1 rounded-full border border-[#FFD900]/30">
+                        0{index + 1}
+                      </span>
+                      <span className="inline-flex items-center gap-1.5 text-[11px] font-sans uppercase tracking-widest text-[#FFD900] font-semibold">
+                        <Sparkles size={13} />
+                        <span>Principle</span>
+                      </span>
+                    </div>
+
+                    {/* Center Body: Title & Content */}
+                    <div className="relative z-10 my-auto py-2">
+                      <h3 className="font-serif text-2xl sm:text-[28px] text-[#FFD900] font-normal tracking-tight mb-3">
+                        {val.title}
+                      </h3>
+                      <p className="text-[15px] sm:text-[16px] text-white/95 leading-relaxed font-sans font-normal">
                         {val.text}
                       </p>
                     </div>
+
+                    {/* Bottom Row on Back */}
+                    <div className="relative z-10 pt-4 border-t border-white/15 flex items-center justify-between text-xs text-white/70 font-sans">
+                      <span className="tracking-wide">Dropati Devi Heritage</span>
+                      <span className="text-[#FFD900] flex items-center gap-1 font-mono text-[11px]">
+                        <RotateCw size={11} /> Flip back
+                      </span>
+                    </div>
                   </div>
-                </article>
+                </div>
               </div>
             );
           })}
