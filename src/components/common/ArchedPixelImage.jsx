@@ -1,10 +1,5 @@
-"use client";
 import React, { useEffect, useId, useState, useCallback, useRef, useMemo } from "react";
-
-// Helper for conditional classNames
-function cn(...classes) {
-  return classes.filter(Boolean).join(" ");
-}
+import { cn } from "@/utils";
 
 /* =========================================================================
    1. Dot Pattern SVG Component
@@ -232,12 +227,12 @@ export function ArchedHeroImage({
       />
 
       {/* 2. Top-Right decorative dot pattern */}
-      <div className="absolute -top-6 -right-6 sm:-top-8 sm:-right-8 w-44 sm:w-56 h-44 sm:h-56 -z-10 pointer-events-none">
+      <div className="hidden sm:block absolute -top-8 -right-8 w-56 h-56 -z-10 pointer-events-none">
         <DotPattern className={primaryDotColor} />
       </div>
 
       {/* 3. Bottom-Left decorative dot pattern */}
-      <div className="absolute -bottom-6 -left-6 sm:-bottom-8 sm:-left-8 w-44 sm:w-56 h-44 sm:h-56 -z-10 pointer-events-none">
+      <div className="hidden sm:block absolute -bottom-8 -left-8 w-56 h-56 -z-10 pointer-events-none">
         <DotPattern className={secondaryDotColor} />
       </div>
 
@@ -245,12 +240,13 @@ export function ArchedHeroImage({
       <div
         className={cn(
           "relative w-full overflow-hidden shadow-2xl shadow-[#01236A]/25 border-2 border-[#FFD900]/40 bg-[#001747] group",
+          imageHeightClass,
           roundedClass
         )}
       >
         <PixelImage
           srcs={images}
-          className={cn("w-full", imageHeightClass)}
+          className="w-full h-full"
           customGrid={customGrid}
           grayscaleAnimation={false}
           alt={alt}

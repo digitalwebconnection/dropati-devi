@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { RotateCw, Sparkles, ArrowRight } from "lucide-react";
+import { Sparkles, ArrowRight } from "lucide-react";
 import { Eyebrow } from "@/components/common";
 import { valuesList } from "@/constants";
 
@@ -56,7 +56,7 @@ export function ValuesSection() {
         <div
           className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-20 items-start mb-16 sm:mb-20"
           data-aos="fade-up"
-          data-aos-duration="900"
+          data-aos-duration="700"
         >
           <div>
             <Eyebrow text="Our values" />
@@ -92,8 +92,8 @@ export function ValuesSection() {
               <div
                 key={val.title}
                 data-aos="fade-up"
-                data-aos-delay={index * 80}
-                data-aos-duration="800"
+                data-aos-delay={Math.min((index % 3) * 60, 120)}
+                data-aos-duration="650"
                 data-testid={`value-${index + 1}`}
                 role="button"
                 tabIndex={0}
@@ -221,9 +221,6 @@ export function ValuesSection() {
                     {/* Bottom Row on Back */}
                     <div className="relative z-10 pt-4 border-t border-white/15 flex items-center justify-between text-xs text-white/70 font-sans">
                       <span className="tracking-wide">Dropati Devi Heritage</span>
-                      <span className="text-[#FFD900] flex items-center gap-1 font-mono text-[11px]">
-                        <RotateCw size={11} /> Flip back
-                      </span>
                     </div>
                   </div>
                 </div>

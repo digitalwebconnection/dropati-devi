@@ -10,7 +10,7 @@ export function InvolvedSection({ onOpenInterest }) {
         <div
           className="flex flex-col space-y-4"
           data-aos="fade-right"
-          data-aos-duration="900"
+          data-aos-duration="700"
         >
           <Eyebrow text="Get involved" />
           <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-normal text-[#01236A] tracking-tight my-3">
@@ -38,8 +38,8 @@ export function InvolvedSection({ onOpenInterest }) {
               key={opt.number}
               onClick={onOpenInterest}
               data-aos="fade-left"
-              data-aos-delay={index * 130}
-              data-aos-duration="850"
+              data-aos-delay={Math.min(index * 50, 150)}
+              data-aos-duration="650"
               data-testid={opt.testId}
               className="group flex items-center justify-between w-full py-6 sm:py-7 border-b border-[#01236A]/20 text-left font-serif text-xl sm:text-2xl text-[#01236A] hover:text-[#01236A] transition-colors duration-300 cursor-pointer"
             >

@@ -46,7 +46,7 @@ export function MomentsSection() {
         <div
           className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-20 items-start mb-10 sm:mb-14"
           data-aos="fade-up"
-          data-aos-duration="900"
+          data-aos-duration="700"
         >
           <div>
             <Eyebrow text="Cherished Moments" />
@@ -73,7 +73,7 @@ export function MomentsSection() {
         <div
           className="flex items-center justify-between gap-4 mb-6 pb-3 border-b border-line/60"
           data-aos="fade-up"
-          data-aos-duration="700"
+          data-aos-duration="650"
         >
           <div className="flex items-center gap-2 text-xs text-muted font-medium"></div>
 
@@ -121,7 +121,7 @@ export function MomentsSection() {
         <div
           className="flex flex-col md:flex-row gap-3.5 md:gap-3 w-full md:h-[500px] lg:h-[540px] select-none"
           data-aos="fade-up"
-          data-aos-duration="850"
+          data-aos-duration="700"
         >
           {momentsList.map((moment, index) => {
             const isActive = index === activeIndex;
@@ -265,9 +265,10 @@ export function MomentsSection() {
 
       {/* Full-Width Quote Banner Section */}
       <div
-        className="w-full mt-16 sm:mt-24 relative overflow-hidden bg-gradient-to-br from-[#01236A] via-[#001b54] to-[#001133] py-16 sm:py-12 px-5 md:px-8 text-center text-white border-t border-[#FFD900]/30 shadow-2xl"
+        className="moments-quote-banner w-full mt-16 sm:mt-24 relative overflow-hidden bg-gradient-to-br from-[#01236A] via-[#001b54] to-[#001133] py-16 sm:py-12 px-5 md:px-8 text-center text-white border-t border-[#FFD900]/30 shadow-2xl"
         data-aos="fade-up"
-        data-aos-duration="850"
+        data-aos-duration="500"
+        data-aos-offset="-80"
       >
         {/* Subtle Ambient Radial Lighting */}
         <div

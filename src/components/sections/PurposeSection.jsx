@@ -4,16 +4,16 @@ import { purposePillars } from "@/constants";
 export function PurposeSection() {
   return (
     <section
-      className="py-20 lg:py-32 bg-sand border-y border-line overflow-hidden"
+      className="py-14 sm:py-20 lg:py-32 bg-sand border-y border-line overflow-hidden"
       id="purpose"
       data-testid="purpose-section"
     >
       <div className="max-w-[1240px] w-full px-5 md:px-8 mx-auto">
         {/* Section Header */}
         <div
-          className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-20 items-start mb-14 sm:mb-16"
+          className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-20 items-start mb-10 sm:mb-14 lg:mb-16"
           data-aos="fade-up"
-          data-aos-duration="900"
+          data-aos-duration="700"
         >
           <div>
             <Eyebrow text="Our purpose" />

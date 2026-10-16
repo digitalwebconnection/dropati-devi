@@ -68,14 +68,14 @@ export function ProgrammesSection({ onOpenInterest }) {
           return (
             <ScrollStackItem
               key={prog.number}
-              itemClassName="w-full h-[520px] sm:h-[460px] md:h-[420px] !bg-[#01236A] !border !border-[#FFD900]/30 hover:!border-[#FFD900] !rounded-3xl shadow-[0_24px_55px_-12px_rgba(1,35,106,0.65)] group transition-all duration-300 overflow-hidden select-none flex flex-col md:flex-row"
+              itemClassName="w-full h-[520px] sm:h-[460px] md:h-[420px] !bg-[#01236A] !border !border-[#FFD900]/30 hover:!border-[#FFD900] !rounded-3xl shadow-[0_24px_55px_-12px_rgba(1,35,106,0.65)] group transition-all duration-300 overflow-hidden flex flex-col md:flex-row"
             >
               {/* Left Side: Photo with Badge & Gradient */}
               <div className="w-full md:w-[42%] lg:w-[40%] h-[200px] sm:h-[220px] md:h-full relative overflow-hidden flex-shrink-0 bg-[#001747] border-b md:border-b-0 md:border-r border-white/10">
                 <img
                   src={prog.image}
                   alt={prog.title}
-                  className="w-full h-full object-cover group-hover:scale-106 transition-transform duration-700"
+                  className="w-full h-full object-fill group-hover:scale-106 transition-transform duration-700"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#01236A]/85 via-transparent to-transparent md:hidden" />
                 <span className="absolute top-4 left-4 bg-[#001747]/95 backdrop-blur-md text-[#FFD900] font-mono text-xs sm:text-sm px-3.5 py-1 rounded-lg font-bold border border-[#FFD900]/30 shadow-lg">
@@ -94,7 +94,7 @@ export function ProgrammesSection({ onOpenInterest }) {
                   <div className="flex items-center gap-2 mb-2">
                     <Sparkles size={14} className="text-[#FFD900]" />
                     <span className="text-xs uppercase tracking-widest text-[#FFD900] font-bold font-mono">
-                      Initiative {prog.number}
+                      ` Initiative {prog.number}`{" "}
                     </span>
                   </div>
 

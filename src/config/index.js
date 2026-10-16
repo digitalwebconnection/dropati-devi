@@ -12,11 +12,13 @@ export const appConfig = {
     web3Forms: "https://api.web3forms.com/submit",
   },
   aosDefaults: {
-    duration: 850,
+    duration: 650,
     easing: "ease-out-cubic",
-    once: false,
-    offset: 60,
-    delay: 50,
+    once: true,
+    offset: 20,
+    delay: 0,
+    mirror: false,
+    anchorPlacement: "top-bottom",
   },
 };
 

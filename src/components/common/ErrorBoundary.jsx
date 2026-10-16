@@ -41,7 +41,7 @@ export class ErrorBoundary extends Component {
         >
           <div className="max-w-md mx-auto flex flex-col items-center">
             <div className="w-12 h-12 rounded-full bg-red-100 text-red-600 flex items-center justify-center mb-4">
-              <AlertCircle size={24} />
+             <AlertCircle size={24} /> 
             </div>
             <h3 className="font-serif text-xl font-bold text-[#01236A] mb-2">
               Something went wrong in this section

@@ -11,11 +11,11 @@ export function Footer() {
       </div>
 
       <div className="max-w-[1180px] w-full px-5 md:px-8 mx-auto grid grid-cols-1 md:grid-cols-3 gap-10 pb-12 border-b border-[#01236A]/15 items-start relative z-10">
-        <div data-aos="fade-up" data-aos-duration="800">
+        <div data-aos="fade-up" data-aos-duration="650">
           <BrandMark className="text-[#01236A]" testId="footer-home-link" />
         </div>
 
-        <div data-aos="fade-up" data-aos-delay="100" data-aos-duration="800">
+        <div data-aos="fade-up" data-aos-delay="40" data-aos-duration="650">
           <p className="font-serif text-base text-[#01236A] leading-snug">
             A legacy of strength.
             <br />A future of possibilities.
@@ -24,8 +24,8 @@ export function Footer() {
 
         <div
           data-aos="fade-up"
-          data-aos-delay="200"
-          data-aos-duration="800"
+          data-aos-delay="80"
+          data-aos-duration="650"
           className="flex flex-col gap-2"
         >
           <span className="uppercase tracking-wider text-[10px] text-[#01236A] font-bold font-mono">
@@ -54,8 +54,8 @@ export function Footer() {
       <div
         className="max-w-[1180px] w-full px-5 md:px-8 mx-auto pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-[#01236A]/75 text-[11px] relative z-10"
         data-aos="fade-up"
-        data-aos-delay="300"
-        data-aos-duration="800"
+        data-aos-delay="100"
+        data-aos-duration="650"
       >
         <span>{contactDetails.copyright}</span>
         <span className="text-center sm:text-left max-w-md">

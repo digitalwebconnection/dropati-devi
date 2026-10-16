@@ -61,7 +61,7 @@ export function HeroSection() {
 
   return (
     <section
-      className="relative min-h-[680px] lg:min-h-screen text-white flex items-end overflow-hidden select-none"
+      className="relative min-h-[680px] lg:min-h-screen text-white flex items-end overflow-hidden"
       id="top"
       data-testid="hero-section"
       onTouchStart={handleTouchStart}
@@ -91,15 +91,15 @@ export function HeroSection() {
       </div>
 
       {/* Main Hero Content (Positioned at bottom) */}
-      <div className="relative z-10 max-w-[1180px] w-full px-5 md:px-8 mx-auto pt-24 sm:pt-32 pb-18 sm:pb-24 lg:pb-32">
-        <div data-aos="fade-down" data-aos-duration="800">
+      <div className="relative z-10 max-w-[1180px] w-full px-5 md:px-8 mx-auto pt-24 sm:pt-32 pb-16 sm:pb-24 lg:pb-32">
+        <div data-aos="fade-down" data-aos-duration="650">
           <Eyebrow text="A legacy of strength" light={true} />
         </div>
 
         <h1
           data-aos="fade-up"
-          data-aos-duration="900"
-          data-aos-delay="150"
+          data-aos-duration="700"
+          data-aos-delay="50"
           className="max-w-7xl my-6 font-serif text-[42px] sm:text-[58px] lg:text-[66px] leading-[1.02] tracking-tight font-normal text-white"
         >
           HER STRENGTH LIVES ON.
@@ -113,8 +113,8 @@ export function HeroSection() {
         {/* Call to action cube buttons with 3-second auto-hover */}
         <div
           data-aos="fade-up"
-          data-aos-duration="900"
-          data-aos-delay="450"
+          data-aos-duration="700"
+          data-aos-delay="100"
           className="flex items-center gap-6 sm:gap-7 mt-9 flex-wrap"
         >
           <CubeButton

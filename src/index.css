@@ -260,14 +260,28 @@ a {
   *::after {
     animation-duration: 0.001s !important;
     animation-iteration-count: 1 !important;
-    transition-duration: 0.001s !important;
   }
+}
 
-  .scroll-stack-card,
-  .scroll-expand__media,
-  .scroll-expand__frame {
+/* Mobile Fix for Purpose & Moments Quote Sections:
+   Prevent delayed/missing AOS triggers caused by vertical single-column card stacking.
+   On mobile (<768px), content, cards, and quote banner are immediately visible without blank lag.
+   Desktop (>=768px) retains full, smooth AOS animation effects with early offsets. */
+@media (max-width: 767px) {
+  #purpose [data-aos],
+  #purpose [data-aos="fade-up"],
+  #purpose [data-aos].aos-animate,
+  #story [data-aos],
+  #story [data-aos="fade-left"],
+  #story [data-aos="fade-right"],
+  #story [data-aos].aos-animate,
+  .moments-quote-banner,
+  .moments-quote-banner[data-aos],
+  .moments-quote-banner [data-aos],
+  .moments-quote-banner.aos-animate {
+    opacity: 1 !important;
     transform: none !important;
-    clip-path: none !important;
     transition: none !important;
   }
 }
+

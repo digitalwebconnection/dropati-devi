@@ -16,11 +16,6 @@ export const siteImages = {
       alt: "Joyful Snack Celebration Under the Pavilion",
       tag: "Community Joy & Celebration",
     },
-    {
-      src: "/images/hero/hero-4-legacy.webp",
-      alt: "Dropati Devi - Her Living Legacy",
-      tag: "Living Legacy & Heritage",
-    },
   ],
   story: "/images/moments/moment-6-grace.webp",
   wellbeing:
@@ -143,24 +138,36 @@ export const purposePillars = [
     title: "Learn",
     text: "Make education and skills opportunities more accessible.",
     iconType: "leaf",
+    image: "/images/purpose/sovannkiry-sim-41fytYZ_-mM-unsplash.jpg",
+    alt: "Smiling young students receiving notebooks and learning materials",
+    objectPosition: "object-[center_35%]",
   },
   {
     number: "02",
     title: "Earn",
     text: "Encourage financial independence and entrepreneurship.",
     iconType: "sparkles",
+    image: "/images/purpose/firdaus-roslan-hLCHn4Somyk-unsplash.jpg",
+    alt: "Craftswoman working skillfully on a tailoring sewing machine",
+    objectPosition: "object-[center_28%]",
   },
   {
     number: "03",
     title: "Thrive",
     text: "Promote confidence, personal development and wellbeing.",
     iconType: "heart",
+    image: "/images/purpose/equalstock-3g6mKn8i1Ik-unsplash.jpg",
+    alt: "Resilient Indian woman holding a harvest basin near agricultural equipment",
+    objectPosition: "object-[center_35%]",
   },
   {
     number: "04",
     title: "Belong",
     text: "Build a compassionate community where people feel supported and respected.",
     iconType: "quote",
+    image: "/images/purpose/penumalla-benson-7kSIUaT8ADo-unsplash.jpg",
+    alt: "Indian women and children gathered together in community warmth and mutual care",
+    objectPosition: "object-[center_28%]",
   },
 ];
 

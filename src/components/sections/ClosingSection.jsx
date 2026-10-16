@@ -32,7 +32,7 @@ export function ClosingSection({ onOpenInterest }) {
         <div
           className="relative inline-block mb-6 select-none"
           data-aos="fade-down"
-          data-aos-duration="700"
+          data-aos-duration="650"
         >
           <span className="absolute inset-0 text-[#FFD900] text-4xl blur-sm opacity-50">
             ✳
@@ -40,7 +40,7 @@ export function ClosingSection({ onOpenInterest }) {
           <span className="relative text-[#FFD900] text-4xl block opacity-90">✳</span>
         </div>
 
-        <div data-aos="zoom-in" data-aos-duration="900">
+        <div data-aos="zoom-in" data-aos-duration="700">
           <Eyebrow text="A legacy of strength" light={true} className="justify-center" />
           <h2 className="font-serif text-3xl sm:text-5xl lg:text-6xl font-normal text-white tracking-tight my-6">
             ONE WOMAN'S STRENGTH

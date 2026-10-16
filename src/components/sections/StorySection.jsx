@@ -46,7 +46,7 @@ export function StorySection() {
           <div
             className="lg:col-span-6 w-full pt-2 pb-2"
             data-aos="fade-right"
-            data-aos-duration="1000"
+            data-aos-duration="700"
           >
             <ArchedHeroImage
               images={storyImages.map((img) => img.src)}
@@ -58,10 +58,10 @@ export function StorySection() {
               primaryDotColor="fill-[#FFD900]/60"
               secondaryDotColor="fill-[#01236A]/40"
               roundedClass="rounded-2xl sm:rounded-xl"
-              imageHeightClass="h-[420px] sm:h-[500px] lg:h-[560px] xl:h-[600px]"
+              imageHeightClass="h-[360px] xs:h-[400px] sm:h-[500px] lg:h-[560px] xl:h-[600px]"
             >
               {/* Authentic caption badge pinned to the bottom of the image frame */}
-              <div className="absolute bottom-4 left-4 right-4 sm:bottom-5 sm:left-5 sm:right-5 bg-[#01236A]/95 backdrop-blur-md px-4 py-3 rounded-xl text-white text-xs flex items-center justify-between border border-white/10 shadow-2xl pointer-events-auto">
+              <div className="absolute bottom-3 left-3 right-3 sm:bottom-5 sm:left-5 sm:right-5 bg-[#01236A]/95 backdrop-blur-md px-3 sm:px-4 py-2.5 sm:py-3 rounded-xl text-white text-xs flex items-center justify-between border border-white/10 shadow-2xl pointer-events-auto">
                 <div className="pr-2">
                   <p className="font-serif text-sm sm:text-[15px] text-[#FFD900] font-normal leading-snug transition-all duration-500">
                     {currentPhoto.title}
@@ -104,8 +104,7 @@ export function StorySection() {
           <div
             className="lg:col-span-6 flex flex-col space-y-5 text-muted leading-relaxed"
             data-aos="fade-left"
-            data-aos-duration="1000"
-            data-aos-delay="150"
+            data-aos-duration="700"
           >
             <Eyebrow text="The woman behind the mission" />
             <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-normal text-[#01236A] tracking-tight my-2">
@@ -134,11 +133,7 @@ export function StorySection() {
               found in the hands that work, the heart that gives and the spirit that
               refuses to give up.
             </p>
-            <div
-              className="flex items-center gap-6 pt-2 flex-wrap"
-              data-aos="fade-up"
-              data-aos-delay="300"
-            >
+            <div className="flex items-center gap-6 pt-2 flex-wrap">
               <a
                 className="inline-flex items-center gap-2 text-[#01236A] hover:text-[#01236A]/80 font-bold underline underline-offset-8 transition-colors"
                 href="#moments"
