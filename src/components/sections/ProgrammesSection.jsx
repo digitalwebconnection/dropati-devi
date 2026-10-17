@@ -20,7 +20,7 @@ export function ProgrammesSection({ onOpenInterest }) {
     >
       {/* Section Header */}
       <div className="max-w-7xl w-full px-4 sm:px-6 lg:px-8 mx-auto mb-14 sm:mb-20">
-        <div className="flex flex-col items-center text-center max-w-7xl mx-auto">
+        <div className="flex flex-col items-start text-left sm:items-center sm:text-center max-w-7xl mx-auto">
           <Eyebrow text="Our programmes" />
           <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-normal text-ink tracking-tight mt-3 mb-4 sm:mb-5">
             TURNING COMPASSION

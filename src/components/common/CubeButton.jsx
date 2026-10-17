@@ -40,9 +40,9 @@ export function CubeButton({
   // Styles strictly using Blue #01236A and Yellow #FFD900
   const variantStyles = {
     navbar: {
-      front: "bg-white text-[#01236A] shadow-md",
-      top: "bg-[#FFD900] text-[#01236A] font-bold shadow-lg",
-      frontBorder: "inset 0 0 0 2px #01236A",
+      front: "bg-[#FFD900] text-[#01236A] font-bold shadow-md",
+      top: "bg-[#01236A] text-[#FFD900] font-bold shadow-lg",
+      frontBorder: "inset 0 0 0 2px #FFD900",
       topBorder: "inset 0 0 0 2px #FFD900",
       dimensions: "w-[210px] h-[44px]",
       halfHeight: "22px",

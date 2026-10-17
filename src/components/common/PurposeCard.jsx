@@ -1,16 +1,14 @@
-import React, { useState } from "react";
+import React from "react";
 import { ArrowUpRight } from "lucide-react";
 
 export function PurposeCard({ pillar, index }) {
-  const [isTouched, setIsTouched] = useState(false);
-
   // Card themes strictly tuned to Blue #01236A and Yellow #FFD900
   const themes = [
     // 01 Learn (Royal Blue & Navy with Vivid Yellow Highlights)
     {
       outerBg: "bg-[#001747]",
       outerBorder: "border-[#01236A]",
-      outerHoverBorder: "group-hover:border-[#FFD900]",
+      outerHoverBorder: "md:group-hover:border-[#FFD900]",
       outerShadow: "shadow-[0_16px_40px_rgba(1,35,106,0.35)]",
       gradient:
         "radial-gradient(circle at 65% 25%, #01236A 0%, #001747 45%, #001133 80%, #000c24 100%)",
@@ -27,7 +25,7 @@ export function PurposeCard({ pillar, index }) {
     {
       outerBg: "bg-[#01236A]",
       outerBorder: "border-[#01236A]",
-      outerHoverBorder: "group-hover:border-[#FFD900]",
+      outerHoverBorder: "md:group-hover:border-[#FFD900]",
       outerShadow: "shadow-[0_16px_40px_rgba(1,35,106,0.35)]",
       gradient:
         "radial-gradient(circle at 45% 20%, #001747 0%, #01236A 40%, #001133 75%, #000c24 100%)",
@@ -44,7 +42,7 @@ export function PurposeCard({ pillar, index }) {
     {
       outerBg: "bg-[#001747]",
       outerBorder: "border-[#01236A]",
-      outerHoverBorder: "group-hover:border-[#FFD900]",
+      outerHoverBorder: "md:group-hover:border-[#FFD900]",
       outerShadow: "shadow-[0_16px_40px_rgba(1,35,106,0.35)]",
       gradient:
         "radial-gradient(circle at 65% 22%, #01236A 0%, #001747 45%, #001133 80%, #000a1f 100%)",
@@ -61,7 +59,7 @@ export function PurposeCard({ pillar, index }) {
     {
       outerBg: "bg-[#01236A]",
       outerBorder: "border-[#01236A]",
-      outerHoverBorder: "group-hover:border-[#FFD900]",
+      outerHoverBorder: "md:group-hover:border-[#FFD900]",
       outerShadow: "shadow-[0_16px_40px_rgba(1,35,106,0.35)]",
       gradient:
         "radial-gradient(circle at 50% 20%, #001747 0%, #01236A 45%, #001133 80%, #000c24 100%)",
@@ -82,8 +80,8 @@ export function PurposeCard({ pillar, index }) {
   const cardAlt = pillar.alt || `${pillar.title} purpose initiative`;
 
   // Resting state: top at ~235px (revealing 60-66% of the photo)
-  // Hover / Touch state: slides down to ~295px (revealing up to 76-82% of the photo)
-  const activeClass = isTouched ? "top-[295px]" : "top-[235px] group-hover:top-[295px]";
+  // Hover state (desktop/tablet only, md+): slides down to ~295px (revealing up to 76-82% of the photo)
+  const activeClass = "top-[235px] md:group-hover:top-[295px]";
 
   return (
     <div
@@ -91,17 +89,7 @@ export function PurposeCard({ pillar, index }) {
       data-aos-delay={Math.min(index * 60, 180)}
       data-aos-duration="650"
       data-testid={`purpose-card-${pillar.number}`}
-      role="button"
-      tabIndex={0}
-      aria-expanded={isTouched}
-      onClick={() => setIsTouched((prev) => !prev)}
-      onKeyDown={(e) => {
-        if (e.key === "Enter" || e.key === " ") {
-          e.preventDefault();
-          setIsTouched((prev) => !prev);
-        }
-      }}
-      className={`group relative h-[390px] rounded-[28px] p-[2.5px] transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] select-none cursor-pointer hover:-translate-y-1.5 ${
+      className={`group relative h-[390px] rounded-[28px] p-[2.5px] transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] select-none md:hover:-translate-y-1.5 ${
         theme.outerBg
       } ${theme.outerShadow} border ${theme.outerBorder} ${theme.outerHoverBorder}`}
     >
@@ -109,7 +97,7 @@ export function PurposeCard({ pillar, index }) {
       <div className="relative w-full h-full rounded-[25px] overflow-hidden">
         {/* Upper Background: Grainy Stippled Gradient */}
         <div
-          className="absolute inset-0 transition-transform duration-700 group-hover:scale-105"
+          className="absolute inset-0 transition-transform duration-700 md:group-hover:scale-105"
           style={{ background: theme.gradient }}
         />
 
@@ -128,28 +116,18 @@ export function PurposeCard({ pillar, index }) {
             src={cardImage}
             alt={cardAlt}
             loading="lazy"
-            className={`w-full h-full object-cover transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] ${cardPosition} ${
-              isTouched
-                ? "scale-108 brightness-105"
-                : "scale-100 brightness-95 group-hover:scale-108 group-hover:brightness-105"
-            }`}
+            className={`w-full h-full object-cover transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] ${cardPosition} scale-100 brightness-95 md:group-hover:scale-108 md:group-hover:brightness-105`}
           />
 
           {/* Deep Navy Gradient Vignette ensuring seamless blend into card body */}
           <div className="absolute inset-0 bg-gradient-to-t from-[#000c24] via-[#001133]/25 to-black/20 pointer-events-none" />
 
-          {/* Golden Sheen on Hover / Touch */}
-          <div
-            className={`absolute inset-0 bg-gradient-to-tr from-transparent via-transparent to-[#FFD900]/15 transition-opacity duration-500 pointer-events-none ${
-              isTouched ? "opacity-100" : "opacity-0 group-hover:opacity-100"
-            }`}
-          />
+          {/* Golden Sheen on Hover */}
+          <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-transparent to-[#FFD900]/15 transition-opacity duration-500 pointer-events-none opacity-0 md:group-hover:opacity-100" />
 
           {/* Subtle Ambient Radial Glow */}
           <div
-            className={`absolute bottom-0 left-1/2 -translate-x-1/2 w-48 h-16 rounded-full blur-2xl transition-opacity duration-500 pointer-events-none ${
-              isTouched ? "opacity-75" : "opacity-25 group-hover:opacity-75"
-            }`}
+            className="absolute bottom-0 left-1/2 -translate-x-1/2 w-48 h-16 rounded-full blur-2xl transition-opacity duration-500 pointer-events-none opacity-25 md:group-hover:opacity-75"
             style={{ backgroundColor: theme.glowColor }}
           />
         </div>
@@ -181,14 +159,14 @@ export function PurposeCard({ pillar, index }) {
 
             {/* Pillar Number inside the left raised tab */}
             <span
-              className={`absolute top-0.5 left-5 z-20 font-sans font-bold text-[28px] sm:text-[30px] tracking-tight transition-transform duration-300 group-hover:scale-105 ${theme.numColor}`}
+              className={`absolute top-0.5 left-5 z-20 font-sans font-bold text-[28px] sm:text-[30px] tracking-tight transition-transform duration-300 md:group-hover:scale-105 ${theme.numColor}`}
             >
               {pillar.number}
             </span>
 
             {/* Diagonal Arrow Icon on the right shelf */}
             <div
-              className={`absolute top-[28px] right-5 z-20 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:scale-110 ${theme.arrowColor}`}
+              className={`absolute top-[28px] right-5 z-20 transition-transform duration-300 md:group-hover:translate-x-0.5 md:group-hover:-translate-y-0.5 md:group-hover:scale-110 ${theme.arrowColor}`}
             >
               <ArrowUpRight className="w-5 h-5 stroke-[2.4]" />
             </div>
@@ -200,7 +178,7 @@ export function PurposeCard({ pillar, index }) {
             className="w-full flex-1 -mt-[1px] px-5 pt-0.5 pb-4 flex flex-col justify-start"
           >
             <h3
-              className={`font-sans text-[17px] sm:text-[18px] font-bold tracking-tight mb-1 transition-colors duration-300 ${theme.titleColor} group-hover:text-[#FFD900]`}
+              className={`font-sans text-[17px] sm:text-[18px] font-bold tracking-tight mb-1 transition-colors duration-300 ${theme.titleColor} md:group-hover:text-[#FFD900]`}
             >
               {pillar.title}
             </h3>

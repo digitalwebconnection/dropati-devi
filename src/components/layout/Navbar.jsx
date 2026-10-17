@@ -24,10 +24,10 @@ export function Navbar({ onOpenInterest }) {
         initial={{ y: -20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-        className={`sticky top-0 left-0 w-full z-40 flex items-center justify-between transition-all duration-300 ${
+        className={`sticky top-0 left-0 w-full z-40 flex items-center justify-between transition-all duration-300 bg-white/95 backdrop-blur-md border-b border-gray-200/80 text-ink ${
           scrolled || menuOpen
-            ? "py-2.5 sm:py-2 px-5 sm:px-6 md:px-[5vw] bg-white/95 backdrop-blur-md border-b border-gray-200/80 shadow-md text-ink"
-            : "py-3.5 sm:py-3 px-5 sm:px-6 md:px-[5vw] bg-gradient-to-b from-black/60 via-black/25 to-transparent border-b border-transparent shadow-none text-white"
+            ? "py-2.5 sm:py-2 px-5 sm:px-6 md:px-[5vw] shadow-md"
+            : "py-3 sm:py-2.5 px-5 sm:px-6 md:px-[5vw] shadow-sm"
         }`}
         data-testid="site-navigation"
       >
@@ -39,11 +39,7 @@ export function Navbar({ onOpenInterest }) {
             <a
               key={link.href}
               href={link.href}
-              className={`relative py-1 font-sans font-bold transition-colors duration-300 group inline-block ${
-                scrolled
-                  ? "text-[#01236A]/85 hover:text-[#01236A]"
-                  : "text-white/90 hover:text-white"
-              }`}
+              className="relative py-1 font-sans font-bold transition-colors duration-300 group inline-block text-[#01236A]/85 hover:text-[#01236A]"
               data-testid={link.testId}
             >
               {link.label}
@@ -63,12 +59,8 @@ export function Navbar({ onOpenInterest }) {
 
         {/* Mobile Menu Toggle Button */}
         <button
-          className={`md:hidden bg-transparent border-0 p-2 cursor-pointer transition-transform duration-200 hover:scale-110 flex items-center justify-center rounded-lg ${
+          className={`md:hidden bg-transparent border-0 p-2 cursor-pointer transition-transform duration-200 hover:scale-110 flex items-center justify-center rounded-lg text-[#01236A] hover:text-[#FFD900] ${
             menuOpen ? "opacity-0 pointer-events-none" : ""
-          } ${
-            scrolled
-              ? "text-[#01236A] hover:text-[#FFD900]"
-              : "text-white hover:text-[#FFD900] drop-shadow-[0_2px_4px_rgba(0,0,0,0.6)]"
           }`}
           onClick={() => setMenuOpen(!menuOpen)}
           aria-label={menuOpen ? "Close menu" : "Open menu"}
@@ -150,18 +142,17 @@ export function Navbar({ onOpenInterest }) {
 
               {/* Bottom CTA Button */}
               <div className="p-6 pt-4 border-t border-slate-100 mt-auto bg-white pb-[max(1.5rem,env(safe-area-inset-bottom))]">
-                <button
-                  type="button"
+                <CubeButton
+                  frontText="Register your interest"
+                  topText="Join Our Cause"
+                  frontIcon={<ArrowUpRight size={16} />}
+                  topIcon={<ArrowUpRight size={16} />}
                   onClick={handleInterestClick}
-                  className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-[#1d4ed8] via-[#2563eb] to-[#3b82f6] hover:from-[#2563eb] hover:to-[#1d4ed8] active:from-[#1d4ed8] text-white font-sans font-semibold text-sm py-3.5 px-4 rounded-xl shadow-[0_4px_16px_rgba(37,99,235,0.3)] hover:shadow-[0_6px_22px_rgba(37,99,235,0.45)] border border-blue-400/30 transition-all duration-300 cursor-pointer active:scale-[0.98] group"
-                  data-testid="mobile-nav-interest-button"
-                >
-                  <span>Register Your Interest</span>
-                  <ArrowRight
-                    size={17}
-                    className="group-hover:translate-x-1 transition-transform duration-200"
-                  />
-                </button>
+                  styleVariant="primary"
+                  className="!w-full"
+                  autoHover
+                  dataTestId="mobile-nav-interest-button"
+                />
               </div>
             </motion.aside>
           </div>

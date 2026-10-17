@@ -1,6 +1,6 @@
 import React from "react";
 import { ArrowUpRight } from "lucide-react";
-import { Eyebrow } from "@/components/common";
+import { Eyebrow, CubeButton } from "@/components/common";
 
 export function ClosingSection({ onOpenInterest }) {
   return (
@@ -58,17 +58,17 @@ export function ClosingSection({ onOpenInterest }) {
               opportunity we help create.
             </p>
           </div>
-          <button
-            className="group inline-flex items-center justify-center gap-3 bg-[#FFD900] text-[#01236A] hover:bg-white hover:text-[#01236A] font-sans font-bold text-[11px] uppercase tracking-wider px-8 py-4 rounded-sm shadow-xl hover:shadow-2xl hover:shadow-[#FFD900]/30 transition-all duration-300 hover:-translate-y-1 mx-auto cursor-pointer"
+          <CubeButton
+            frontText="Be Part of Her Legacy"
+            topText="Join Our Cause"
+            frontIcon={<ArrowUpRight size={16} />}
+            topIcon={<ArrowUpRight size={16} />}
             onClick={onOpenInterest}
-            data-testid="closing-legacy-button"
-          >
-            <span>Be Part of Her Legacy</span>
-            <ArrowUpRight
-              size={17}
-              className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300"
-            />
-          </button>
+            styleVariant="primary"
+            className="!w-[250px] mx-auto"
+            autoHover
+            dataTestId="closing-legacy-button"
+          />
         </div>
       </div>
     </section>

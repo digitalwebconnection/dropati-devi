@@ -11,7 +11,7 @@ export function PurposeSection() {
       <div className="max-w-[1240px] w-full px-5 md:px-8 mx-auto">
         {/* Section Header */}
         <div
-          className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-20 items-start mb-10 sm:mb-14 lg:mb-16"
+          className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-20 items-start justify-items-start text-left mb-10 sm:mb-14 lg:mb-16"
           data-aos="fade-up"
           data-aos-duration="700"
         >

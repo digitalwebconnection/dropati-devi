@@ -202,7 +202,9 @@ export function ScrollExpand({
     const measure = () => {
       const c = propsRef.current;
       stageH = c.useWindowScroll ? window.innerHeight : root.clientHeight;
-      stageW = c.useWindowScroll ? window.innerWidth : root.clientWidth;
+      stageW = c.useWindowScroll
+        ? document.documentElement.clientWidth || window.innerWidth
+        : root.clientWidth;
       if (stageH <= 0 || stageW <= 0) return;
 
       stage.style.height = `${stageH}px`;
@@ -263,7 +265,7 @@ export function ScrollExpand({
         } else {
           // Mobile
           expW = Math.round(stageW * 0.94);
-          expH = Math.min(560, Math.round(stageH * 0.86));
+          expH = Math.min(640, Math.round(stageH * 0.9));
         }
       }
 

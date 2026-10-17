@@ -19,15 +19,16 @@ export const siteImages = {
   ],
   story: "/images/moments/moment-6-grace.webp",
   wellbeing:
-    "https://images.unsplash.com/photo-1544027993-37dbfe43562a?auto=format&fit=crop&w=800&q=85",
+    "https://images.unsplash.com/photo-1682962232755-f1d051ddb638?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D",
   skills:
-    "https://images.unsplash.com/photo-1709109566523-c2f76375dc0b?auto=format&fit=crop&w=800&q=85",
+    "https://images.unsplash.com/photo-1616674202799-054e7c831378?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D",
   education:
-    "https://images.unsplash.com/photo-1680759291020-79a92d38cdfd?auto=format&fit=crop&w=800&q=85",
+    "https://images.unsplash.com/photo-1573894998033-c0cef4ed722b?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D",
   business:
-    "https://images.unsplash.com/photo-1551731409-43eb3e517a1a?auto=format&fit=crop&w=800&q=85",
+    "https://images.unsplash.com/photo-1590650046871-92c887180603?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D",
   community:
-    "https://images.unsplash.com/photo-1533128361669-69c065857a13?auto=format&fit=crop&w=800&q=85",
+    "https://images.unsplash.com/photo-1651372381086-9861c9c81db5?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D",
+  help: "https://images.unsplash.com/photo-1649326609138-09de2b661544?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D",
 };
 
 export const navLinks = [
