@@ -8,11 +8,11 @@ import { appConfig } from "@/config";
  *
  * @param {Object} [options] - Optional custom AOS configuration
  */
-export function useAos(options = {}) {
+export function useAos(options) {
   useEffect(() => {
     AOS.init({
       ...appConfig.aosDefaults,
-      ...options,
+      ...(options || {}),
     });
     AOS.refreshHard();
 
@@ -65,7 +65,7 @@ export function useAos(options = {}) {
         resizeObserver.disconnect();
       }
     };
-  }, []);
+  }, [options]);
 
   const refreshAos = () => {
     AOS.refresh();

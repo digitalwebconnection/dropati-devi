@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { cn } from "@/utils";
+import { useReducedMotion } from "@/hooks";
 
 export function CubeButton({
   frontText,
@@ -16,10 +17,11 @@ export function CubeButton({
 }) {
   const [isFlipped, setIsFlipped] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
+  const prefersReducedMotion = useReducedMotion();
 
-  // Auto flip every 3 seconds if autoHover is enabled
+  // Auto flip every 3 seconds if autoHover is enabled and user doesn't prefer reduced motion
   useEffect(() => {
-    if (!autoHover) return;
+    if (!autoHover || prefersReducedMotion) return;
 
     let revertTimeout;
     const interval = setInterval(() => {
@@ -35,7 +37,7 @@ export function CubeButton({
       clearInterval(interval);
       if (revertTimeout) clearTimeout(revertTimeout);
     };
-  }, [autoHover, autoHoverDelay, isHovered]);
+  }, [autoHover, autoHoverDelay, isHovered, prefersReducedMotion]);
 
   // Styles strictly using Blue #01236A and Yellow #FFD900
   const variantStyles = {

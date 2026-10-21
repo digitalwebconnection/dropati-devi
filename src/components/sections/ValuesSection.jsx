@@ -2,12 +2,14 @@ import React, { useState, useEffect } from "react";
 import { Sparkles, ArrowRight } from "lucide-react";
 import { Eyebrow } from "@/components/common";
 import { valuesList } from "@/constants";
+import { useReducedMotion } from "@/hooks";
 
 export function ValuesSection() {
   const [hoveredIndex, setHoveredIndex] = useState(null);
   const [flippedIndex, setFlippedIndex] = useState(null);
   const [autoIndex, setAutoIndex] = useState(null);
   const [isGridHovered, setIsGridHovered] = useState(false);
+  const prefersReducedMotion = useReducedMotion();
 
   // Preload all 6 value images on mount for instantaneous hover response
   useEffect(() => {
@@ -21,6 +23,8 @@ export function ValuesSection() {
 
   // Auto-hover / flip a card every 8 seconds (flips to content for 5s, then flips back)
   useEffect(() => {
+    if (prefersReducedMotion) return;
+
     let revertTimer;
     let nextIdx = 0;
 
@@ -44,7 +48,7 @@ export function ValuesSection() {
       clearInterval(interval);
       if (revertTimer) clearTimeout(revertTimer);
     };
-  }, [isGridHovered, hoveredIndex, flippedIndex]);
+  }, [isGridHovered, hoveredIndex, flippedIndex, prefersReducedMotion]);
 
   return (
     <section

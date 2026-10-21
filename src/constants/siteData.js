@@ -18,17 +18,12 @@ export const siteImages = {
     },
   ],
   story: "/images/moments/moment-6-grace.webp",
-  wellbeing:
-    "https://images.unsplash.com/photo-1682962232755-f1d051ddb638?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D",
-  skills:
-    "https://images.unsplash.com/photo-1616674202799-054e7c831378?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D",
-  education:
-    "https://images.unsplash.com/photo-1573894998033-c0cef4ed722b?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D",
-  business:
-    "https://images.unsplash.com/photo-1590650046871-92c887180603?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D",
-  community:
-    "https://images.unsplash.com/photo-1651372381086-9861c9c81db5?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D",
-  help: "https://images.unsplash.com/photo-1649326609138-09de2b661544?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D",
+  wellbeing: "/images/programmes/wellbeing.webp",
+  skills: "/images/programmes/skills.webp",
+  education: "/images/programmes/education.webp",
+  business: "/images/programmes/business.webp",
+  community: "/images/programmes/community.webp",
+  help: "/images/sections/help.webp",
 };
 
 export const navLinks = [
@@ -139,7 +134,7 @@ export const purposePillars = [
     title: "Learn",
     text: "Make education and skills opportunities more accessible.",
     iconType: "leaf",
-    image: "/images/purpose/sovannkiry-sim-41fytYZ_-mM-unsplash.jpg",
+    image: "/images/purpose/sovannkiry-sim-41fytYZ_-mM-unsplash.webp",
     alt: "Smiling young students receiving notebooks and learning materials",
     objectPosition: "object-[center_35%]",
   },
@@ -148,7 +143,7 @@ export const purposePillars = [
     title: "Earn",
     text: "Encourage financial independence and entrepreneurship.",
     iconType: "sparkles",
-    image: "/images/purpose/firdaus-roslan-hLCHn4Somyk-unsplash.jpg",
+    image: "/images/purpose/firdaus-roslan-hLCHn4Somyk-unsplash.webp",
     alt: "Craftswoman working skillfully on a tailoring sewing machine",
     objectPosition: "object-[center_28%]",
   },
@@ -157,7 +152,7 @@ export const purposePillars = [
     title: "Thrive",
     text: "Promote confidence, personal development and wellbeing.",
     iconType: "heart",
-    image: "/images/purpose/equalstock-3g6mKn8i1Ik-unsplash.jpg",
+    image: "/images/purpose/equalstock-3g6mKn8i1Ik-unsplash.webp",
     alt: "Resilient Indian woman holding a harvest basin near agricultural equipment",
     objectPosition: "object-[center_35%]",
   },
@@ -166,7 +161,7 @@ export const purposePillars = [
     title: "Belong",
     text: "Build a compassionate community where people feel supported and respected.",
     iconType: "quote",
-    image: "/images/purpose/penumalla-benson-7kSIUaT8ADo-unsplash.jpg",
+    image: "/images/purpose/penumalla-benson-7kSIUaT8ADo-unsplash.webp",
     alt: "Indian women and children gathered together in community warmth and mutual care",
     objectPosition: "object-[center_28%]",
   },
@@ -219,43 +214,37 @@ export const valuesList = [
   {
     title: "Courage",
     text: "Facing difficult circumstances without giving up.",
-    image:
-      "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=1000&q=85",
+    image: "/images/values/courage.webp",
     alt: "Courage - Young student raising hand with courage and curiosity in school",
   },
   {
     title: "Compassion",
     text: "Treating every person with kindness and respect.",
-    image:
-      "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=1000&q=85",
+    image: "/images/values/compassion.webp",
     alt: "Compassion - Smiling child supported by foundation community care",
   },
   {
     title: "Independence",
     text: "Encouraging children and youth to develop abilities and shape their future.",
-    image:
-      "https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=1000&q=85",
+    image: "/images/values/independence.webp",
     alt: "Independence - Young student empowered through literacy and learning",
   },
   {
     title: "Service",
     text: "Helping others with sincerity, dedication and without judgement.",
-    image:
-      "https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1000&q=85",
+    image: "/images/values/service.webp",
     alt: "Service - Classroom dedicated to serving and uplifting children",
   },
   {
     title: "Family and Community",
     text: "Recognising the strength that comes from supporting one another.",
-    image:
-      "https://images.unsplash.com/photo-1529390079861-591de354faf5?auto=format&fit=crop&w=1000&q=85",
+    image: "/images/values/family-community.webp",
     alt: "Family and Community - Group of school children sharing joy and togetherness",
   },
   {
     title: "Integrity",
     text: "Acting responsibly, communicating honestly and using resources transparently.",
-    image:
-      "https://images.unsplash.com/photo-1588072432836-e10032774350?auto=format&fit=crop&w=1000&q=85",
+    image: "/images/values/integrity.webp",
     alt: "Integrity - Dedicated young students learning with honesty and hope",
   },
 ];

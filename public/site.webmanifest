@@ -1,11 +1,16 @@
 {
+  "id": "/",
   "name": "Dropati Devi Foundation",
   "short_name": "Dropati Devi",
   "description": "A Legacy of Strength. A Future of Possibilities. Empowering women and girls through education, skills and community support.",
   "start_url": "/",
+  "scope": "/",
   "display": "standalone",
+  "orientation": "portrait-primary",
   "background_color": "#ffffff",
   "theme_color": "#01236A",
+  "lang": "en",
+  "categories": ["community", "education", "nonprofit"],
   "icons": [
     {
       "src": "/apple-touch-icon.png",

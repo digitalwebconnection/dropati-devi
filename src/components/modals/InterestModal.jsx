@@ -1,14 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { ArrowUpRight, X, Check, Loader2, AlertCircle } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Eyebrow } from "@/components/common";
 import { submitInterestEnquiry } from "@/services";
 import { useBodyScrollLock, useKeydown } from "@/hooks";
+import { cn, validateInterestForm } from "@/utils";
 
 export function InterestModal({ isOpen, onClose }) {
   const [submitted, setSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState(null);
+  const [fieldErrors, setFieldErrors] = useState({});
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -26,6 +28,7 @@ export function InterestModal({ isOpen, onClose }) {
       setSubmitted(false);
       setIsSubmitting(false);
       setError(null);
+      setFieldErrors({});
       setFormData({
         name: "",
         email: "",
@@ -37,17 +40,51 @@ export function InterestModal({ isOpen, onClose }) {
     }
   }, [isOpen]);
 
+  const lastSubmitTimeRef = useRef(0);
+
+  const handleInputChange = (field, value) => {
+    setFormData((prev) => ({ ...prev, [field]: value }));
+    if (fieldErrors[field]) {
+      setFieldErrors((prev) => {
+        const next = { ...prev };
+        delete next[field];
+        return next;
+      });
+      setError(null);
+    }
+  };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    const trimmedName = formData.name.trim();
-    const trimmedEmail = formData.email.trim();
-
-    if (!trimmedName || !trimmedEmail) {
-      setError("Please provide your name and a valid email address.");
+    // Throttling: Prevent repeated submissions within 4 seconds
+    const now = Date.now();
+    if (now - lastSubmitTimeRef.current < 4000) {
+      setError("Please wait a few seconds before submitting again.");
       return;
     }
 
+    // Comprehensive Schema & Regex Validation
+    const { isValid, errors } = validateInterestForm(formData);
+    if (!isValid) {
+      setFieldErrors(errors);
+      setError(
+        errors.name ||
+          errors.email ||
+          errors.phone ||
+          errors.message ||
+          "Please resolve the form validation errors before submitting."
+      );
+      return;
+    }
+
+    setFieldErrors({});
+    const trimmedName = formData.name.trim().slice(0, 80);
+    const trimmedEmail = formData.email.trim().slice(0, 120);
+    const trimmedPhone = formData.phone.trim().slice(0, 25);
+    const trimmedMessage = formData.message.trim().slice(0, 1500);
+
+    lastSubmitTimeRef.current = now;
     setIsSubmitting(true);
     setError(null);
 
@@ -56,8 +93,8 @@ export function InterestModal({ isOpen, onClose }) {
         ...formData,
         name: trimmedName,
         email: trimmedEmail,
-        phone: formData.phone.trim(),
-        message: formData.message.trim(),
+        phone: trimmedPhone,
+        message: trimmedMessage,
       });
       setSubmitted(true);
     } catch (err) {
@@ -172,6 +209,7 @@ export function InterestModal({ isOpen, onClose }) {
                 <form
                   onSubmit={handleSubmit}
                   data-testid="interest-form"
+                  noValidate
                   className="space-y-3.5"
                 >
                   {/* Anti-bot honeypot field (hidden from assistive tech & genuine human users) */}
@@ -195,14 +233,29 @@ export function InterestModal({ isOpen, onClose }) {
                       Your name <span className="text-[#01236A]">*</span>
                       <input
                         required
-                        placeholder="Your name"
+                        maxLength={80}
+                        autoComplete="name"
+                        placeholder="Your full name"
                         value={formData.name}
-                        onChange={(e) =>
-                          setFormData({ ...formData, name: e.target.value })
-                        }
-                        className="mt-1 w-full px-3 py-2.5 border border-line rounded-sm bg-white text-[#01236A] text-sm outline-none focus:border-[#01236A] focus:ring-1 focus:ring-[#01236A] transition-colors normal-case font-normal"
+                        onChange={(e) => handleInputChange("name", e.target.value)}
+                        className={cn(
+                          "mt-1 w-full px-3 py-2.5 border rounded-sm bg-white text-[#01236A] text-sm outline-none transition-colors normal-case font-normal",
+                          fieldErrors.name
+                            ? "border-red-500 focus:border-red-600 focus:ring-1 focus:ring-red-500 bg-red-50/20"
+                            : "border-line focus:border-[#01236A] focus:ring-1 focus:ring-[#01236A]"
+                        )}
                         data-testid="interest-name-input"
+                        aria-invalid={Boolean(fieldErrors.name)}
+                        aria-describedby={fieldErrors.name ? "name-error" : undefined}
                       />
+                      {fieldErrors.name && (
+                        <span
+                          id="name-error"
+                          className="mt-1 block text-[11px] text-red-600 font-normal normal-case"
+                        >
+                          {fieldErrors.name}
+                        </span>
+                      )}
                     </label>
 
                     <label className="block text-[#01236A] text-[11px] font-bold tracking-wider uppercase">
@@ -210,14 +263,29 @@ export function InterestModal({ isOpen, onClose }) {
                       <input
                         required
                         type="email"
+                        maxLength={120}
+                        autoComplete="email"
                         placeholder="you@example.com"
                         value={formData.email}
-                        onChange={(e) =>
-                          setFormData({ ...formData, email: e.target.value })
-                        }
-                        className="mt-1 w-full px-3 py-2.5 border border-line rounded-sm bg-white text-[#01236A] text-sm outline-none focus:border-[#01236A] focus:ring-1 focus:ring-[#01236A] transition-colors normal-case font-normal"
+                        onChange={(e) => handleInputChange("email", e.target.value)}
+                        className={cn(
+                          "mt-1 w-full px-3 py-2.5 border rounded-sm bg-white text-[#01236A] text-sm outline-none transition-colors normal-case font-normal",
+                          fieldErrors.email
+                            ? "border-red-500 focus:border-red-600 focus:ring-1 focus:ring-red-500 bg-red-50/20"
+                            : "border-line focus:border-[#01236A] focus:ring-1 focus:ring-[#01236A]"
+                        )}
                         data-testid="interest-email-input"
+                        aria-invalid={Boolean(fieldErrors.email)}
+                        aria-describedby={fieldErrors.email ? "email-error" : undefined}
                       />
+                      {fieldErrors.email && (
+                        <span
+                          id="email-error"
+                          className="mt-1 block text-[11px] text-red-600 font-normal normal-case"
+                        >
+                          {fieldErrors.email}
+                        </span>
+                      )}
                     </label>
                   </div>
 
@@ -230,14 +298,30 @@ export function InterestModal({ isOpen, onClose }) {
                       </span>
                       <input
                         type="tel"
+                        inputMode="tel"
+                        autoComplete="tel"
+                        maxLength={25}
                         placeholder="+91 95373 92180"
                         value={formData.phone}
-                        onChange={(e) =>
-                          setFormData({ ...formData, phone: e.target.value })
-                        }
-                        className="mt-1 w-full px-3 py-2.5 border border-line rounded-sm bg-white text-[#01236A] text-sm outline-none focus:border-[#01236A] focus:ring-1 focus:ring-[#01236A] transition-colors normal-case font-normal"
+                        onChange={(e) => handleInputChange("phone", e.target.value)}
+                        className={cn(
+                          "mt-1 w-full px-3 py-2.5 border rounded-sm bg-white text-[#01236A] text-sm outline-none transition-colors normal-case font-normal",
+                          fieldErrors.phone
+                            ? "border-red-500 focus:border-red-600 focus:ring-1 focus:ring-red-500 bg-red-50/20"
+                            : "border-line focus:border-[#01236A] focus:ring-1 focus:ring-[#01236A]"
+                        )}
                         data-testid="interest-phone-input"
+                        aria-invalid={Boolean(fieldErrors.phone)}
+                        aria-describedby={fieldErrors.phone ? "phone-error" : undefined}
                       />
+                      {fieldErrors.phone && (
+                        <span
+                          id="phone-error"
+                          className="mt-1 block text-[11px] text-red-600 font-normal normal-case"
+                        >
+                          {fieldErrors.phone}
+                        </span>
+                      )}
                     </label>
 
                     <label className="block text-[#01236A] text-[11px] font-bold tracking-wider uppercase">
@@ -245,10 +329,7 @@ export function InterestModal({ isOpen, onClose }) {
                       <select
                         value={formData.interestType}
                         onChange={(e) =>
-                          setFormData({
-                            ...formData,
-                            interestType: e.target.value,
-                          })
+                          handleInputChange("interestType", e.target.value)
                         }
                         className="mt-1 w-full px-3 py-2.5 border border-line rounded-sm bg-white text-[#01236A] text-sm outline-none focus:border-[#01236A] focus:ring-1 focus:ring-[#01236A] transition-colors normal-case font-normal cursor-pointer"
                         data-testid="interest-type-select"
@@ -267,14 +348,28 @@ export function InterestModal({ isOpen, onClose }) {
                     Tell us a little more
                     <textarea
                       rows="2"
+                      maxLength={1500}
                       placeholder="Your message or enquiry..."
                       value={formData.message}
-                      onChange={(e) =>
-                        setFormData({ ...formData, message: e.target.value })
-                      }
-                      className="mt-1 w-full px-3 py-2 border border-line rounded-sm bg-white text-[#01236A] text-sm outline-none focus:border-[#01236A] focus:ring-1 focus:ring-[#01236A] transition-colors normal-case font-normal resize-none min-h-[58px]"
+                      onChange={(e) => handleInputChange("message", e.target.value)}
+                      className={cn(
+                        "mt-1 w-full px-3 py-2 border rounded-sm bg-white text-[#01236A] text-sm outline-none transition-colors normal-case font-normal resize-none min-h-[58px]",
+                        fieldErrors.message
+                          ? "border-red-500 focus:border-red-600 focus:ring-1 focus:ring-red-500 bg-red-50/20"
+                          : "border-line focus:border-[#01236A] focus:ring-1 focus:ring-[#01236A]"
+                      )}
                       data-testid="interest-message-input"
+                      aria-invalid={Boolean(fieldErrors.message)}
+                      aria-describedby={fieldErrors.message ? "message-error" : undefined}
                     />
+                    {fieldErrors.message && (
+                      <span
+                        id="message-error"
+                        className="mt-1 block text-[11px] text-red-600 font-normal normal-case"
+                      >
+                        {fieldErrors.message}
+                      </span>
+                    )}
                   </label>
 
                   {/* Submit Button with Loading State */}
@@ -298,6 +393,12 @@ export function InterestModal({ isOpen, onClose }) {
                       </>
                     )}
                   </motion.button>
+
+                  {/* Privacy Assurance Copy (DPDP Guidelines) */}
+                  <p className="mt-2.5 text-center text-[11px] text-[#01236A]/75 leading-relaxed">
+                    🔒 We respect your privacy. Details provided are used solely to
+                    respond to your enquiry and are never shared.
+                  </p>
                 </form>
               </>
             )}

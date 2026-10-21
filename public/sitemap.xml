@@ -1,10 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://dropatidevifoundation.org/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://dropatidevifoundation.org/logo.webp</image:loc>
+      <image:title>Dropati Devi Foundation Logo</image:title>
+      <image:caption>Official logo of Dropati Devi Foundation</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://dropatidevifoundation.org/images/og-preview.webp</image:loc>
+      <image:title>Dropati Devi Foundation - Women Empowerment and Education</image:title>
+      <image:caption>A Legacy of Strength. A Future of Possibilities.</image:caption>
+    </image:image>
   </url>
 </urlset>
-

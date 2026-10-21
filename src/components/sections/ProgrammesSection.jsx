@@ -94,7 +94,7 @@ export function ProgrammesSection({ onOpenInterest }) {
                   <div className="flex items-center gap-2 mb-2">
                     <Sparkles size={14} className="text-[#FFD900]" />
                     <span className="text-xs uppercase tracking-widest text-[#FFD900] font-bold font-mono">
-                      ` Initiative {prog.number}`{" "}
+                      Initiative {prog.number}
                     </span>
                   </div>
 

@@ -19,9 +19,10 @@ export function HeroSection() {
     });
   }, [slides]);
 
-  // Auto-advance slide every 4.5 seconds
+  // Auto-advance slide every 4.5 seconds (paused when tab is hidden)
   useEffect(() => {
     const timer = setInterval(() => {
+      if (typeof document !== "undefined" && document.hidden) return;
       setCurrentSlide((prev) => (prev + 1) % slides.length);
     }, 4500);
 

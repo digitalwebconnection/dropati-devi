@@ -1,5 +1,32 @@
+# ==============================================================================
+# Robots.txt for Dropati Devi Foundation (dropatidevifoundation.org)
+# ==============================================================================
+
+# General search engines (Google, Bing, Applebot, DuckDuckBot, Yahoo)
 User-agent: *
 Allow: /
+Disallow: /api/
+Disallow: /*?*botcheck*
 
-# Sitemaps
+# AI Scrapers & Bulk LLM Dataset Harvesters (Preserve foundation bandwidth)
+User-agent: GPTBot
+Disallow: /
+
+User-agent: ChatGPT-User
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+User-agent: anthropic-ai
+Disallow: /
+
+User-agent: Claude-Web
+Disallow: /
+
+User-agent: Bytespider
+Disallow: /
+
+# Host & Sitemap Directives
+Host: https://dropatidevifoundation.org
 Sitemap: https://dropatidevifoundation.org/sitemap.xml

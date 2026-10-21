@@ -4,9 +4,7 @@ import { Eyebrow, ScrollExpand, CubeButton } from "@/components/common";
 import { siteImages } from "@/constants";
 
 export function HelpSection({ onOpenInterest }) {
-  const helpImage =
-    siteImages.help ||
-    "https://images.unsplash.com/photo-1649326609138-09de2b661544?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D";
+  const helpImage = siteImages.help || "/images/sections/help.webp";
 
   // Initial Top Centered Header before scroll expansion
   const initialHeader = (

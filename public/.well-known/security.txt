@@ -1,0 +1,6 @@
+Contact: mailto:dropatidevifoundation1945@gmail.com
+Expires: 2027-10-19T00:00:00.000Z
+Preferred-Languages: en, hi
+Canonical: https://dropatidevifoundation.org/.well-known/security.txt
+Policy: https://dropatidevifoundation.org/#help
+Acknowledgments: https://dropatidevifoundation.org/#story

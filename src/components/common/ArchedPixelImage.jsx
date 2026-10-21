@@ -63,6 +63,26 @@ export function PixelImage({
   const [activePixels, setActivePixels] = useState(() => new Set());
   const activeIndexRef = useRef(activeIndex);
   const onIndexChangeRef = useRef(onIndexChange);
+  const containerRef = useRef(null);
+  const [isInView, setIsInView] = useState(false);
+
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el || typeof IntersectionObserver === "undefined") {
+      setIsInView(true);
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsInView(entry.isIntersecting);
+      },
+      { rootMargin: "120px" }
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
 
   useEffect(() => {
     activeIndexRef.current = activeIndex;
@@ -90,9 +110,9 @@ export function PixelImage({
     }
   }, [controlledIndex]);
 
-  // Pixel reveal & slideshow animation loop
+  // Pixel reveal & slideshow animation loop (only active when in viewport)
   useEffect(() => {
-    if (images.length === 0) return;
+    if (!isInView || images.length === 0) return;
     const totalPixels = rows * cols;
     let timeoutId;
 
@@ -139,7 +159,7 @@ export function PixelImage({
     }, 130);
 
     return () => clearInterval(revealInterval);
-  }, [activePixels.size, rows, cols, images.length]);
+  }, [isInView, activePixels.size, rows, cols, images.length]);
 
   // Reveal pixel on user mouse hover
   const handleMouseEnter = useCallback((r, c) => {
@@ -156,6 +176,7 @@ export function PixelImage({
 
   return (
     <div
+      ref={containerRef}
       className={cn(
         "relative overflow-hidden group bg-[#001747] w-full h-full",
         className

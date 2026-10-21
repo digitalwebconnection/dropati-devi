@@ -33,10 +33,20 @@ function App() {
   return (
     <ErrorBoundary>
       <main id="top" className="relative min-h-screen bg-bone">
+        {/* Accessible Skip Link for Keyboard & Screen Reader Users */}
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:px-4 focus:py-2 focus:bg-[#01236A] focus:text-[#FFD900] focus:font-bold focus:rounded-sm focus:shadow-xl focus:outline-none focus:ring-2 focus:ring-[#FFD900]"
+        >
+          Skip to main content
+        </a>
+
         <Navbar onOpenInterest={openInterest} />
 
         {/* Above-the-fold critical content */}
-        <HeroSection />
+        <div id="main-content">
+          <HeroSection />
+        </div>
         <StorySection />
 
         {/* Below-the-fold lazy-loaded sections with isolated error containment */}

@@ -1,6 +1,15 @@
 import { appConfig } from "@/config";
 
 /**
+ * Strips carriage returns and newlines from single-line fields to prevent SMTP header injection.
+ * @param {string} val
+ * @returns {string}
+ */
+export function sanitizeSingleLine(val) {
+  return (val || "").replace(/[\r\n]+/g, " ").trim();
+}
+
+/**
  * Submits an enquiry/registration payload to Web3Forms API.
  *
  * @param {Object} data
@@ -20,15 +29,36 @@ export async function submitInterestEnquiry(data) {
     };
   }
 
+  // Guard for missing API key configuration
+  if (!appConfig.web3FormsAccessKey) {
+    console.warn("VITE_WEB3FORMS_ACCESS_KEY is not configured in environment.");
+    if (import.meta.env.DEV) {
+      return {
+        success: true,
+        message:
+          "Dev Mode: Simulated submission (configure VITE_WEB3FORMS_ACCESS_KEY in .env.local for real emails).",
+      };
+    }
+    throw new Error(
+      "Enquiry submission is temporarily unavailable. Please email us directly at dropatidevifoundation1945@gmail.com."
+    );
+  }
+
+  const sanitizedName = sanitizeSingleLine(data.name);
+  const sanitizedEmail = sanitizeSingleLine(data.email);
+  const sanitizedPhone = sanitizeSingleLine(data.phone);
+  const sanitizedInterestType = sanitizeSingleLine(data.interestType);
+  const sanitizedMessage = (data.message || "").trim();
+
   const payload = {
     access_key: appConfig.web3FormsAccessKey,
-    subject: `New Interest Registration: ${data.interestType || "General Enquiry"} (${data.name || "Anonymous"})`,
+    subject: `New Interest Registration: ${sanitizedInterestType || "General Enquiry"} (${sanitizedName || "Anonymous"})`,
     from_name: "Dropati Devi Foundation Website",
-    name: data.name,
-    email: data.email,
-    phone: data.phone || "Not provided",
-    interest_type: data.interestType,
-    message: data.message || "No specific message provided.",
+    name: sanitizedName,
+    email: sanitizedEmail,
+    phone: sanitizedPhone || "Not provided",
+    interest_type: sanitizedInterestType,
+    message: sanitizedMessage || "No specific message provided.",
     botcheck: false,
     submitted_at: new Date().toISOString(),
   };
